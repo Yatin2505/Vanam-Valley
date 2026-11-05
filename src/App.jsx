@@ -2,6 +2,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import PageLoader from './components/PageLoader';
 
 // Lazy-load pages for code splitting
 const HomePage = lazy(() => import('./pages/Home/index'));
@@ -12,16 +13,6 @@ const CommercialPage = lazy(() => import('./pages/Commercial'));
 const GalleryPage = lazy(() => import('./pages/Gallery'));
 const ContactPage = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-
-// Simple loading fallback
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-ivory">
-    <div className="flex flex-col items-center gap-3">
-      <div className="w-8 h-8 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
-      <p className="font-inter text-dark-text/40 text-xs tracking-wide">Loading...</p>
-    </div>
-  </div>
-);
 
 function App() {
   return (

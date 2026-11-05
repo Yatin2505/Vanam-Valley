@@ -1,99 +1,116 @@
 // src/components/Footer.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin } from 'lucide-react';
+import { Phone, MapPin, ArrowUpRight, Compass, Shield } from 'lucide-react';
 import { business } from '../data/siteData';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#001D18] text-white border-t border-gold/15 relative overflow-hidden">
+    <footer className="bg-[#001410] text-white border-t border-gold/20 relative overflow-hidden">
       
-      {/* Main Footer Container */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* ── Top Atmospheric Hairline ── */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
+      {/* ── Main Footer Grid ── */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-20 pb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10">
         
-        {/* Brand Column (Col 1) */}
-        <div className="flex flex-col justify-between">
+        {/* Brand Lockup & Legacy (Cols 4) */}
+        <div className="lg:col-span-4 flex flex-col justify-between">
           <div>
-            <FooterLogo />
-            <p className="text-white/60 font-inter text-xs mt-4 tracking-wider">
-              Nature • Lifestyle • Investment
+            <Link to="/" className="inline-block mb-6">
+              <img
+                src="/logo-gold.png"
+                alt="Vanam Valley Group"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+
+            <p className="text-white/65 font-inter text-xs sm:text-sm font-light leading-relaxed max-w-sm mb-6">
+              A master-planned plotted development group rooted in Balaghat, Madhya Pradesh. Dedicated to crafting sustainable residential enclaves and premier commercial corridors.
             </p>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-inter text-gold">
+              <Shield size={12} />
+              <span>Registered Office: Balaghat, M.P. • 481001</span>
+            </div>
           </div>
         </div>
 
-        {/* Quick Links (Col 2) */}
-        <div>
-          <h4 className="text-white font-inter font-medium text-xs tracking-wider mb-4">
-            Quick Links
+        {/* Navigation Corridors (Cols 2) */}
+        <div className="lg:col-span-2">
+          <h4 className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase mb-5">
+            Exploration
           </h4>
-          <ul className="space-y-2 text-xs font-inter text-white/60">
+          <ul className="space-y-3 font-inter text-xs">
             {[
-              { label: 'Home', path: '/' },
-              { label: 'About Us', path: '/about' },
-              { label: 'Projects', path: '/projects' },
-              { label: 'Gallery', path: '/gallery' },
-              { label: 'Contact', path: '/contact' },
+              { label: 'Home Horizon', path: '/' },
+              { label: 'Brand Story', path: '/about' },
+              { label: 'Residential Plots', path: '/projects/residential' },
+              { label: 'Commercial Corridors', path: '/projects/commercial' },
+              { label: 'Visual Chronicle', path: '/gallery' },
+              { label: 'Private Consultation', path: '/contact' },
             ].map((item) => (
               <li key={item.label}>
                 <Link
                   to={item.path}
-                  className="hover:text-gold transition-colors duration-150 inline-block"
+                  className="text-white/70 hover:text-gold transition-colors duration-200 inline-flex items-center gap-1.5 group"
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  <ArrowUpRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity text-gold" />
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact Us (Col 3) */}
-        <div>
-          <h4 className="text-white font-inter font-medium text-xs tracking-wider mb-4">
-            Contact Us
+        {/* Contact Coordinates (Cols 3) */}
+        <div className="lg:col-span-3">
+          <h4 className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase mb-5">
+            Office Coordinates
           </h4>
-          <div className="space-y-3.5 text-xs font-inter text-white/70">
-            <div className="flex items-start gap-2.5">
-              <Phone size={14} className="text-gold flex-shrink-0 mt-0.5" />
-              <div className="flex flex-col space-y-0.5">
-                <a href={`tel:${business.phone[0]}`} className="hover:text-gold transition-colors">
-                  {business.phone[0]}
-                </a>
-                <a href={`tel:${business.phone[1]}`} className="hover:text-gold transition-colors">
-                  {business.phone[1]}
-                </a>
+          <div className="space-y-4 font-inter text-xs text-white/75">
+            <div className="flex items-start gap-3">
+              <MapPin size={16} className="text-gold flex-shrink-0 mt-0.5" />
+              <div className="leading-relaxed">
+                {business.address.street},<br />
+                Near Hariom Nagar, {business.address.city},<br />
+                {business.address.state} – {business.address.pin}
               </div>
             </div>
 
-            <div className="flex items-start gap-2.5">
-              <MapPin size={14} className="text-gold flex-shrink-0 mt-0.5" />
-              <div className="leading-relaxed text-white/65">
-                {business.address.street},<br />
-                Near Hariom Nagar,<br />
-                {business.address.city} – {business.address.pin}
+            <div className="flex items-start gap-3 pt-1">
+              <Phone size={15} className="text-gold flex-shrink-0 mt-0.5" />
+              <div className="flex flex-col space-y-1">
+                <a href={`tel:${business.phone[0]}`} className="hover:text-gold transition-colors font-medium">
+                  +91 {business.phone[0]}
+                </a>
+                <a href={`tel:${business.phone[1]}`} className="hover:text-gold transition-colors font-medium">
+                  +91 {business.phone[1]}
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Follow Us (Col 4) */}
-        <div>
-          <h4 className="text-white font-inter font-medium text-xs tracking-wider mb-4">
-            Follow Us
+        {/* Connect & VIP Concierge (Cols 3) */}
+        <div className="lg:col-span-3">
+          <h4 className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase mb-5">
+            Connect With Us
           </h4>
 
-          <div className="mb-4">
+          <div className="mb-5">
             <a
               href={business.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white/75 hover:text-gold transition-colors font-inter text-xs"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-gold transition-colors font-inter text-xs"
             >
               <IgIcon />
-              <span>@{business.instagram}</span>
+              <span className="font-medium">@{business.instagram}</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 mb-6">
             <SocialIcon href={business.instagramUrl} label="Instagram">
               <IgIcon />
             </SocialIcon>
@@ -104,18 +121,47 @@ const Footer = () => {
               <YtIcon />
             </SocialIcon>
           </div>
+
+          {/* Direct WhatsApp Callout Pill */}
+          <a
+            href={business.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-2xl bg-white/5 border border-gold/30 hover:border-gold transition-all flex items-center gap-3 group"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white flex-shrink-0 shadow-sm">
+              <svg viewBox="0 0 24 24" fill="white" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+            </div>
+            <div>
+              <div className="text-[10px] font-inter text-white/50 uppercase tracking-wider">
+                Direct WhatsApp
+              </div>
+              <div className="text-xs font-inter font-semibold text-white group-hover:text-gold transition-colors">
+                Instant Land Desk →
+              </div>
+            </div>
+          </a>
         </div>
 
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10 bg-[#001511]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-inter text-white/40">
+      {/* ── Colossal Watermark Typography ── */}
+      <div className="relative border-t border-white/5 pt-6 pb-2 overflow-hidden select-none pointer-events-none text-center">
+        <span className="font-playfair font-extrabold text-[12vw] leading-none text-white/[0.03] tracking-widest uppercase whitespace-nowrap block">
+          VANAM VALLEY
+        </span>
+      </div>
+
+      {/* ── Bottom Bar ── */}
+      <div className="border-t border-white/10 bg-[#000E0B]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-inter text-white/40">
           <div>
-            © 2025 Vanam Valley Group. All Rights Reserved.
+            © {business.year} Vanam Valley Group. All Rights Reserved. • Balaghat, Madhya Pradesh
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <Link to="/privacy-policy" className="hover:text-gold transition-colors">
               Privacy Policy
             </Link>
@@ -126,7 +172,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
     </footer>
   );
 };
@@ -137,7 +182,7 @@ const SocialIcon = ({ href, label, children }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="w-7 h-7 rounded-full bg-white/10 hover:bg-gold hover:text-[#001D18] flex items-center justify-center text-white/70 transition-all duration-200"
+    className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:border-gold hover:text-gold flex items-center justify-center text-white/70 transition-all duration-200"
   >
     {children}
   </a>
@@ -159,16 +204,6 @@ const YtIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13">
     <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>
-);
-
-const FooterLogo = () => (
-  <div className="flex items-center">
-    <img
-      src="/logo-gold.png"
-      alt="Vanam Valley Group"
-      className="h-12 w-auto object-contain"
-    />
-  </div>
 );
 
 export default Footer;

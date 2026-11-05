@@ -19,7 +19,27 @@
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="min-height: 100vh; background-color: #001D18; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Inter', system-ui, sans-serif; color: #D8B879;">
+        <img src="/logo-gold.png" alt="Vanam Valley" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px; animation: vanamPulse 2s ease-in-out infinite;" />
+        <div style="width: 180px; height: 2px; background: rgba(255, 255, 255, 0.1); border-radius: 9999px; overflow: hidden; position: relative;">
+          <div style="width: 50%; height: 100%; background: linear-gradient(90deg, transparent, #D8B879, transparent); position: absolute; animation: vanamBar 1.5s ease-in-out infinite;"></div>
+        </div>
+        <div style="margin-top: 16px; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(216, 184, 121, 0.85); font-weight: 600;">
+          VANAM VALLEY
+        </div>
+      </div>
+      <style>
+        @keyframes vanamPulse {
+          0%, 100% { opacity: 0.9; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.04); }
+        }
+        @keyframes vanamBar {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
