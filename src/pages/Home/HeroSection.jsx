@@ -19,18 +19,19 @@ const HeroSection = () => {
             muted
             playsInline
             poster="/hero-poster.jpg"
-            className="w-full h-full object-cover object-center scale-105 filter brightness-[0.88] contrast-[1.08]"
+            className="w-full h-full object-cover object-center"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
 
-          {/* Deep Forest & Emerald Cinematic Color Grading */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#002D26]/75 to-[#001D18]/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001D18]/90 via-[#002D26]/60 to-transparent" />
-          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,29,24,0.85)]" />
-          
-          {/* Subtle architectural grid lines */}
-          <div className="absolute inset-0 bg-[radial-gradient(#D8B879_0.5px,transparent_0.5px)] [background-size:32px_32px] opacity-[0.07]" />
+          {/* Left half green shadow ONLY for text contrast (Right half of the video is 100% visible and clear) */}
+          <div className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-1/2 bg-gradient-to-r from-[#001D18]/90 via-[#001D18]/60 to-transparent pointer-events-none" />
+
+          {/* Subtle top shade for navbar legibility */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
+
+          {/* Subtle bottom fade to transition to the next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#001713] to-transparent pointer-events-none" />
         </div>
 
         {/* ── Main Hero Narrative ── */}
