@@ -1,9 +1,9 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Trees, Building2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { navLinks } from '../data/siteData';
+import { navLinks, business } from '../data/siteData';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,7 +14,10 @@ const Navbar = () => {
   const isHome = location.pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => {
+      const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setScrolled(scrollPos > 40);
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -36,25 +39,38 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const navBg = isHome
-    ? scrolled
-      ? 'bg-forest/97 backdrop-blur-md shadow-lg'
-      : 'bg-transparent'
-    : 'bg-forest shadow-lg';
-
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 9999,
+        }}
+        className={`transition-all duration-300 ${
+          isHome
+            ? scrolled
+              ? 'bg-[#002620] shadow-2xl border-b border-gold/20 py-3.5 backdrop-blur-md'
+              : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-5 md:py-6'
+            : 'bg-[#002620] shadow-xl border-b border-gold/20 py-4 backdrop-blur-md'
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <LogoMark />
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-16 flex items-center justify-between">
+          
+          {/* ── Brand Official Logo ── */}
+          <Link to="/" className="flex items-center gap-3 group focus:outline-none flex-shrink-0">
+            <img
+              src="/logo-gold.png"
+              alt="Vanam Valley Logo"
+              className="h-9 md:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* ── Desktop Navigation Links ── */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div
@@ -65,31 +81,44 @@ const Navbar = () => {
                   onMouseLeave={() => setDropdownOpen(false)}
                 >
                   <button
-                    className="flex items-center gap-1 text-white/90 hover:text-gold font-inter font-medium text-sm tracking-wide transition-colors duration-200"
+                    className="flex items-center gap-1.5 text-white/90 hover:text-gold font-inter font-medium text-xs tracking-wider transition-colors duration-200 py-2 focus:outline-none"
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
                     {link.label}
                     <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+                      size={13}
+                      className={`text-gold/80 transition-transform duration-300 ${
+                        dropdownOpen ? 'rotate-180 text-gold' : ''
+                      }`}
                     />
                   </button>
+
                   <AnimatePresence>
                     {dropdownOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                        initial={{ opacity: 0, y: 10, scale: 0.97 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.97 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-xl shadow-card border border-gold/20 overflow-hidden"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-[#002620] rounded-2xl shadow-card-dark border border-gold/30 p-2 overflow-hidden z-50"
                       >
                         {link.dropdown.map((item) => (
                           <Link
                             key={item.path}
                             to={item.path}
-                            className="block px-5 py-3 text-sm text-dark-text hover:bg-ivory hover:text-forest font-inter font-medium transition-colors duration-150 border-b border-gold/10 last:border-0"
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all group"
                           >
-                            {item.label}
+                            <div className="w-8 h-8 rounded-lg bg-gold/15 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-[#001D18] transition-colors flex-shrink-0">
+                              {item.label.includes('Residential') ? <Trees size={16} /> : <Building2 size={16} />}
+                            </div>
+                            <div>
+                              <div className="text-white text-xs font-inter font-medium group-hover:text-gold transition-colors">
+                                {item.label}
+                              </div>
+                              <div className="text-white/40 text-[10px] font-inter">
+                                {item.label.includes('Residential') ? 'Private plots & estates' : 'Prime commercial frontage'}
+                              </div>
+                            </div>
                           </Link>
                         ))}
                       </motion.div>
@@ -101,97 +130,121 @@ const Navbar = () => {
                   key={link.label}
                   to={link.path}
                   className={({ isActive }) =>
-                    `text-sm font-inter font-medium tracking-wide transition-colors duration-200 ${
-                      isActive ? 'text-gold' : 'text-white/90 hover:text-gold'
+                    `relative font-inter text-xs tracking-wider py-2 transition-all duration-200 ${
+                      isActive ? 'text-gold font-semibold' : 'text-white/85 hover:text-gold'
                     }`
                   }
                 >
-                  {link.label}
+                  {({ isActive }) => (
+                    <>
+                      {link.label}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold rounded-full" />
+                      )}
+                    </>
+                  )}
                 </NavLink>
               )
             )}
           </nav>
 
-          {/* CTA + Hamburger */}
-          <div className="flex items-center gap-3">
+          {/* ── CTA Button & Mobile Hamburger ── */}
+          <div className="flex items-center gap-4">
             <Link
               to="/contact"
-              className="hidden md:inline-flex btn-gold text-xs px-5 py-2.5"
+              className="hidden sm:inline-flex btn-gold text-xs px-5 py-2.5 shadow-gold"
             >
               Enquire Now
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="ml-1">
-                <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <ArrowRight size={13} />
             </Link>
 
             <button
-              className="lg:hidden text-white p-2"
+              className="lg:hidden text-white hover:text-gold p-2 transition-colors focus:outline-none"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
             >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Architectural Drawer ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="fixed inset-0 z-40 bg-forest-deep flex flex-col pt-20 pb-8 px-6 overflow-y-auto"
+            transition={{ duration: 0.3 }}
+            style={{ position: 'fixed', inset: 0, zIndex: 10000 }}
+            className="bg-[#001D18] flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto"
           >
-            <nav className="flex flex-col gap-1 mt-4">
-              {navLinks.map((link) =>
-                link.dropdown ? (
-                  <div key={link.label} className="border-b border-gold/10 pb-1">
-                    <div className="text-gold/70 text-xs font-inter font-semibold tracking-widest uppercase px-3 pt-4 pb-2">
-                      {link.label}
-                    </div>
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        className="block px-6 py-3 text-white/90 hover:text-gold font-inter font-medium text-base transition-colors"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        — {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <NavLink
-                    key={link.label}
-                    to={link.path}
-                    className={({ isActive }) =>
-                      `px-3 py-4 text-lg font-inter font-medium border-b border-gold/10 transition-colors ${
-                        isActive ? 'text-gold' : 'text-white/90 hover:text-gold'
-                      }`
-                    }
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </NavLink>
-                )
-              )}
-            </nav>
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <span className="font-inter text-gold text-xs tracking-widest uppercase font-semibold">
+                  Vanam Valley Menu
+                </span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="text-white/70 hover:text-white p-1"
+                >
+                  <X size={22} />
+                </button>
+              </div>
 
-            <div className="mt-8 px-3">
-              <Link
-                to="/contact"
-                className="btn-gold w-full justify-center text-base py-4"
-                onClick={() => setMobileOpen(false)}
-              >
-                Enquire Now →
-              </Link>
+              <nav className="flex flex-col space-y-1">
+                {navLinks.map((link) =>
+                  link.dropdown ? (
+                    <div key={link.label} className="border-b border-white/5 py-2">
+                      <div className="text-gold/70 text-[11px] font-inter tracking-widest uppercase mb-2">
+                        {link.label}
+                      </div>
+                      <div className="pl-3 space-y-2">
+                        {link.dropdown.map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="block text-white/90 hover:text-gold font-playfair text-xl py-1"
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            — {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <NavLink
+                      key={link.label}
+                      to={link.path}
+                      className={({ isActive }) =>
+                        `block font-playfair text-2xl py-3 border-b border-white/5 transition-colors ${
+                          isActive ? 'text-gold font-bold' : 'text-white/85 hover:text-gold'
+                        }`
+                      }
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </NavLink>
+                  )
+                )}
+              </nav>
             </div>
 
-            <div className="mt-auto px-3 pt-8 text-white/40 text-xs font-inter">
-              Vanam Valley Group • Balaghat, M.P.
+            <div className="pt-6 border-t border-white/10 mt-8">
+              <Link
+                to="/contact"
+                className="btn-gold w-full justify-center text-center py-3.5 mb-4 shadow-gold"
+                onClick={() => setMobileOpen(false)}
+              >
+                Schedule Site Visit
+                <ArrowRight size={14} />
+              </Link>
+
+              <div className="text-white/50 font-inter text-xs space-y-1">
+                <div>Direct: +91 {business.phone[0]} / {business.phone[1]}</div>
+                <div>Balaghat, Madhya Pradesh</div>
+              </div>
             </div>
           </motion.div>
         )}
@@ -200,30 +253,4 @@ const Navbar = () => {
   );
 };
 
-// SVG Logo Mark (text-based, matching brand)
-const LogoMark = () => (
-  <div className="flex items-center gap-2.5">
-    {/* Emblem icon */}
-    <div className="relative w-10 h-10 flex-shrink-0">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="40" height="40" rx="4" fill="#D8B879" fillOpacity="0.15"/>
-        {/* Leaf / lotus emblem */}
-        <path d="M20 8 C14 14 10 18 10 22 C10 27 14.5 31 20 31 C25.5 31 30 27 30 22 C30 18 26 14 20 8Z" fill="#D8B879" fillOpacity="0.9"/>
-        <path d="M20 10 C20 10 15 16 15 22 C15 25 17.2 28 20 28" stroke="#004D40" strokeWidth="0.8" fill="none"/>
-        <path d="M20 10 C20 10 25 16 25 22 C25 25 22.8 28 20 28" stroke="#004D40" strokeWidth="0.8" fill="none"/>
-        <circle cx="20" cy="22" r="2" fill="#004D40"/>
-        {/* Star/diamond at top */}
-        <path d="M20 5 L21.5 8 L20 7 L18.5 8 Z" fill="#D8B879"/>
-      </svg>
-    </div>
-    {/* Text */}
-    <div className="leading-none">
-      <div className="text-white font-playfair font-bold text-lg tracking-wider leading-none">VANAM</div>
-      <div className="text-gold font-playfair font-semibold text-base tracking-widest leading-none">VALLEY</div>
-      <div className="text-gold/60 font-inter text-[8px] tracking-[0.25em] uppercase leading-none mt-0.5">Balaghat, M.P.</div>
-    </div>
-  </div>
-);
-
 export default Navbar;
-

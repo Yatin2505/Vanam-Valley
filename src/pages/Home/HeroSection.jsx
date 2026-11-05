@@ -2,119 +2,95 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, ArrowRight, X, ChevronDown } from 'lucide-react';
-
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=1920&q=90';
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.18, delayChildren: 0.3 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
+import { Play, ArrowRight, X } from 'lucide-react';
 
 const HeroSection = () => {
   const [videoOpen, setVideoOpen] = useState(false);
 
   return (
     <>
-      <section className="relative min-h-screen flex items-end pb-20 md:pb-28 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={HERO_IMAGE}
-            alt="Vanam Valley aerial view of premium plotted development"
-            className="w-full h-full object-cover object-center"
-            priority="true"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-hero-overlay" />
-          {/* Subtle vignette */}
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/40 via-transparent to-transparent" />
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 px-5 md:px-10 lg:px-16">
+        
+        {/* ── Looping Background Drone Aerial Video ── */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-poster.jpg"
+            className="w-full h-full object-cover object-center scale-105"
+          >
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Forest green cinematic gradient overlays for pristine readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#002620]/70 to-[#001D18]/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#001D18]/90 via-[#001D18]/50 to-transparent" />
+          <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(0,29,24,0.75)]" />
         </div>
 
-        {/* Gold decorative bottom line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent z-10" />
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 w-full pt-32">
+        {/* ── Hero Main Content ── */}
+        <div className="relative z-10 max-w-3xl w-full">
           <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Badge */}
-            <motion.div variants={item} className="flex items-center gap-2 mb-5">
-              <span className="section-label tracking-[0.3em]">Vanam Valley</span>
-              <div className="h-px w-10 bg-gold/50" />
-            </motion.div>
+            {/* Expressive Headline - Never Clipped, Responsive */}
+            <h1 className="font-playfair font-bold text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight mb-1">
+              Where Nature
+            </h1>
 
-            {/* Main Headline */}
-            <motion.h1
-              variants={item}
-              className="font-playfair font-bold text-white leading-[1.1] mb-2"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
-            >
-              Where Nature Meets
-            </motion.h1>
-            <motion.h1
-              variants={item}
-              className="font-playfair font-bold italic text-gold leading-[1.1] mb-6"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
-            >
+            <h1 className="font-playfair font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight mb-2">
+              <span className="text-white">Meets</span>
+            </h1>
+
+            <h1 className="font-playfair font-bold italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight text-[#D8B879] mb-6">
               Your Future.
-            </motion.h1>
+            </h1>
 
             {/* Sub-headline */}
-            <motion.div variants={item} className="mb-8">
-              <p className="text-white/90 font-inter text-lg md:text-xl font-light leading-snug">
-                Premium Residential &amp; Commercial Plots
-              </p>
-              <p className="text-white/60 font-inter text-base mt-1">
-                in the heart of Balaghat
-              </p>
-            </motion.div>
+            <p className="font-inter font-light text-white/90 text-sm sm:text-base md:text-xl leading-relaxed mb-8 max-w-xl">
+              Premium Residential &amp; Commercial Plots in Balaghat
+            </p>
 
-            {/* CTA Buttons */}
-            <motion.div variants={item} className="flex flex-wrap gap-3">
-              <Link to="/projects" className="btn-gold text-sm px-6 py-3">
+            {/* Dual CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4 mb-12">
+              <Link to="/projects" className="btn-gold shadow-gold text-xs px-7 py-3.5">
                 Explore Projects
-                <ArrowRight size={15} />
+                <ArrowRight size={14} />
               </Link>
+
               <button
-                className="btn-outline-white text-sm px-6 py-3"
                 onClick={() => setVideoOpen(true)}
+                className="btn-glass text-xs px-6 py-3.5"
+                aria-label="View Project Film"
               >
-                <div className="w-6 h-6 rounded-full border border-white/60 flex items-center justify-center flex-shrink-0">
-                  <Play size={10} fill="white" className="ml-0.5" />
+                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white mr-1">
+                  <Play size={10} fill="currentColor" className="ml-0.5" />
                 </div>
                 View Video
               </button>
-            </motion.div>
+            </div>
 
-            {/* Scroll indicator */}
-            <motion.div
-              variants={item}
-              className="flex items-center gap-2 mt-12 text-white/50"
-            >
-              <div className="scroll-indicator">
-                <ChevronDown size={18} />
+            {/* Scroll Indicator */}
+            <div className="flex items-center gap-3 text-white/60">
+              <div className="w-5 h-8 rounded-full border border-gold/50 flex items-start justify-center p-1">
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-1 h-1.5 rounded-full bg-gold"
+                />
               </div>
-              <span className="font-inter text-xs tracking-[0.2em] uppercase">Scroll to Explore</span>
-            </motion.div>
+              <span className="font-inter text-[10px] tracking-[0.25em] uppercase text-white/70">
+                SCROLL TO EXPLORE
+              </span>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Video Modal */}
+      {/* ── Project Video Lightbox Modal ── */}
       <AnimatePresence>
         {videoOpen && (
           <motion.div
@@ -128,24 +104,26 @@ const HeroSection = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-3xl bg-forest-deep rounded-2xl overflow-hidden aspect-video flex items-center justify-center"
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-4xl bg-[#002620] border border-gold/30 rounded-3xl overflow-hidden aspect-video flex flex-col items-center justify-center shadow-card-dark"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-center px-8">
-                <div className="w-16 h-16 rounded-full border-2 border-gold/40 flex items-center justify-center mx-auto mb-4">
-                  <Play size={24} className="text-gold ml-1" />
-                </div>
-                <p className="font-playfair text-white text-xl mb-2">Project Video</p>
-                <p className="font-inter text-white/50 text-sm">
-                  Video content will be added here. Please contact us for a site visit.
-                </p>
-              </div>
               <button
-                className="absolute top-4 right-4 text-white/60 hover:text-white"
+                className="absolute top-4 right-4 z-20 text-white/80 hover:text-white p-2 rounded-full bg-black/50 hover:bg-black/80 transition-colors"
                 onClick={() => setVideoOpen(false)}
+                aria-label="Close modal"
               >
                 <X size={22} />
               </button>
+
+              <video
+                controls
+                autoPlay
+                className="w-full h-full object-cover"
+                poster="/hero-poster.jpg"
+              >
+                <source src="/hero-bg.mp4" type="video/mp4" />
+              </video>
             </motion.div>
           </motion.div>
         )}
@@ -155,4 +133,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-

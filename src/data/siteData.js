@@ -82,15 +82,15 @@ export const whyHighlights = [
   },
   {
     id: 3,
-    icon: 'TrendingUp',
-    title: 'Reliable Investment',
-    desc: 'Real estate in a growing region offering long-term value.',
+    icon: 'LayoutGrid',
+    title: 'Thoughtful Planning',
+    desc: 'Well-laid plots with wide internal roads and organised layout.',
   },
   {
     id: 4,
     icon: 'Star',
-    title: 'Future Growth',
-    desc: 'Part of a rapidly developing area with strong infrastructure.',
+    title: 'Future Potential',
+    desc: 'Part of a rapidly developing area with strong growth outlook.',
   },
 ];
 
@@ -102,18 +102,20 @@ export const projectCategories = [
     icon: 'Home',
     path: '/projects/residential',
     btnLabel: 'Explore Residential',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    imageAlt: 'Premium residential plot development',
+    // Aerial view of residential plotted layout with roads and green surroundings
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
+    imageAlt: 'Aerial view of residential plotted development with internal roads',
   },
   {
     id: 'commercial',
     title: 'Commercial Plots',
-    description: 'Grow your business in a prime location.',
+    description: 'Find the right space for your business.',
     icon: 'Building2',
     path: '/projects/commercial',
     btnLabel: 'Explore Commercial',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
-    imageAlt: 'Premium commercial plot development',
+    // Open land along a main road — commercial plot corridor
+    image: 'https://images.unsplash.com/photo-1558618047-f4e70e9cb5a3?w=800&q=80',
+    imageAlt: 'Commercial plotted land along prime road frontage',
   },
 ];
 
@@ -125,7 +127,8 @@ export const residentialPlots = [
     price: 'On Request',
     facing: 'East Facing',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
-    image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80',
+    // Green plotted land with roads
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80',
   },
   {
     id: 'r2',
@@ -134,7 +137,8 @@ export const residentialPlots = [
     price: 'On Request',
     facing: 'North Facing',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
+    // Open green land, serene setting
+    image: 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=600&q=80',
   },
   {
     id: 'r3',
@@ -143,7 +147,8 @@ export const residentialPlots = [
     price: 'On Request',
     facing: 'Corner Plot',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    // Green landscape with trees
+    image: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=600&q=80',
   },
 ];
 
@@ -155,7 +160,8 @@ export const commercialPlots = [
     price: 'On Request',
     facing: 'Main Road Facing',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80',
+    // Open commercial land along road
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
   },
   {
     id: 'c2',
@@ -164,6 +170,7 @@ export const commercialPlots = [
     price: 'On Request',
     facing: 'Corner Location',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
+    // Open land development
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',
   },
   {
@@ -173,72 +180,106 @@ export const commercialPlots = [
     price: 'On Request',
     facing: 'Double Road Access',
     note: 'Illustrative dimensions. Actual sizes may vary. Contact us for confirmed pricing.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+    // Green open land / plot
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80',
   },
 ];
 
 export const galleryImages = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=400&q=70',
-    alt: 'Green plotted development aerial view',
+    // Aerial green plotted development with roads
+    src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=75',
+    alt: 'Green plotted land with internal roads',
     category: 'Development',
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=70',
-    alt: 'Lush green landscape',
+    // Open green nature landscape
+    src: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=500&q=75',
+    alt: 'Tree-lined road through green valley',
     category: 'Nature',
   },
   {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=400&q=70',
-    alt: 'Road through green valley',
-    category: 'Development',
+    // Plotted residential land — open land with boundary markings
+    src: 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=500&q=75',
+    alt: 'Residential plot with sunrise landscape',
+    category: 'Residential',
   },
   {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=400&q=70',
-    alt: 'Morning landscape view',
+    // Lush green field/land
+    src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=75',
+    alt: 'Lush green nature surrounding the development',
     category: 'Nature',
   },
   {
     id: 5,
-    src: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=70',
-    alt: 'Modern residential home',
-    category: 'Residential',
+    // Open flat land / plot ready for development
+    src: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=500&q=75',
+    alt: 'Open plotted land ready for development',
+    category: 'Development',
   },
   {
     id: 6,
-    src: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=70',
-    alt: 'Commercial development',
-    category: 'Commercial',
+    // Road through open land — development area
+    src: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&q=75',
+    alt: 'Wide road through plotted development area',
+    category: 'Development',
   },
   {
     id: 7,
-    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70',
-    alt: 'Premium villa plot',
-    category: 'Residential',
-  },
-  {
-    id: 8,
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=70',
-    alt: 'Greenery and infrastructure',
+    // Countryside open land — residential
+    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=75',
+    alt: 'Scenic green countryside landscape',
     category: 'Nature',
   },
   {
+    id: 8,
+    // Open commercial land / wide road approach
+    src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=75',
+    alt: 'Commercial plot with road access',
+    category: 'Commercial',
+  },
+  {
     id: 9,
-    src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    thumb: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=70',
-    alt: 'Commercial buildings',
+    // Sunrise over open land — golden light on plots
+    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=75',
+    alt: 'Golden sunrise over open land',
+    category: 'Nature',
+  },
+  {
+    id: 10,
+    // Green residential neighbourhood development
+    src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=75',
+    alt: 'Premium residential plot development',
+    category: 'Residential',
+  },
+  {
+    id: 11,
+    // Open green field / nature
+    src: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=500&q=75',
+    alt: 'Green natural landscape of the region',
+    category: 'Nature',
+  },
+  {
+    id: 12,
+    // Commercial land area
+    src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=75',
+    alt: 'Commercial plot area',
     category: 'Commercial',
   },
 ];

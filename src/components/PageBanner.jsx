@@ -6,42 +6,42 @@ import { Link } from 'react-router-dom';
 
 const PageBanner = ({ title, subtitle, breadcrumb = [], image }) => {
   const defaultImage =
-    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85';
+    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1800&q=85';
 
   return (
     <section
-      className="relative h-64 md:h-80 lg:h-96 flex items-end pb-14 overflow-hidden"
+      className="relative min-h-[22rem] md:min-h-[26rem] flex items-end pt-36 pb-16 overflow-hidden"
       style={{
         backgroundImage: `url(${image || defaultImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-hero-overlay" />
+      {/* Cinematic multi-tier gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#002620]/80 to-[#001D18]/60 pointer-events-none" />
 
-      {/* Decorative gold line */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent opacity-40" />
+      {/* Decorative gold hairline rule */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-10 lg:px-16 w-full">
         {/* Breadcrumb */}
         {breadcrumb.length > 0 && (
-          <nav className="flex items-center gap-2 mb-3">
-            <Link to="/" className="text-white/60 hover:text-gold font-inter text-xs tracking-wide transition-colors">
+          <nav className="flex items-center gap-2 mb-4 text-xs font-inter tracking-wider">
+            <Link to="/" className="text-white/60 hover:text-gold transition-colors">
               Home
             </Link>
             {breadcrumb.map((item, i) => (
               <React.Fragment key={i}>
-                <ChevronRight size={12} className="text-white/40" />
+                <ChevronRight size={12} className="text-gold/60" />
                 {item.path ? (
                   <Link
                     to={item.path}
-                    className="text-white/60 hover:text-gold font-inter text-xs tracking-wide transition-colors"
+                    className="text-white/60 hover:text-gold transition-colors"
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-gold font-inter text-xs tracking-wide">{item.label}</span>
+                  <span className="text-gold font-medium">{item.label}</span>
                 )}
               </React.Fragment>
             ))}
@@ -49,20 +49,24 @@ const PageBanner = ({ title, subtitle, breadcrumb = [], image }) => {
         )}
 
         {subtitle && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="section-label mb-2"
+            className="flex items-center gap-2.5 mb-2.5"
           >
-            {subtitle}
-          </motion.p>
+            <span className="editorial-tag text-gold">
+              {subtitle}
+            </span>
+            <div className="h-px w-8 bg-gold/40" />
+          </motion.div>
         )}
+
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+          transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl"
         >
           {title}
         </motion.h1>
@@ -72,4 +76,3 @@ const PageBanner = ({ title, subtitle, breadcrumb = [], image }) => {
 };
 
 export default PageBanner;
-
