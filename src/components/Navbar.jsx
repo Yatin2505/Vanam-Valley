@@ -14,22 +14,7 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const isHome = location.pathname === '/';
 
-  // Live Balaghat local time
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('en-IN', {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      });
-      setCurrentTime(timeStr);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 30000);
-    return () => clearInterval(interval);
-  }, []);
+
 
   // Scroll detection
   useEffect(() => {
