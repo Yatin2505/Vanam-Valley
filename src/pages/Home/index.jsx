@@ -1,40 +1,32 @@
 // src/pages/Home/index.jsx
 import React from 'react';
 import HeroSection from './HeroSection';
-import ThreeLandscapeSection from './ThreeLandscapeSection';
-import BrandStorySection from './BrandStorySection';
-import PropertyCollectionSection from './PropertyCollectionSection';
-import ScrollStorySection from './ScrollStorySection';
-import InteractiveGallerySection from './InteractiveGallerySection';
-import LocationStorySection from './LocationStorySection';
-import EnquiryConciergeSection from './EnquiryConciergeSection';
+import AboutSection from './AboutSection';
+import ProjectsSection from './ProjectsSection';
+import WhySection from './WhySection';
+import LocationGallerySection from './LocationGallerySection';
+import CTASection from './CTASection';
 
 const HomePage = () => {
   return (
     <>
-      {/* 1. Cinematic Hero with Looping Drone Video & Monumental Typography */}
+      {/* 1. Immersive Hero with Looping Drone Video & Monumental Typography */}
       <HeroSection />
 
-      {/* 2. Interactive 3D WebGL Topographical Environment */}
-      <ThreeLandscapeSection />
+      {/* 2. Editorial About Story: A Sanctuary Crafted for Generations */}
+      <AboutSection />
 
-      {/* 3. Editorial Brand Story & Architectural Philosophy */}
-      <BrandStorySection />
+      {/* 3. Curated Property Showcases: Land for Life. Space to Grow */}
+      <ProjectsSection />
 
-      {/* 4. Curated Property Collection (01 Residential & 02 Commercial) */}
-      <PropertyCollectionSection />
+      {/* 4. Architectural Feature Highlights: A Better Balance of Nature & Opportunity */}
+      <WhySection />
 
-      {/* 5. Progressive Development Standards & Infrastructure Timeline */}
-      <ScrollStorySection />
+      {/* 5. Split Section: Balaghat Location & Visual Gallery Highlights */}
+      <LocationGallerySection />
 
-      {/* 6. Interactive Visual Chronicle & Asymmetric Gallery */}
-      <InteractiveGallerySection />
-
-      {/* 7. Geographic Presence & Balaghat Headquarters */}
-      <LocationStorySection />
-
-      {/* 8. VIP Land Concierge & Private Consultation */}
-      <EnquiryConciergeSection />
+      {/* 6. Closing Invitation & Multi-channel Consultation CTA */}
+      <CTASection />
     </>
   );
 };

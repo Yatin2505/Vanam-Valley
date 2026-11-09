@@ -35,104 +35,56 @@ const HeroSection = () => {
         </div>
 
         {/* ── Main Hero Narrative ── */}
-        <div className="relative z-10 max-w-4xl w-full my-auto">
+        <div className="relative z-10 max-w-3xl w-full my-auto">
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Architectural Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-gold/30 backdrop-blur-md mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
-              <span className="text-gold font-inter font-medium text-[11px] tracking-[0.25em] uppercase">
-                Vanam Valley Group • Balaghat, M.P.
-              </span>
-            </div>
-
-            {/* Monumental Headline */}
-            <h1 className="font-playfair font-bold text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[5.75rem] leading-[1.05] tracking-tight mb-6">
-              Beyond Ordinary <br />
-              <span className="italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
-                Living.
+            {/* Monumental Editorial Headline */}
+            <h1 className="font-playfair font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight mb-4">
+              Where Nature <br />
+              Meets <br />
+              <span className="italic font-normal text-gradient-gold">
+                Your Future.
               </span>
             </h1>
 
-            {/* Supporting Statement */}
-            <p className="font-inter font-light text-white/85 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-              Discover a new perspective on residential and commercial opportunities at Vanam Valley. Master-planned plotted acreage rooted in nature and shaped for generations.
+            {/* Subtitle */}
+            <p className="font-inter font-light text-white/90 text-sm sm:text-base md:text-lg mb-8 max-w-xl">
+              Premium Residential &amp; Commercial Plots in Balaghat
             </p>
 
             {/* Dual CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            <div className="flex flex-wrap items-center gap-3.5">
               <Link
                 to="/projects"
-                className="btn-gold shadow-gold hover:shadow-gold-glow text-xs px-8 py-4"
+                className="inline-flex items-center gap-2 bg-[#D8B879] hover:bg-[#e4ca93] text-[#002620] font-inter font-medium text-xs px-6 py-3.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
-                <span>Explore Masterplan</span>
+                <span>Explore Projects</span>
                 <ArrowRight size={14} />
               </Link>
 
               <button
                 onClick={() => setVideoOpen(true)}
-                className="btn-glass text-xs px-7 py-4 group"
-                aria-label="Experience Video Tour"
+                className="inline-flex items-center gap-2 bg-black/25 hover:bg-black/40 border border-white/25 hover:border-white/50 text-white font-inter text-xs px-5 py-3.5 rounded-full transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                aria-label="View Video"
               >
-                <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center text-white mr-1 group-hover:bg-gold group-hover:text-[#002620] transition-colors">
-                  <Play size={10} fill="currentColor" className="ml-0.5" />
-                </div>
-                <span>Experience Film</span>
+                <Play size={12} fill="currentColor" />
+                <span>View Video</span>
               </button>
             </div>
           </motion.div>
         </div>
 
-        {/* ── Bottom Metric Ribbon & Scroll Indicator ── */}
-        <div className="relative z-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          
-          {/* Key Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-10 text-left">
-            <div>
-              <div className="font-playfair font-bold text-xl sm:text-2xl text-white">
-                Residential &amp; Commercial
-              </div>
-              <div className="text-[11px] font-inter text-gold/80 tracking-wider uppercase mt-0.5">
-                Dual Plotting Categories
-              </div>
-            </div>
-
-            <div>
-              <div className="font-playfair font-bold text-xl sm:text-2xl text-white">
-                100% Clear Title
-              </div>
-              <div className="text-[11px] font-inter text-gold/80 tracking-wider uppercase mt-0.5">
-                Transparent Verification
-              </div>
-            </div>
-
-            <div className="hidden sm:block">
-              <div className="font-playfair font-bold text-xl sm:text-2xl text-white">
-                Balaghat Region
-              </div>
-              <div className="text-[11px] font-inter text-gold/80 tracking-wider uppercase mt-0.5">
-                Strategic Development Zone
-              </div>
-            </div>
-          </div>
-
-          {/* Scroll Down Anchor */}
-          <div className="hidden lg:flex items-center gap-3 text-white/50">
-            <div className="w-5 h-8 rounded-full border border-gold/40 flex items-start justify-center p-1">
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-1 h-1.5 rounded-full bg-gold"
-              />
-            </div>
-            <span className="font-inter text-[10px] tracking-[0.25em] uppercase text-white/60">
-              EXPLORE BELOW
+        {/* ── Bottom Scroll Indicator Pill (Exact match to reference) ── */}
+        <div className="relative z-10 pt-4">
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-white/25 text-white/70 font-inter text-[10px] tracking-wider uppercase backdrop-blur-sm bg-black/20">
+            <span className="w-2 h-4 rounded-full border border-white/40 flex items-start justify-center p-0.5">
+              <span className="w-0.5 h-1 bg-white/80 rounded-full animate-bounce" />
             </span>
+            <span>SCROLL TO EXPLORE</span>
           </div>
-
         </div>
       </section>
 

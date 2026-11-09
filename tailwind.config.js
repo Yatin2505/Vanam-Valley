@@ -7,9 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
+        'brand': {
+          'forest': '#002D26',
+          'emerald': '#075C4A',
+          'gold': '#D8B879',
+          'ivory': '#F8F6EF',
+          'charcoal': '#18231F',
+          'obsidian': '#001713',
+        },
         'forest': {
-          DEFAULT: '#004D40',
-          deep: '#00382F',
+          DEFAULT: '#002D26',
+          deep: '#075C4A',
           darker: '#002620',
           darkest: '#001D18',
           light: '#005C4B',
