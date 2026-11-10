@@ -1,6 +1,6 @@
 // src/pages/Home/BrandStorySection.jsx
-import React, { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Trees, Compass, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import aboutLandscapeImg from '../../assets/images/about-landscape.jpg';
@@ -31,12 +31,8 @@ const storyPillars = [
 ];
 
 const BrandStorySection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeTab, setActiveTab] = useState(0);
-
   return (
-    <section className="bg-[#F8F6EF] text-[#18231F] py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden" ref={ref}>
+    <section className="bg-[#F8F6EF] text-[#18231F] py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden">
       
       {/* Decorative architectural watermark */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.04] text-[#002D26]">
@@ -51,40 +47,25 @@ const BrandStorySection = () => {
       <div className="max-w-7xl mx-auto">
         
         {/* ── Section Eyebrow & Main Editorial Statement ── */}
-        <div className="max-w-3xl mb-16 md:mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-4"
-          >
+        <div className="max-w-3xl mb-16 md:mb-24 text-left">
+          <div className="flex items-center gap-3 mb-4">
             <div className="h-px w-10 bg-[#002D26]/40" />
             <span className="font-inter font-semibold text-xs tracking-[0.28em] uppercase text-[#075C4A]">
               THE PHILOSOPHY OF VANAM VALLEY
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 25 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-playfair font-bold text-4xl sm:text-5xl md:text-6xl text-[#002D26] leading-[1.12] tracking-tight"
-          >
+          <h2 className="font-playfair font-bold text-4xl sm:text-5xl md:text-6xl text-[#002D26] leading-[1.12] tracking-tight">
             Rooted in Nature. <br />
             <span className="italic font-normal text-[#075C4A]">Designed for Legacy.</span>
-          </motion.h2>
+          </h2>
         </div>
 
         {/* ── Asymmetrical Magazine Composition ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
           
           {/* Left: Layered Photography Frame (7 cols) */}
-          <motion.div
-            className="lg:col-span-7 relative"
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div className="lg:col-span-7 relative">
             {/* Primary Landscape Image */}
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#002D26]/10 group">
               <img
@@ -96,12 +77,7 @@ const BrandStorySection = () => {
             </div>
 
             {/* Overlapping Secondary Card (Architectural Detail) */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute -bottom-8 -right-4 sm:-right-8 w-48 sm:w-64 p-3.5 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-[#002D26]/10 text-left"
-            >
+            <div className="absolute -bottom-8 -right-4 sm:-right-8 w-48 sm:w-64 p-3.5 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-[#002D26]/10 text-left">
               <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3">
                 <img
                   src={residentialImg}
@@ -116,16 +92,11 @@ const BrandStorySection = () => {
               <div className="text-xs font-playfair font-bold text-[#002D26] mt-0.5">
                 Master-Planned Integrity
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right: Editorial Narrative & Pull Quote (5 cols) */}
-          <motion.div
-            className="lg:col-span-5 flex flex-col justify-center text-left"
-            initial={{ opacity: 0, y: 35 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.85, delay: 0.2 }}
-          >
+          <div className="lg:col-span-5 flex flex-col justify-center text-left">
             <blockquote className="font-playfair italic text-2xl sm:text-3xl text-[#002D26] leading-snug mb-8 border-l-2 border-[#D8B879] pl-6">
               "A true sanctuary isn’t merely land you purchase; it’s an environment that elevates how your future unfolds."
             </blockquote>
@@ -147,20 +118,17 @@ const BrandStorySection = () => {
                 <ArrowRight size={13} />
               </Link>
             </div>
-          </motion.div>
+          </div>
 
         </div>
 
         {/* ── Interactive Story Pillars Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-[#002D26]/15">
-          {storyPillars.map((pillar, idx) => {
+          {storyPillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <motion.div
+              <div
                 key={pillar.num}
-                initial={{ opacity: 0, y: 25 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: idx * 0.15 }}
                 className="p-7 rounded-2xl bg-white/70 hover:bg-white border border-[#002D26]/10 hover:border-[#D8B879] transition-all duration-300 shadow-sm hover:shadow-xl text-left group"
               >
                 <div className="flex items-center justify-between mb-6">
@@ -181,7 +149,7 @@ const BrandStorySection = () => {
                 <p className="font-inter text-[#18231F]/70 text-xs sm:text-sm font-light leading-relaxed">
                   {pillar.desc}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -192,4 +160,3 @@ const BrandStorySection = () => {
 };
 
 export default BrandStorySection;
-

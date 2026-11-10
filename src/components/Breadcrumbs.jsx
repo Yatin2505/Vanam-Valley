@@ -69,3 +69,4 @@ const Breadcrumbs = ({ items = [], theme = 'dark', className = '' }) => {
 };
 
 export default Breadcrumbs;
+

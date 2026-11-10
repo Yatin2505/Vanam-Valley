@@ -1,17 +1,13 @@
 // src/pages/Home/PropertyCollectionSection.jsx
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Trees, Building2, Compass, Layers } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Trees, Building2 } from 'lucide-react';
 import residentialImg from '../../assets/images/residential-plots.jpg';
 import commercialImg from '../../assets/images/commercial-plots.jpg';
 
 const PropertyCollectionSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
-    <section className="bg-[#001D18] text-white py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden" ref={ref}>
+    <section className="bg-[#001D18] text-white py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden">
       
       {/* ── Section Header ── */}
       <div className="max-w-7xl mx-auto mb-16 md:mb-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
@@ -39,12 +35,7 @@ const PropertyCollectionSection = () => {
       <div className="max-w-7xl mx-auto space-y-12 lg:space-y-16">
         
         {/* ── Stage 01: Residential Plots ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="relative min-h-[500px] md:min-h-[580px] rounded-3xl overflow-hidden border border-gold/30 group shadow-2xl flex flex-col justify-end p-7 sm:p-10 md:p-14"
-        >
+        <div className="relative min-h-[460px] md:min-h-[540px] rounded-3xl overflow-hidden border border-gold/30 group shadow-2xl flex flex-col justify-end p-7 sm:p-10 md:p-14">
           {/* Background Standalone Photograph */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
@@ -106,15 +97,10 @@ const PropertyCollectionSection = () => {
               <ArrowRight size={14} />
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* ── Stage 02: Commercial Plots ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative min-h-[500px] md:min-h-[580px] rounded-3xl overflow-hidden border border-gold/30 group shadow-2xl flex flex-col justify-end p-7 sm:p-10 md:p-14"
-        >
+        <div className="relative min-h-[460px] md:min-h-[540px] rounded-3xl overflow-hidden border border-gold/30 group shadow-2xl flex flex-col justify-end p-7 sm:p-10 md:p-14">
           {/* Background Standalone Photograph */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
@@ -176,7 +162,7 @@ const PropertyCollectionSection = () => {
               <ArrowRight size={14} />
             </Link>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>
@@ -184,4 +170,3 @@ const PropertyCollectionSection = () => {
 };
 
 export default PropertyCollectionSection;
-

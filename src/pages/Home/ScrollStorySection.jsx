@@ -1,7 +1,7 @@
 // src/pages/Home/ScrollStorySection.jsx
-import React, { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Shield, Sparkles, MapPin, Trees, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Shield, Sparkles, MapPin, Trees } from 'lucide-react';
 import whyImg from '../../assets/images/why-vanam-valley.jpg';
 
 const pillars = [
@@ -37,11 +37,9 @@ const pillars = [
 
 const ScrollStorySection = () => {
   const [activeIdx, setActiveIdx] = useState(0);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="bg-[#002620] text-white py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden border-t border-b border-gold/15" ref={ref}>
+    <section className="bg-[#002620] text-white py-24 md:py-36 px-5 md:px-10 lg:px-16 relative overflow-hidden border-t border-b border-gold/15">
       
       {/* Background radial gold glow */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D8B879]/5 rounded-full blur-3xl pointer-events-none" />
@@ -49,7 +47,7 @@ const ScrollStorySection = () => {
       <div className="max-w-7xl mx-auto">
         
         {/* ── Section Header ── */}
-        <div className="max-w-3xl mb-16 md:mb-20">
+        <div className="max-w-3xl mb-16 md:mb-20 text-left">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-gold" />
             <span className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase">
@@ -74,11 +72,8 @@ const ScrollStorySection = () => {
               const Icon = item.icon;
               const isActive = activeIdx === idx;
               return (
-                <motion.div
+                <div
                   key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
                   onClick={() => setActiveIdx(idx)}
                   className={`p-6 sm:p-7 rounded-2xl border transition-all duration-300 cursor-pointer text-left ${
                     isActive
@@ -117,18 +112,13 @@ const ScrollStorySection = () => {
                       {item.desc}
                     </motion.p>
                   )}
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
           {/* Right Column: Architectural Photography Frame (5 cols) */}
-          <motion.div
-            className="lg:col-span-5 relative"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div className="lg:col-span-5 relative">
             <div className="rounded-tl-[120px] rounded-br-[40px] rounded-tr-2xl rounded-bl-2xl overflow-hidden border border-gold/40 shadow-2xl group">
               <img
                 src={whyImg}
@@ -146,7 +136,7 @@ const ScrollStorySection = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
 
@@ -156,4 +146,3 @@ const ScrollStorySection = () => {
 };
 
 export default ScrollStorySection;
-

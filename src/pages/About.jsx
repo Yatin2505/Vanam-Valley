@@ -1,23 +1,20 @@
 // src/pages/About.jsx
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Eye, Target, Leaf } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Eye, Target, Leaf, CheckCircle2, Trees, Compass, Shield } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
-
-const ABOUT_BANNER = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85';
-const ABOUT_IMG1 = 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=800&q=80';
-const ABOUT_IMG2 = 'https://images.unsplash.com/photo-1587302912306-cf6f9e37b30f?w=800&q=80';
+import aboutBannerImg from '../assets/images/about-landscape.jpg';
+import landscapeImg from '../assets/images/why-vanam-valley.jpg';
+import parcelImg from '../assets/images/residential-plots.jpg';
 
 const SectionBlock = ({ children, delay = 0 }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.6, delay }}
     >
       {children}
     </motion.div>
@@ -29,132 +26,189 @@ const AboutPage = () => {
     <>
       <PageBanner
         title="About Vanam Valley"
-        subtitle="Our Story"
+        subtitle="A Sanctuary Crafted for Generations"
         breadcrumb={[{ label: 'About Us' }]}
-        image={ABOUT_BANNER}
+        image={aboutBannerImg}
       />
 
       {/* Brand Introduction */}
-      <section className="bg-ivory section-pad">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <SectionBlock>
-            <p className="section-label">About Vanam Valley</p>
-            <span className="gold-line" />
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-dark-text leading-tight mb-5">
-              A Vision for a Greener Tomorrow
-            </h2>
-            <p className="font-inter text-dark-text/70 text-base leading-relaxed mb-4">
-              Vanam Valley Group is a residential and commercial plotting venture rooted in the vibrant city of Balaghat, Madhya Pradesh. We believe that every family and business deserves a space that blends natural beauty with modern convenience.
-            </p>
-            <p className="font-inter text-dark-text/60 text-sm leading-relaxed mb-4">
-              Our developments are thoughtfully designed to offer well-planned plots in serene, nature-rich surroundings — giving our customers a foundation to build their dreams.
-            </p>
-            <p className="font-inter text-dark-text/60 text-sm leading-relaxed mb-8">
-              We are committed to transparent dealings, clear documentation, and a customer-first approach that makes the process of buying land as smooth and trustworthy as possible.
-            </p>
-            <Link to="/contact" className="btn-gold inline-flex">
-              Get in Touch
-              <ArrowRight size={15} />
-            </Link>
-          </SectionBlock>
-
-          <SectionBlock delay={0.2}>
-            <div className="relative">
-              <img
-                src={ABOUT_IMG1}
-                alt="Vanam Valley development landscape"
-                className="rounded-2xl w-full object-cover aspect-[4/3]"
-                loading="lazy"
-              />
-              <div className="absolute -bottom-5 -right-5 w-32 h-32 rounded-xl overflow-hidden border-4 border-white shadow-card">
-                <img
-                  src={ABOUT_IMG2}
-                  alt="Nature surroundings"
-                  className="w-full h-full object-cover"
-                />
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-5 md:px-10 lg:px-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Narrative Left */}
+          <div className="lg:col-span-7 text-left">
+            <SectionBlock>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
+                <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+                  OUR STORY &amp; ORIGIN
+                </span>
               </div>
-            </div>
-          </SectionBlock>
+              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-6">
+                A Vision for Greener, <br />
+                <span className="italic font-normal text-[#075C4A]">Generational Living.</span>
+              </h2>
+              <p className="font-inter text-[#18231F]/80 text-base leading-relaxed mb-4 font-light">
+                Vanam Valley Group is a premier residential and commercial plotting venture rooted in Balaghat, Madhya Pradesh. We believe that every family and enterprise deserves land that balances pristine nature with modern infrastructure.
+              </p>
+              <p className="font-inter text-[#18231F]/70 text-sm sm:text-base leading-relaxed mb-4 font-light">
+                Our layouts are conceptualized to respect natural topography rather than imposing aggressive leveling. From wide internal access roads to dedicated green buffer belts, our focus remains on long-term sustainability.
+              </p>
+              <p className="font-inter text-[#18231F]/70 text-sm sm:text-base leading-relaxed mb-8 font-light">
+                We operate with absolute transparency — clear title documentation, accessible office coordinates in Balaghat, and direct communication with prospective landowners.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <Link to="/contact" className="btn-gold inline-flex items-center gap-2 text-xs">
+                  <span>Connect with Our Team</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <Link to="/projects" className="btn-outline-gold inline-flex items-center gap-2 text-xs text-[#002D26] border-[#002D26]/30 hover:border-[#002D26]">
+                  <span>Explore Masterplan</span>
+                </Link>
+              </div>
+            </SectionBlock>
+          </div>
+
+          {/* Authentic Imagery Right */}
+          <div className="lg:col-span-5">
+            <SectionBlock delay={0.2}>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#002D26]/15 group">
+                <img
+                  src={landscapeImg}
+                  alt="Vanam Valley masterplan development landscape"
+                  className="w-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-left">
+                  <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
+                    Balaghat Region
+                  </span>
+                  <p className="text-xs font-playfair font-bold text-white mt-0.5">
+                    Thoughtfully Planned Plotted Acreage
+                  </p>
+                </div>
+              </div>
+            </SectionBlock>
+          </div>
+
         </div>
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-forest section-pad">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-[#002620] text-white py-20 md:py-28 px-5 md:px-10 lg:px-16 border-t border-b border-gold/15">
+        <div className="max-w-7xl mx-auto">
           <SectionBlock>
-            <div className="text-center mb-12">
-              <p className="section-label text-gold/70">Our Direction</p>
-              <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-white leading-tight mt-1">
-                Vision &amp; Mission
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                <span className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+                  OUR DIRECTION
+                </span>
+              </div>
+              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+                Vision &amp; Purpose
               </h2>
             </div>
           </SectionBlock>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                icon: Eye,
-                title: 'Our Vision',
-                text: 'To be the most trusted and respected plotted development company in central India — creating green, well-planned communities where families and businesses can thrive for generations.',
-              },
-              {
-                icon: Target,
-                title: 'Our Mission',
-                text: 'To provide high-quality, transparently documented residential and commercial plots in prime locations, ensuring every customer receives honest guidance and a genuinely valuable investment opportunity.',
-              },
-            ].map((item, i) => (
-              <SectionBlock key={item.title} delay={i * 0.15}>
-                <div className="bg-white/8 border border-gold/20 rounded-2xl p-8 h-full hover:border-gold/40 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-xl bg-gold/15 flex items-center justify-center mb-5">
-                    <item.icon size={22} className="text-gold" />
-                  </div>
-                  <h3 className="font-playfair text-xl font-semibold text-white mb-3">{item.title}</h3>
-                  <p className="font-inter text-white/60 text-sm leading-relaxed">{item.text}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <SectionBlock delay={0.1}>
+              <div className="bg-[#001D18]/90 border border-gold/25 rounded-3xl p-8 sm:p-10 h-full text-left shadow-xl hover:border-gold/50 transition-colors">
+                <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center mb-6 text-gold">
+                  <Eye size={24} />
                 </div>
-              </SectionBlock>
-            ))}
+                <h3 className="font-playfair text-2xl font-bold text-white mb-4">Our Vision</h3>
+                <p className="font-inter text-white/70 text-sm sm:text-base leading-relaxed font-light">
+                  To be the benchmark for plotted communities in central India — establishing developments where environmental respect, legal veracity, and architectural foresight come together seamlessly.
+                </p>
+              </div>
+            </SectionBlock>
+
+            <SectionBlock delay={0.2}>
+              <div className="bg-[#001D18]/90 border border-gold/25 rounded-3xl p-8 sm:p-10 h-full text-left shadow-xl hover:border-gold/50 transition-colors">
+                <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center mb-6 text-gold">
+                  <Target size={24} />
+                </div>
+                <h3 className="font-playfair text-2xl font-bold text-white mb-4">Our Mission</h3>
+                <p className="font-inter text-white/70 text-sm sm:text-base leading-relaxed font-light">
+                  To provide homebuyers and commercial entrepreneurs with genuine, clear-titled land parcels backed by direct advisory and disciplined infrastructure execution.
+                </p>
+              </div>
+            </SectionBlock>
           </div>
         </div>
       </section>
 
-      {/* Brand Philosophy */}
-      <section className="bg-ivory section-pad">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Brand Philosophy Pillars */}
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-5 md:px-10 lg:px-16">
+        <div className="max-w-7xl mx-auto">
           <SectionBlock>
-            <p className="section-label">Our Philosophy</p>
-            <span className="block w-12 h-0.5 bg-gold mx-auto mb-5" />
-            <div className="w-14 h-14 rounded-full bg-forest/8 border border-forest/15 flex items-center justify-center mx-auto mb-6">
-              <Leaf size={24} className="text-forest" />
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
+                <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+                  GUIDING PILLARS
+                </span>
+              </div>
+              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-4">
+                Nature · Lifestyle · Investment
+              </h2>
+              <p className="font-inter text-[#18231F]/70 text-sm sm:text-base font-light">
+                The three foundational principles that guide every boundary line, access avenue, and customer relationship.
+              </p>
             </div>
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-dark-text leading-tight mb-6">
-              Nature • Lifestyle • Investment
-            </h2>
-            <p className="font-inter text-dark-text/65 text-base leading-relaxed mb-4">
-              At Vanam Valley, we don't just sell land. We offer a vision — a thoughtfully conceived living environment where the natural world and human ambition coexist harmoniously.
-            </p>
-            <p className="font-inter text-dark-text/55 text-sm leading-relaxed mb-8">
-              Every decision we make is guided by three principles: respecting nature, enhancing lifestyle, and delivering genuine investment value.
-            </p>
-            <Link to="/projects" className="btn-forest inline-flex">
-              View Our Projects
-              <ArrowRight size={15} />
-            </Link>
           </SectionBlock>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Trees,
+                title: 'Respecting Nature',
+                desc: 'Preserving existing native vegetation, natural gradient drainage, and generous open buffer zones.',
+              },
+              {
+                icon: Compass,
+                title: 'Enhancing Lifestyle',
+                desc: 'Thoughtful spatial allocation separating tranquil living zones from high-visibility business corridors.',
+              },
+              {
+                icon: Shield,
+                title: 'Securing Value',
+                desc: 'Strict legal transparency, verified paperwork, and strategic placement along Balaghat growth axes.',
+              },
+            ].map((p, idx) => {
+              const Icon = p.icon;
+              return (
+                <SectionBlock key={p.title} delay={idx * 0.1}>
+                  <div className="p-8 rounded-3xl bg-white border border-[#002D26]/10 shadow-md text-left hover:shadow-xl transition-shadow">
+                    <div className="w-12 h-12 rounded-xl bg-[#002D26]/5 flex items-center justify-center text-[#075C4A] mb-6">
+                      <Icon size={22} />
+                    </div>
+                    <h3 className="font-playfair text-xl font-bold text-[#002D26] mb-3">{p.title}</h3>
+                    <p className="font-inter text-[#18231F]/70 text-sm font-light leading-relaxed">{p.desc}</p>
+                  </div>
+                </SectionBlock>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-forest-deep py-16 px-4">
-        <div className="max-w-2xl mx-auto text-center">
+      {/* Bottom CTA */}
+      <section className="bg-[#001713] text-white py-16 px-5 border-t border-gold/15">
+        <div className="max-w-3xl mx-auto text-center">
           <SectionBlock>
-            <h2 className="font-playfair text-2xl md:text-3xl font-semibold text-white mb-4">
-              Ready to Be Part of Vanam Valley?
+            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-4">
+              Begin Your Land Legacy at Vanam Valley
             </h2>
-            <p className="font-inter text-white/55 text-sm mb-6">
-              Reach out to us today for detailed information about our plots and projects.
+            <p className="font-inter text-white/70 text-sm sm:text-base font-light mb-8 max-w-xl mx-auto">
+              Connect directly with our Balaghat property desk for masterplan walk-throughs and on-site visits.
             </p>
-            <Link to="/contact" className="btn-gold inline-flex">
-              Contact Us
-              <ArrowRight size={15} />
+            <Link to="/contact" className="btn-gold inline-flex items-center gap-2 text-xs">
+              <span>Schedule a Consultation</span>
+              <ArrowRight size={14} />
             </Link>
           </SectionBlock>
         </div>
@@ -164,4 +218,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-

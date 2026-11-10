@@ -76,3 +76,4 @@ const PropertyCategorySwitcher = ({
 };
 
 export default PropertyCategorySwitcher;
+
