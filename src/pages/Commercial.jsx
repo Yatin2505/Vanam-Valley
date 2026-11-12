@@ -5,8 +5,8 @@ import { Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
 import PlotCard from '../components/PlotCard';
 import { commercialPlots } from '../data/siteData';
-import bannerImg from '../assets/images/commercial-plots.jpg';
-import featureImg from '../assets/images/gallery-image-01.jpg';
+import bannerImg from '../assets/images/commercial-roadside-plot.jpg';
+import featureImg from '../assets/images/road-infrastructure-plots.jpg';
 
 const features = [
   'High-visibility road frontage',

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Eye, Target, Leaf, CheckCircle2, Trees, Compass, Shield } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
-import aboutBannerImg from '../assets/images/about-landscape.jpg';
+import aboutBannerImg from '../assets/images/aerial-plotted-land.jpg';
 import landscapeImg from '../assets/images/why-vanam-valley.jpg';
 import parcelImg from '../assets/images/residential-plots.jpg';
 

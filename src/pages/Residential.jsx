@@ -6,7 +6,7 @@ import PageBanner from '../components/PageBanner';
 import PlotCard from '../components/PlotCard';
 import { residentialPlots } from '../data/siteData';
 import bannerImg from '../assets/images/residential-plots.jpg';
-import featureImg from '../assets/images/about-landscape.jpg';
+import featureImg from '../assets/images/aerial-plotted-land.jpg';
 
 const features = [
   'Wide planned internal roads',
