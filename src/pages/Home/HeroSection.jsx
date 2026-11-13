@@ -1,7 +1,7 @@
 // src/pages/Home/HeroSection.jsx
 // Exact Visual Reference Implementation matching reference image & background
-// Background: Vanam Valley Grand Entrance Arch, Sunset, Car & Monument (100% Unobstructed)
-// Layout: Left Editorial Copy, Bottom-Left 4-Feature Strip, Right-Bottom Pinned Project Status Box
+// Background: Vanam Valley Grand Entrance Arch, Sunset, Car & Monument (Natural Unzoomed Aspect)
+// Layout: Left Column (Eyebrow -> Headline -> Desc -> Buttons -> 4 Badges) & Bottom-Right Project Status Box
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -40,37 +40,39 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#001713] pt-28 sm:pt-32 pb-5 px-5 sm:px-8 lg:px-14">
+    <section className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between overflow-hidden bg-[#001713] pt-28 sm:pt-32 pb-5 px-5 sm:px-8 lg:px-14">
       
-      {/* ── Background: Genuine Vanam Valley Entrance Sunset ── */}
+      {/* ── Background: Natural Unzoomed Vanam Valley Entrance Sunset ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img
           src="/images/hero/vanam-hero-background.jpg"
           alt="Vanam Valley Grand Entrance Arch and Plotted Development in Balaghat"
-          className="w-full h-full object-cover object-[62%_center] md:object-[60%_center] lg:object-center transform scale-[1.01]"
+          className="w-full h-full object-cover object-center"
           loading="eager"
         />
 
         {/* 
           Directional Gradients:
           Ensures absolute text legibility on the left,
-          while leaving the center car, open road, entrance archway, and Vanam Valley sign 100% clearly visible.
+          while keeping the car on the road, entrance archway, and Vanam Valley sign 100% clearly visible.
         */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-[48%] bg-gradient-to-r from-[#001410]/95 via-[#001410]/70 to-transparent z-[1]" />
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#001410]/80 via-[#001410]/25 to-transparent z-[1]" />
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#001410]/90 via-[#001410]/35 to-transparent z-[1]" />
+        <div className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-[50%] bg-gradient-to-r from-[#001410]/95 via-[#001410]/65 to-transparent z-[1]" />
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#001410]/80 via-[#001410]/20 to-transparent z-[1]" />
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#001410]/90 via-[#001410]/30 to-transparent z-[1]" />
 
         {/* Ambient Top & Bottom Foliage Silhouette Accents */}
-        <div className="absolute top-0 left-0 w-48 sm:w-60 h-48 sm:h-60 opacity-30 pointer-events-none z-[2]">
+        <div className="absolute top-0 left-0 w-48 sm:w-60 h-48 sm:h-60 opacity-25 pointer-events-none z-[2]">
           <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-emerald-950">
             <path d="M0 0C40 80 80 120 180 140C120 180 60 160 0 200V0Z" fill="currentColor" opacity="0.6" />
           </svg>
         </div>
       </div>
 
-      {/* ── Top-Left Editorial Copy: Clean & Legible ── */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto text-left pt-2 sm:pt-4">
-        <div className="max-w-2xl lg:max-w-3xl">
+      {/* ── Unified Hero Editorial Stage: Left Stack & Bottom-Right Project Status Box ── */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto my-auto pt-4 pb-2 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        
+        {/* Left Column: Eyebrow -> Headline -> Description -> 2 CTAs -> 4 Badges Strip */}
+        <div className="max-w-2xl lg:max-w-3xl text-left">
           
           {/* Eyebrow Location Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/45 border border-white/15 backdrop-blur-md mb-5 shadow-sm">
@@ -81,7 +83,7 @@ const HeroSection = () => {
           </div>
 
           {/* Monumental Editorial Headline matching strict reference */}
-          <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl xl:text-[66px] leading-[1.08] tracking-tight mb-4">
+          <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl xl:text-[64px] leading-[1.1] tracking-tight mb-4">
             Find the Right Plot for <br />
             <span className="italic font-normal text-[#E5C378] font-playfair tracking-normal">
               Your Future
@@ -111,7 +113,7 @@ const HeroSection = () => {
           </p>
 
           {/* Two Prominent Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4 mb-7">
             {/* Primary Action: Gold Filled Pill */}
             <Link
               to="/projects/residential"
@@ -132,15 +134,7 @@ const HeroSection = () => {
             </button>
           </div>
 
-        </div>
-      </div>
-
-      {/* ── Lower Area: Bottom Row with 4-Feature Strip on Left & Project Status Box in Right-Bottom ── */}
-      {/* Positioned at the very bottom so the entire center (road, car, arch, sign) remains unobstructed */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto mt-auto pt-6 pb-2 flex flex-col lg:flex-row items-end justify-between gap-6">
-        
-        {/* Left: 4-Item Horizontal Value Proposition Strip */}
-        <div className="w-full lg:w-auto">
+          {/* 4-Item Horizontal Value Proposition Strip (Immediately below buttons as in reference) */}
           <div className="inline-flex flex-wrap sm:flex-nowrap items-center divide-y sm:divide-y-0 sm:divide-x divide-white/10 bg-black/45 border border-white/15 backdrop-blur-md rounded-2xl p-2.5 sm:px-4 sm:py-3 shadow-xl max-w-2xl">
             {/* Value 1 */}
             <div className="flex items-center gap-2.5 px-3 py-1.5 sm:py-0 w-1/2 sm:w-auto">
@@ -178,10 +172,11 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
+
         </div>
 
-        {/* Right-Bottom: Project Status Box Placed Exactly as in Reference Image ── */}
-        <div className="w-full lg:w-[470px] xl:w-[490px] flex-shrink-0">
+        {/* Right Column: Project Status Box Placed Exactly as in Reference Image ── */}
+        <div className="w-full lg:w-[460px] xl:w-[480px] flex-shrink-0">
           <div className="w-full bg-[#001D18]/90 border border-[#E5C378]/35 rounded-3xl p-4 sm:p-5 backdrop-blur-xl shadow-2xl text-left relative overflow-hidden transition-all duration-300 hover:border-[#E5C378]/60">
             
             {/* Panoramic Plotted Layout Visual Accent on Right Side of the Card */}
