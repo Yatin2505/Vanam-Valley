@@ -50,8 +50,8 @@ const GalleryPage = () => {
   }, [lightboxIndex]);
 
   return (
-    <div className="bg-[#001713] text-[#F8F6EF] min-h-screen">
-      {/* ── Page Banner ── */}
+    <div className="bg-[#FAF8F2] text-[#18231F]">
+      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
       <PageBanner
         title="Visual Chronicle"
         subtitle="A Glimpse of Vanam Valley in Balaghat"
@@ -59,21 +59,22 @@ const GalleryPage = () => {
         image={bannerImg}
       />
 
-      {/* ── Gallery Grid & Filter Section ── */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
-        <div>
+      {/* ── Gallery Grid & Filter Section: Warm Luxury Ivory Section ── */}
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
+        <div className="max-w-[1440px] mx-auto">
+          
           {/* Header */}
           <div className="text-center mb-12 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#D8B879]/30 backdrop-blur-md mb-4 shadow-sm">
-              <Camera className="w-3.5 h-3.5 text-[#D8B879]" />
-              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
+              <Camera className="w-3.5 h-3.5 text-[#075C4A]" />
+              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
                 AUTHENTIC SITE PHOTOGRAPHY
               </span>
             </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight">
               Explore Vanam Valley
             </h2>
-            <p className="font-inter text-white/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
+            <p className="font-inter text-[#18231F]/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
               Photographic documentation of our plotted development, natural landscape, demarcated roads, and surroundings in Balaghat.
             </p>
           </div>
@@ -85,10 +86,10 @@ const GalleryPage = () => {
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`font-inter text-xs tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 font-semibold ${
+                className={`font-inter text-xs tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 font-semibold shadow-sm ${
                   activeCategory === cat
-                    ? 'bg-[#D8B879] text-[#001D18] shadow-lg shadow-[#D8B879]/20'
-                    : 'bg-[#00221B] text-white/70 hover:text-white border border-white/10 hover:border-[#D8B879]/40'
+                    ? 'bg-[#D8B879] text-[#001D18] shadow-md'
+                    : 'bg-white text-[#18231F]/80 hover:text-[#002D26] border border-[#002D26]/15 hover:border-[#D8B879]'
                 }`}
               >
                 {cat}
@@ -111,7 +112,7 @@ const GalleryPage = () => {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35 }}
                   onClick={() => openLightbox(idx)}
-                  className="group relative rounded-3xl overflow-hidden border border-[#D8B879]/25 bg-[#00221B] cursor-pointer shadow-xl hover:border-[#D8B879] transition-all duration-300 hover:-translate-y-1"
+                  className="group relative rounded-3xl overflow-hidden border border-[#002D26]/12 bg-white cursor-pointer shadow-lg hover:shadow-2xl hover:border-[#D8B879] transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
@@ -120,7 +121,7 @@ const GalleryPage = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
                     
                     {/* Zoom Icon Pill */}
                     <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -213,8 +214,8 @@ const GalleryPage = () => {
         )}
       </AnimatePresence>
 
-      {/* ── Consultation CTA ── */}
-      <section className="py-16 px-4 sm:px-6 lg:px-10 text-center bg-[#00201A] border-t border-[#D8B879]/20">
+      {/* ── Consultation CTA: Deep Forest Emerald Section ── */}
+      <section className="bg-[#002620] text-white py-16 px-4 sm:px-6 lg:px-10 text-center border-t border-[#D8B879]/20">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
             Experience the Land in Person

@@ -13,8 +13,8 @@ const iconMap = { Home, Building2 };
 
 const ProjectsPage = () => {
   return (
-    <div className="bg-[#001713] text-[#F8F6EF] min-h-screen">
-      {/* ── Page Banner ── */}
+    <div className="bg-[#FAF8F2] text-[#18231F]">
+      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
       <PageBanner
         title="Our Projects"
         subtitle="Choose Your Land Parcel in Balaghat"
@@ -22,8 +22,8 @@ const ProjectsPage = () => {
         image={bannerImg}
       />
 
-      {/* ── Dual Sectors Showcase ── */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
+      {/* ── Dual Sectors Showcase: Warm Luxury Ivory Section ── */}
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
         <div className="max-w-[1440px] mx-auto">
           
           {/* Header */}
@@ -34,16 +34,16 @@ const ProjectsPage = () => {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#D8B879]/30 backdrop-blur-md mb-4 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D8B879]" />
-              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
+              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
                 DUAL PLOTTING SECTORS
               </span>
             </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight">
               Curated Land Formats
             </h2>
-            <p className="font-inter text-white/75 text-sm sm:text-base mt-4 font-light leading-relaxed">
+            <p className="font-inter text-[#18231F]/75 text-sm sm:text-base mt-4 font-light leading-relaxed">
               Whether you are planning a private residential retreat or securing a commercial asset along prime frontage, Vanam Valley delivers planned acreage infrastructure in Balaghat.
             </p>
           </motion.div>
@@ -55,7 +55,7 @@ const ProjectsPage = () => {
               return (
                 <motion.div
                   key={project.id}
-                  className="rounded-3xl overflow-hidden border border-[#D8B879]/30 hover:border-[#D8B879] transition-all duration-300 shadow-2xl bg-[#00221B]/90 group text-left flex flex-col justify-between"
+                  className="rounded-3xl overflow-hidden border border-[#002D26]/15 hover:border-[#D8B879] transition-all duration-300 shadow-xl hover:shadow-2xl bg-white group text-left flex flex-col justify-between"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
@@ -69,7 +69,7 @@ const ProjectsPage = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#001D18]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#001D18]/30 to-transparent" />
                     
                     <div className="absolute top-5 right-5">
                       <span className="px-3.5 py-1 rounded-full bg-black/60 border border-white/20 text-white font-inter text-xs backdrop-blur-md">
@@ -95,14 +95,14 @@ const ProjectsPage = () => {
                   </div>
 
                   <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
-                    <p className="font-inter text-white/75 text-sm sm:text-base leading-relaxed mb-6 font-light">
+                    <p className="font-inter text-[#18231F]/75 text-sm sm:text-base leading-relaxed mb-6 font-light">
                       {project.description}
                     </p>
                     
-                    <div className="border-t border-white/10 pt-5 flex items-center justify-between">
+                    <div className="border-t border-[#002D26]/10 pt-5 flex items-center justify-between">
                       <Link
                         to={project.path}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                        className="btn-gold inline-flex items-center gap-2 text-xs uppercase tracking-wider py-3 px-6 shadow-md"
                       >
                         <span>{project.btnLabel}</span>
                         <ArrowRight size={14} />
@@ -110,7 +110,7 @@ const ProjectsPage = () => {
 
                       <Link
                         to="/contact"
-                        className="text-xs font-inter text-[#D8B879] hover:text-white transition-colors underline"
+                        className="text-xs font-inter text-[#075C4A] hover:text-[#002D26] font-semibold transition-colors underline"
                       >
                         Schedule Site Visit
                       </Link>
@@ -124,8 +124,8 @@ const ProjectsPage = () => {
         </div>
       </section>
 
-      {/* ── Consultation Banner ── */}
-      <section className="bg-[#00201A] text-white py-16 px-4 sm:px-6 lg:px-10 text-center border-t border-[#D8B879]/20">
+      {/* ── Consultation Banner: Deep Forest Section ── */}
+      <section className="bg-[#002620] text-white py-16 px-4 sm:px-6 lg:px-10 text-center border-t border-[#D8B879]/20">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
             Looking for Guidance on Plot Selection?
@@ -145,7 +145,7 @@ const ProjectsPage = () => {
               href={business.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-black font-inter font-bold text-xs uppercase tracking-wider hover:bg-[#20bd5a] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-black font-inter font-bold text-xs uppercase tracking-wider hover:bg-[#20bd5a] transition-all shadow-sm"
             >
               <span>WhatsApp Inquiry</span>
             </a>

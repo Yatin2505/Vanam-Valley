@@ -39,8 +39,8 @@ const SectionBlock = ({ children, delay = 0 }) => {
 
 const AboutPage = () => {
   return (
-    <div className="bg-[#001713] text-[#F8F6EF] min-h-screen">
-      {/* ── Page Banner ── */}
+    <div className="bg-[#FAF8F2] text-[#18231F]">
+      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
       <PageBanner
         title="About Vanam Valley"
         subtitle="A Sanctuary Crafted for Generations"
@@ -48,48 +48,48 @@ const AboutPage = () => {
         image={aboutBannerImg}
       />
 
-      {/* ── Brand Narrative & Origin ── */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      {/* ── Brand Narrative & Origin: Warm Luxury Ivory Section ── */}
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Narrative Left */}
           <div className="lg:col-span-7 text-left">
             <SectionBlock>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#D8B879]/30 backdrop-blur-md mb-5 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-[#D8B879]" />
-                <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.22em] uppercase">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
+                <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.22em] uppercase">
                   OUR STORY &amp; ORIGIN
                 </span>
               </div>
 
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-6">
                 A Vision for Greener, <br />
-                <span className="italic font-normal text-[#E5C378]">Generational Living in Balaghat.</span>
+                <span className="italic font-normal text-[#075C4A]">Generational Living in Balaghat.</span>
               </h2>
 
-              <p className="font-inter text-white/80 text-base leading-relaxed mb-5 font-light">
-                <strong className="text-white font-medium">Vanam Valley Group</strong> is a premier residential and commercial plotting venture rooted in Balaghat, Madhya Pradesh. We believe that every family and enterprise deserves land that balances natural serenity with modern planned infrastructure.
+              <p className="font-inter text-[#18231F]/85 text-base leading-relaxed mb-5 font-light">
+                <strong className="text-[#002D26] font-semibold">Vanam Valley Group</strong> is a premier residential and commercial plotting venture rooted in Balaghat, Madhya Pradesh. We believe that every family and enterprise deserves land that balances natural serenity with modern planned infrastructure.
               </p>
 
-              <p className="font-inter text-white/70 text-sm sm:text-base leading-relaxed mb-5 font-light">
+              <p className="font-inter text-[#18231F]/75 text-sm sm:text-base leading-relaxed mb-5 font-light">
                 Our plotted layouts are conceptualized to respect natural topography rather than imposing aggressive leveling. From wide internal access roads to dedicated landscaped green buffer belts, our masterplan prioritizes long-term living quality and community prosperity.
               </p>
 
-              <p className="font-inter text-white/70 text-sm sm:text-base leading-relaxed mb-8 font-light">
+              <p className="font-inter text-[#18231F]/75 text-sm sm:text-base leading-relaxed mb-8 font-light">
                 We operate with absolute transparency — clear title deeds, demarcated plot boundaries, verified registry guidance, and direct communication with our local advisory desk in Balaghat.
               </p>
               
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-xl hover:-translate-y-0.5"
+                  className="btn-gold inline-flex items-center gap-2 text-xs uppercase tracking-wider py-3.5 px-7 shadow-lg"
                 >
                   <span>Connect with Our Team</span>
                   <ArrowRight size={14} />
                 </Link>
                 <Link
                   to="/projects"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-inter font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:border-[#D8B879]"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-white/80 border border-[#002D26]/20 text-[#002D26] font-inter font-semibold text-xs uppercase tracking-wider transition-all shadow-sm"
                 >
                   <span>Explore Masterplan</span>
                 </Link>
@@ -100,20 +100,20 @@ const AboutPage = () => {
           {/* Authentic Imagery Right */}
           <div className="lg:col-span-5">
             <SectionBlock delay={0.2}>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#D8B879]/30 bg-[#00221B] group">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#002D26]/15 group">
                 <img
                   src={landscapeImg}
                   alt="Vanam Valley masterplan development landscape"
                   className="w-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/90 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-black/70 backdrop-blur-md border border-white/15 text-left">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 text-left">
                   <div className="flex items-center gap-2 text-[#D8B879] text-[10px] font-inter uppercase tracking-wider font-semibold">
                     <MapPin size={12} />
                     <span>Balaghat Region, M.P.</span>
                   </div>
-                  <p className="text-sm font-playfair font-bold text-white mt-1">
+                  <p className="text-xs font-playfair font-bold text-white mt-1">
                     Thoughtfully Planned Plotted Acreage
                   </p>
                 </div>
@@ -124,8 +124,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── Vision & Mission ── */}
-      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-10 border-t border-b border-[#D8B879]/20 bg-[#00201A]">
+      {/* ── Vision & Mission: Deep Forest Emerald Section ── */}
+      <section className="bg-[#002620] text-white py-20 md:py-24 px-4 sm:px-6 lg:px-10 border-t border-b border-[#D8B879]/20">
         <div className="max-w-[1440px] mx-auto">
           <SectionBlock>
             <div className="text-center max-w-2xl mx-auto mb-14">
@@ -169,21 +169,21 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── Brand Philosophy Pillars ── */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
-        <div>
+      {/* ── Brand Philosophy Pillars: Warm Luxury Ivory Section ── */}
+      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
+        <div className="max-w-[1440px] mx-auto">
           <SectionBlock>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-[#D8B879]/30 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D8B879]" />
-                <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
+                <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
                   GUIDING PILLARS
                 </span>
               </div>
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-4">
                 Nature · Lifestyle · Investment
               </h2>
-              <p className="font-inter text-white/70 text-sm sm:text-base font-light">
+              <p className="font-inter text-[#18231F]/70 text-sm sm:text-base font-light">
                 The three foundational principles that guide every boundary line, access avenue, and customer relationship at Vanam Valley.
               </p>
             </div>
@@ -210,12 +210,12 @@ const AboutPage = () => {
               const Icon = p.icon;
               return (
                 <SectionBlock key={p.title} delay={idx * 0.1}>
-                  <div className="p-8 rounded-3xl bg-[#00221B]/90 border border-[#D8B879]/25 shadow-xl text-left hover:border-[#D8B879]/60 hover:-translate-y-1 transition-all duration-300">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8B879] mb-6">
+                  <div className="p-8 rounded-3xl bg-white border border-[#002D26]/12 shadow-md hover:shadow-xl hover:border-[#D8B879] transition-all duration-300 text-left">
+                    <div className="w-12 h-12 rounded-2xl bg-[#002D26]/5 flex items-center justify-center text-[#075C4A] mb-6">
                       <Icon size={22} />
                     </div>
-                    <h3 className="font-playfair text-xl font-bold text-white mb-3">{p.title}</h3>
-                    <p className="font-inter text-white/70 text-sm font-light leading-relaxed">{p.desc}</p>
+                    <h3 className="font-playfair text-xl font-bold text-[#002D26] mb-3">{p.title}</h3>
+                    <p className="font-inter text-[#18231F]/70 text-sm font-light leading-relaxed">{p.desc}</p>
                   </div>
                 </SectionBlock>
               );
@@ -224,8 +224,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── Bottom CTA ── */}
-      <section className="py-20 px-4 sm:px-6 lg:px-10 border-t border-[#D8B879]/20 bg-[#001D18]">
+      {/* ── Bottom CTA: Deep Forest Section ── */}
+      <section className="bg-[#001D18] text-white py-20 px-4 sm:px-6 lg:px-10 border-t border-[#D8B879]/20">
         <div className="max-w-3xl mx-auto text-center">
           <SectionBlock>
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
