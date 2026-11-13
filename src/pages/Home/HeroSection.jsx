@@ -1,6 +1,6 @@
 // src/pages/Home/HeroSection.jsx
-// Final Refinement — Premium Cinematic Real Estate Hero
-// Communicates instantly: Residential & Commercial Plotting and Property Consulting in Balaghat
+// Final Visual Refinement — World-Class Real Estate Landing Hero
+// Directly communicates: Residential & Commercial Plotting and Property Consulting in Balaghat, M.P.
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,8 +15,11 @@ import {
   Building2,
   Home,
   PhoneCall,
+  Calendar,
+  Layers,
+  ChevronDown,
   Sparkles,
-  ChevronDown
+  Maximize2
 } from 'lucide-react';
 import EnquiryModal from '../../components/EnquiryModal';
 import { business } from '../../data/siteData';
@@ -24,6 +27,7 @@ import { business } from '../../data/siteData';
 const HeroSection = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [activeMedia, setActiveMedia] = useState('video'); // 'video' | 'aerial'
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -36,37 +40,71 @@ const HeroSection = () => {
     <>
       <section className="relative min-h-[96vh] lg:min-h-screen flex flex-col justify-between overflow-hidden bg-[#001410] pt-28 pb-10 md:pt-36 md:pb-12 px-5 sm:px-8 lg:px-14">
         
-        {/* ── Background Looping Aerial Plotted Development Video ── */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/hero-poster.jpg"
-            className="w-full h-full object-cover object-center scale-[1.02] transform transition-transform duration-1000"
-            aria-hidden="true"
-          >
-            <source src="/hero-bg.mp4" type="video/mp4" />
-          </video>
+        {/* ── Background Media: Toggleable between Cinematic Video & Aerial Land Photo ── */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+          {activeMedia === 'video' ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/hero-poster.jpg"
+              className="w-full h-full object-cover object-center scale-[1.02] transform transition-opacity duration-1000"
+              aria-hidden="true"
+            >
+              <source src="/hero-bg.mp4" type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src="/hero-poster.jpg"
+              alt="Aerial View of Plotted Development Parcels — Vanam Valley"
+              className="w-full h-full object-cover object-center filter contrast-105 brightness-95 animate-fadeIn"
+            />
+          )}
 
           {/* 
-            Refined Cinematic Gradient Overlays:
-            Preserves full visual clarity of the road, land and landscape on the right/center,
-            while providing rich typographic legibility on the left.
+            Refined High-Contrast Gradients:
+            Keeps the road, land demarcations, and development footage clearly visible in the center and right,
+            while ensuring 100% typographic contrast on the left side.
           */}
-          <div className="absolute inset-y-0 left-0 w-full md:w-3/5 lg:w-1/2 bg-gradient-to-r from-[#001713]/95 via-[#001713]/75 to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-full md:w-3/5 lg:w-1/2 bg-gradient-to-r from-[#001713]/95 via-[#001713]/70 to-transparent pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#001410]/80 via-[#001410]/40 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#001410] via-[#001410]/70 to-transparent pointer-events-none" />
+        </div>
+
+        {/* ── Top-Right Media Perspective Switcher ── */}
+        <div className="absolute top-28 right-5 sm:right-8 lg:right-14 z-20 hidden sm:flex items-center gap-1.5 p-1 rounded-full bg-[#001713]/85 backdrop-blur-md border border-[#D8B879]/30 shadow-lg">
+          <button
+            type="button"
+            onClick={() => setActiveMedia('video')}
+            className={`px-3 py-1 rounded-full text-[11px] font-inter font-semibold transition-all ${
+              activeMedia === 'video'
+                ? 'bg-[#D8B879] text-[#001D18] shadow'
+                : 'text-white/70 hover:text-white'
+            }`}
+          >
+            Avenue Video
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveMedia('aerial')}
+            className={`px-3 py-1 rounded-full text-[11px] font-inter font-semibold transition-all ${
+              activeMedia === 'aerial'
+                ? 'bg-[#D8B879] text-[#001D18] shadow'
+                : 'text-white/70 hover:text-white'
+            }`}
+          >
+            Aerial Land View
+          </button>
         </div>
 
         {/* ── Hero Main Stage: Two-Column Architectural Composition ── */}
         <div className="relative z-10 max-w-7xl w-full mx-auto my-auto py-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* ── Left Column: Editorial Brand Headline & CTAs (7 Cols) ── */}
+          {/* ── Left Column: Editorial Brand Headline & Conversion CTAs (7 Cols) ── */}
           <div className="lg:col-span-7 text-left">
             
-            {/* Category Pill Tag */}
+            {/* Category Eyebrow Pill */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-[#D8B879]/40 backdrop-blur-md mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#D8B879] animate-pulse" />
               <span className="text-[#D8B879] font-inter font-semibold text-[11px] sm:text-xs tracking-[0.22em] uppercase">
@@ -78,13 +116,13 @@ const HeroSection = () => {
             <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.08] tracking-tight mb-5">
               Find the Right Plot for <br />
               <span className="italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
-                Your Future.
+                Your Future in Balaghat.
               </span>
             </h1>
 
             {/* Clear, Accessible Subtitle */}
             <p className="font-inter font-light text-white/90 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
-              Explore residential and commercial plots in Balaghat with planned internal road connectivity, demarcated boundaries, and honest property consulting every step of the way.
+              Explore residential and commercial land parcels in Balaghat with planned internal road connectivity, demarcated boundaries, and transparent property consulting every step of the way.
             </p>
 
             {/* Three Distinct High-Conversion CTAs */}
@@ -95,7 +133,7 @@ const HeroSection = () => {
                 className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D8B879] via-[#E5CA96] to-[#C4A45F] text-[#002620] font-inter font-bold text-xs sm:text-sm tracking-wider uppercase px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-[0_6px_28px_rgba(216,184,121,0.45)] hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Home className="w-4 h-4 text-[#002620]" />
-                <span>Explore Residential</span>
+                <span>Explore Residential Plots</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
@@ -105,7 +143,7 @@ const HeroSection = () => {
                 className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-[#D8B879]/60 text-white font-inter font-semibold text-xs sm:text-sm tracking-wider uppercase px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Building2 className="w-4 h-4 text-emerald-400" />
-                <span>Commercial Plots</span>
+                <span>Explore Commercial Plots</span>
               </Link>
 
               {/* Tertiary: Talk to Property Team */}
@@ -115,7 +153,7 @@ const HeroSection = () => {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-[#002620]/90 hover:bg-[#002620] border border-[#D8B879]/40 text-[#D8B879] font-inter font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg"
               >
                 <PhoneCall className="w-4 h-4" />
-                <span>Talk to Property Team</span>
+                <span>Talk to Our Property Team</span>
               </button>
             </div>
 
@@ -139,7 +177,7 @@ const HeroSection = () => {
 
           {/* ── Right Column: Floating Architectural "Project At A Glance" Card (5 Cols) ── */}
           <div className="lg:col-span-5 hidden lg:block">
-            <div className="relative rounded-3xl p-6 sm:p-7 bg-[#001713]/80 backdrop-blur-xl border border-[#D8B879]/30 shadow-2xl text-white">
+            <div className="relative rounded-3xl p-6 sm:p-7 bg-[#001713]/85 backdrop-blur-xl border border-[#D8B879]/35 shadow-2xl text-white">
               
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
