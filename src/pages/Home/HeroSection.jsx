@@ -1,7 +1,7 @@
 // src/pages/Home/HeroSection.jsx
-// Exact Visual Reference Implementation matching reference image & background
-// Background: Vanam Valley Plotted Land Sunset & Entrance (Exact Uploaded Image)
-// Composition: Left Editorial Hero Copy, Bottom-Left 4-Feature Strip, Right-Bottom Project Status Box
+// Strict Visual Reference Implementation matching uploaded designs
+// Background: Vanam Valley Grand Entrance Sunset (Image 1)
+// Layout & Composition: Editorial Real Estate Hero (Image 2)
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -34,48 +34,49 @@ const HeroSection = () => {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     } else {
+      // Fallback scroll down to projects section if masterplan anchor is elsewhere
       const fallback = document.getElementById('projects-section') || document.getElementById('overview-section');
       if (fallback) fallback.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#001713] pt-24 sm:pt-28 pb-5 px-5 sm:px-8 lg:px-14">
+    <section className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between overflow-hidden bg-[#001713] pt-28 sm:pt-32 pb-8 sm:pb-12 px-5 sm:px-8 lg:px-14">
       
-      {/* ── Background: Genuine Vanam Valley Uploaded Image ── */}
+      {/* ── Background: Genuine Vanam Valley Entrance Sunset ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img
           src="/images/hero/vanam-hero-background.jpg"
-          alt="Vanam Valley Plotted Development in Balaghat"
+          alt="Vanam Valley Grand Entrance Arch and Plotted Development in Balaghat"
           className="w-full h-full object-cover object-[center_right] md:object-center transform scale-[1.01]"
           loading="eager"
         />
 
         {/* 
           Directional Gradients:
-          Ensures absolute text legibility on the left,
-          while keeping the golden sunset, roads, trees, and Vanam Valley sign 100% visible.
+          Deep emerald-black fade on left to ensure absolute text crispness,
+          while preserving entrance archway, illuminated road, and sunset sky on right.
         */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-3/5 lg:w-[54%] bg-gradient-to-r from-[#001410] via-[#001410]/85 to-transparent z-[1]" />
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#001410]/80 via-[#001410]/30 to-transparent z-[1]" />
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#001410]/95 via-[#001410]/40 to-transparent z-[1]" />
+        <div className="absolute inset-y-0 left-0 w-full md:w-3/5 lg:w-[58%] bg-gradient-to-r from-[#001410] via-[#001410]/85 to-transparent z-[1]" />
+        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#001410]/80 via-[#001410]/30 to-transparent z-[1]" />
+        <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#001410]/95 via-[#001410]/50 to-transparent z-[1]" />
 
-        {/* Framing foliage silhouette accent in top-left */}
-        <div className="absolute top-0 left-0 w-48 sm:w-60 h-48 sm:h-60 opacity-30 pointer-events-none z-[2]">
+        {/* Ambient Top & Bottom Foliage Framing Accents (Organic Silhouette) */}
+        <div className="absolute top-0 left-0 w-48 sm:w-64 h-48 sm:h-64 opacity-40 pointer-events-none z-[2]">
           <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-emerald-950">
             <path d="M0 0C40 80 80 120 180 140C120 180 60 160 0 200V0Z" fill="currentColor" opacity="0.6" />
           </svg>
         </div>
       </div>
 
-      {/* ── Hero Content Body: Distributed Between Top-Left Copy & Bottom Controls ── */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto flex-1 flex flex-col justify-between pt-4 sm:pt-6 pb-2">
+      {/* ── Main Two-Column Hero Stage ── */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto my-auto pt-6 pb-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
-        {/* Top-Left Editorial Copy */}
-        <div className="max-w-2xl lg:max-w-3xl text-left">
+        {/* ── Left Column: Editorial Content & Conversion Triggers ── */}
+        <div className="lg:col-span-7 xl:col-span-7 text-left">
           
           {/* Eyebrow Location Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/45 border border-white/15 backdrop-blur-md mb-5 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/15 backdrop-blur-md mb-6 shadow-sm">
             <MapPin className="w-3.5 h-3.5 text-[#E5C378]" />
             <span className="text-white/90 font-inter text-xs font-medium tracking-wide">
               Balaghat, M.P. <span className="text-white/40 mx-1.5">|</span> Residential &amp; Commercial Plotting
@@ -83,7 +84,7 @@ const HeroSection = () => {
           </div>
 
           {/* Monumental Editorial Headline matching strict reference */}
-          <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl xl:text-[66px] leading-[1.08] tracking-tight mb-4">
+          <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl xl:text-[68px] leading-[1.08] tracking-tight mb-5">
             Find the Right Plot for <br />
             <span className="italic font-normal text-[#E5C378] font-playfair tracking-normal">
               Your Future
@@ -108,16 +109,16 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle Description */}
-          <p className="font-inter text-white/85 text-sm sm:text-base font-normal leading-relaxed mb-6 max-w-xl">
+          <p className="font-inter text-white/85 text-sm sm:text-base md:text-[15px] font-normal leading-relaxed mb-8 max-w-xl">
             Explore residential and commercial land parcels in Balaghat with planned internal road connectivity, landscaped green spaces, and transparent property consulting every step of the way.
           </p>
 
           {/* Two Prominent Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4 mb-9">
             {/* Primary Action: Gold Filled Pill */}
             <Link
               to="/projects/residential"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-full bg-[#E5C378] hover:bg-[#F5DA98] text-[#001D18] font-inter font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[#E5C378] hover:bg-[#F5DA98] text-[#001D18] font-inter font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-xl hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Explore Residential Plots</span>
               <ArrowRight className="w-4 h-4" />
@@ -127,23 +128,18 @@ const HeroSection = () => {
             <button
               type="button"
               onClick={() => setVideoModalOpen(true)}
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/25 text-white font-inter font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:border-[#E5C378]/70 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/25 text-white font-inter font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:border-[#E5C378]/70 hover:-translate-y-0.5"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>Watch Video</span>
             </button>
           </div>
 
-        </div>
-
-        {/* ── Lower Area: Bottom Row with 4-Feature Strip on Left & Project Status Box in Right-Bottom ── */}
-        <div className="w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 pt-6 sm:pt-8">
-          
-          {/* Left: 4-Item Horizontal Value Proposition Strip */}
-          <div className="inline-flex flex-wrap sm:flex-nowrap items-center divide-y sm:divide-y-0 sm:divide-x divide-white/10 bg-black/45 border border-white/15 backdrop-blur-md rounded-2xl p-2.5 sm:px-4 sm:py-3 shadow-xl max-w-2xl">
+          {/* 4-Item Horizontal Value Proposition Strip */}
+          <div className="inline-flex flex-wrap sm:flex-nowrap items-center divide-y sm:divide-y-0 sm:divide-x divide-white/10 bg-black/45 border border-white/15 backdrop-blur-md rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-xl max-w-2xl">
             {/* Value 1 */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 sm:py-0 w-1/2 sm:w-auto">
-              <Gem className="w-4 h-4 text-[#E5C378] flex-shrink-0" />
+            <div className="flex items-center gap-3 px-3 py-2 sm:py-0 w-1/2 sm:w-auto">
+              <Gem className="w-5 h-5 text-[#E5C378] flex-shrink-0" />
               <div className="text-left">
                 <div className="text-xs font-inter font-semibold text-white leading-tight">Prime Location</div>
                 <div className="text-[10px] font-inter text-white/60">In Balaghat</div>
@@ -151,8 +147,8 @@ const HeroSection = () => {
             </div>
 
             {/* Value 2 */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 sm:py-0 w-1/2 sm:w-auto">
-              <ShieldCheck className="w-4 h-4 text-[#E5C378] flex-shrink-0" />
+            <div className="flex items-center gap-3 px-3 py-2 sm:py-0 w-1/2 sm:w-auto">
+              <ShieldCheck className="w-5 h-5 text-[#E5C378] flex-shrink-0" />
               <div className="text-left">
                 <div className="text-xs font-inter font-semibold text-white leading-tight">Secure Investment</div>
                 <div className="text-[10px] font-inter text-white/60">For a Better Tomorrow</div>
@@ -160,8 +156,8 @@ const HeroSection = () => {
             </div>
 
             {/* Value 3 */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 sm:py-0 w-1/2 sm:w-auto">
-              <Trees className="w-4 h-4 text-[#E5C378] flex-shrink-0" />
+            <div className="flex items-center gap-3 px-3 py-2 sm:py-0 w-1/2 sm:w-auto">
+              <Trees className="w-5 h-5 text-[#E5C378] flex-shrink-0" />
               <div className="text-left">
                 <div className="text-xs font-inter font-semibold text-white leading-tight">Green &amp; Peaceful</div>
                 <div className="text-[10px] font-inter text-white/60">Living Environment</div>
@@ -169,8 +165,8 @@ const HeroSection = () => {
             </div>
 
             {/* Value 4 */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 sm:py-0 w-1/2 sm:w-auto">
-              <Handshake className="w-4 h-4 text-[#E5C378] flex-shrink-0" />
+            <div className="flex items-center gap-3 px-3 py-2 sm:py-0 w-1/2 sm:w-auto">
+              <Handshake className="w-5 h-5 text-[#E5C378] flex-shrink-0" />
               <div className="text-left">
                 <div className="text-xs font-inter font-semibold text-white leading-tight">Trusted by Many</div>
                 <div className="text-[10px] font-inter text-white/60">Growing Community</div>
@@ -178,112 +174,112 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right-Bottom: Project Status Box Placed Exactly as in Reference Image ── */}
-          <div className="w-full lg:w-[420px] xl:w-[450px] flex-shrink-0">
-            <div className="w-full bg-[#001D18]/85 border border-[#E5C378]/35 rounded-3xl p-4 sm:p-5 backdrop-blur-xl shadow-2xl text-left relative overflow-hidden transition-all duration-300 hover:border-[#E5C378]/60">
-              
-              {/* Top Status Header */}
-              <div className="flex items-center justify-between mb-3.5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#003B30] border border-emerald-500/35">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] font-inter font-bold tracking-wider uppercase text-emerald-300">
-                    Project Status
-                  </span>
-                </div>
-                <span className="text-white/60 font-inter text-xs">In Planning</span>
+        </div>
+
+        {/* ── Right Column: Floating Project Status & Specifications Card ── */}
+        <div className="lg:col-span-5 xl:col-span-5 flex justify-end mt-4 lg:mt-0">
+          <div className="w-full max-w-md bg-[#001D18]/85 border border-[#E5C378]/30 rounded-3xl p-5 sm:p-6 backdrop-blur-xl shadow-2xl text-left relative overflow-hidden transition-all duration-300 hover:border-[#E5C378]/55">
+            
+            {/* Top Status Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#003B30] border border-emerald-500/35">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[10px] font-inter font-bold tracking-wider uppercase text-emerald-300">
+                  Project Status
+                </span>
               </div>
-
-              {/* Title + Plotted Layout Aerial Thumbnail */}
-              <div className="flex items-start gap-3.5 mb-3.5">
-                <div className="flex-1">
-                  <h3 className="font-playfair font-bold text-white text-base sm:text-lg leading-snug">
-                    Vanam Valley Land Development
-                  </h3>
-                  <p className="font-inter text-white/70 text-xs leading-relaxed mt-1">
-                    A planned plotted project designed to provide residential plots for home builders and investors in Balaghat.
-                  </p>
-                </div>
-                <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-emerald-500/35 shadow-md bg-emerald-950">
-                  <img
-                    src="/images/hero/hero-plan-thumb.jpg"
-                    alt="Vanam Valley Plotted Layout Thumbnail"
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-
-              {/* Metrics & Dimensions Row */}
-              <div className="border-t border-white/10 pt-3 mb-3.5 grid grid-cols-2 gap-3">
-                {/* Residential Metric */}
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-                      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-                      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-                      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-                      <rect x="14" y="14" width="7" height="7" rx="1.5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Residential Plots</div>
-                    <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">1,200 – 2,000</div>
-                    <div className="text-[10px] font-inter text-white/50">Sq.ft. (approx. formats)</div>
-                  </div>
-                </div>
-
-                {/* Commercial Metric */}
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-                      <path d="M4 19L8 5" strokeLinecap="round" />
-                      <path d="M20 19L16 5" strokeLinecap="round" />
-                      <path d="M12 7V9" strokeLinecap="round" />
-                      <path d="M12 13V15" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Commercial Plots</div>
-                    <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">Road Frontage</div>
-                    <div className="text-[10px] font-inter text-white/50">High visibility &amp; accessibility</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2D Layout Map Full-Width Pill Button */}
-              <button
-                type="button"
-                onClick={scrollToMasterplan}
-                className="w-full py-2.5 px-4 rounded-full border border-[#E5C378]/40 bg-white/5 hover:bg-[#E5C378] text-[#E5C378] hover:text-[#001D18] font-inter text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm"
-              >
-                <span>→</span>
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>Explore 2D Layout Map</span>
-              </button>
+              <span className="text-white/60 font-inter text-xs">In Planning</span>
             </div>
-          </div>
 
+            {/* Title + Plotted Layout Aerial Thumbnail */}
+            <div className="flex items-start gap-4 mb-4">
+              <div className="flex-1">
+                <h3 className="font-playfair font-bold text-white text-lg sm:text-xl leading-snug">
+                  Vanam Valley Land Development
+                </h3>
+                <p className="font-inter text-white/70 text-xs leading-relaxed mt-1.5">
+                  A planned plotted project designed to provide residential plots for home builders and investors in Balaghat.
+                </p>
+              </div>
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden flex-shrink-0 border border-emerald-500/30 shadow-md bg-emerald-950">
+                <img
+                  src="/images/hero/hero-plan-thumb.jpg"
+                  alt="Vanam Valley Plotted Layout Thumbnail"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+
+            {/* Metrics & Dimensions Row */}
+            <div className="border-t border-white/10 pt-4 mb-4 grid grid-cols-2 gap-4">
+              {/* Residential Metric */}
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Residential Plots</div>
+                  <div className="text-sm font-bold text-white font-inter mt-0.5">1,200 – 2,000</div>
+                  <div className="text-[10px] font-inter text-white/50">Sq.ft. (approx. formats)</div>
+                </div>
+              </div>
+
+              {/* Commercial Metric */}
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                    <path d="M4 19L8 5" strokeLinecap="round" />
+                    <path d="M20 19L16 5" strokeLinecap="round" />
+                    <path d="M12 7V9" strokeLinecap="round" />
+                    <path d="M12 13V15" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Commercial Plots</div>
+                  <div className="text-sm font-bold text-white font-inter mt-0.5">Road Frontage</div>
+                  <div className="text-[10px] font-inter text-white/50">High visibility &amp; accessibility</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2D Layout Map Full-Width Pill Button */}
+            <button
+              type="button"
+              onClick={scrollToMasterplan}
+              className="w-full py-2.5 px-4 rounded-full border border-[#E5C378]/40 bg-white/5 hover:bg-[#E5C378] text-[#E5C378] hover:text-[#001D18] font-inter text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm"
+            >
+              <span>→</span>
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Explore 2D Layout Map</span>
+            </button>
+          </div>
         </div>
 
       </div>
 
-      {/* ── Bottom Bar: Scroll Down & Branding ── */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto pt-3 flex items-center justify-between">
+      {/* ── Bottom Anchor: Organic Wave & Scroll Indicator ── */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto pt-4 flex items-center justify-between">
         
         {/* Curved Contour Wave & Scroll Button */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={scrollToOverview}
-            className="inline-flex items-center gap-2 text-xs font-inter text-white/80 hover:text-[#E5C378] transition-colors tracking-wide focus:outline-none group"
+            className="inline-flex items-center gap-2.5 text-xs font-inter text-white/80 hover:text-[#E5C378] transition-colors tracking-wide focus:outline-none group"
           >
-            <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#E5C378] transition-colors">
-              <ChevronDown className="w-3.5 h-3.5 text-[#E5C378] group-hover:translate-y-0.5 transition-transform" />
+            <div className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#E5C378] transition-colors">
+              <ChevronDown className="w-4 h-4 text-[#E5C378] group-hover:translate-y-0.5 transition-transform" />
             </div>
             <span className="font-medium text-xs">Scroll Down</span>
           </button>
 
           {/* Decorative subtle gold curve SVG along bottom left */}
-          <div className="hidden sm:block w-40 h-5 overflow-hidden opacity-30">
+          <div className="hidden sm:block w-48 h-6 overflow-hidden opacity-35">
             <svg viewBox="0 0 200 24" fill="none" className="w-full h-full text-[#E5C378]">
               <path d="M0 18C50 18 80 4 140 4C180 4 190 14 200 14" stroke="currentColor" strokeWidth="1.5" />
             </svg>
@@ -291,7 +287,7 @@ const HeroSection = () => {
         </div>
 
         {/* Development Location Tag */}
-        <span className="text-[10px] font-mono text-white/40 tracking-wider uppercase">
+        <span className="text-[11px] font-mono text-white/40 tracking-wider uppercase">
           Balaghat Plotted Development
         </span>
       </div>
