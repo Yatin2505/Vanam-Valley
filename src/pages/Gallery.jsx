@@ -1,10 +1,13 @@
 // src/pages/Gallery.jsx
+// Professional Photographic Chronicle of Vanam Valley — Balaghat, M.P.
+
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ZoomIn, Camera, ArrowRight, Phone } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
-import { galleryImages, galleryCategories } from '../data/siteData';
+import { galleryImages, galleryCategories, business } from '../data/siteData';
 import bannerImg from '../assets/images/hero-plotted-development.jpg';
+import { Link } from 'react-router-dom';
 
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -47,42 +50,45 @@ const GalleryPage = () => {
   }, [lightboxIndex]);
 
   return (
-    <>
+    <div className="bg-[#001713] text-[#F8F6EF] min-h-screen">
+      {/* ── Page Banner ── */}
       <PageBanner
         title="Visual Chronicle"
-        subtitle="A Glimpse of Vanam Valley"
+        subtitle="A Glimpse of Vanam Valley in Balaghat"
         breadcrumb={[{ label: 'Gallery' }]}
         image={bannerImg}
       />
 
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-5 md:px-10 lg:px-16">
-        <div className="max-w-7xl mx-auto">
+      {/* ── Gallery Grid & Filter Section ── */}
+      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
+        <div>
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
-              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#D8B879]/30 backdrop-blur-md mb-4 shadow-sm">
+              <Camera className="w-3.5 h-3.5 text-[#D8B879]" />
+              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
                 AUTHENTIC SITE PHOTOGRAPHY
               </span>
             </div>
-            <h2 className="font-playfair text-3xl md:text-5xl font-bold text-[#002D26]">
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
               Explore Vanam Valley
             </h2>
-            <p className="font-inter text-[#18231F]/70 text-xs sm:text-sm mt-3 max-w-xl mx-auto font-light">
-              High-resolution photographic documentation of our plotted development, natural landscape, and infrastructure corridors in Balaghat.
+            <p className="font-inter text-white/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
+              Photographic documentation of our plotted development, natural landscape, demarcated roads, and surroundings in Balaghat.
             </p>
           </div>
 
-          {/* Category filters */}
+          {/* Category Filter Pills */}
           <div className="flex flex-wrap justify-center gap-2.5 mb-12">
             {galleryCategories.map((cat) => (
               <button
                 key={cat}
+                type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2.5 rounded-full font-inter text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                className={`font-inter text-xs tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 font-semibold ${
                   activeCategory === cat
-                    ? 'bg-[#002D26] text-[#D8B879] shadow-md border border-[#002D26]'
-                    : 'bg-white border border-[#002D26]/20 text-[#18231F]/70 hover:border-[#D8B879] hover:text-[#002D26]'
+                    ? 'bg-[#D8B879] text-[#001D18] shadow-lg shadow-[#D8B879]/20'
+                    : 'bg-[#00221B] text-white/70 hover:text-white border border-white/10 hover:border-[#D8B879]/40'
                 }`}
               >
                 {cat}
@@ -90,119 +96,151 @@ const GalleryPage = () => {
             ))}
           </div>
 
-          {/* Grid View — all 9 items rendered reliably */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((img, index) => (
-              <div
-                key={img.id}
-                className="rounded-2xl overflow-hidden relative group cursor-pointer border border-[#002D26]/10 hover:border-[#D8B879] transition-all duration-300 shadow-md hover:shadow-2xl bg-[#001D18]"
-                onClick={() => openLightbox(index)}
-              >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={img.thumb}
-                    alt={img.alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                
-                {/* Gradient and Hover Information */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/90 via-[#001D18]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-left">
-                  <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-widest font-semibold mb-1">
-                    {img.category}
-                  </span>
-                  <div className="text-xs font-inter text-white font-medium flex items-center justify-between">
-                    <span>{img.alt}</span>
-                    <ZoomIn size={16} className="text-[#D8B879] flex-shrink-0 ml-2" />
+          {/* Photos Grid */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
+            <AnimatePresence>
+              {filtered.map((item, idx) => (
+                <motion.div
+                  layout
+                  key={item.id || idx}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35 }}
+                  onClick={() => openLightbox(idx)}
+                  className="group relative rounded-3xl overflow-hidden border border-[#D8B879]/25 bg-[#00221B] cursor-pointer shadow-xl hover:border-[#D8B879] transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={item.title || item.alt}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                    
+                    {/* Zoom Icon Pill */}
+                    <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <ZoomIn size={16} />
+                    </div>
+
+                    {/* Bottom Caption */}
+                    <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-black/70 backdrop-blur-md border border-white/10 text-left">
+                      <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
+                        {item.category}
+                      </span>
+                      <h4 className="font-playfair font-bold text-sm text-white mt-0.5 line-clamp-1">
+                        {item.title}
+                      </h4>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
-                {/* Permanent subtle bottom label */}
-                <div className="p-4 bg-white text-left border-t border-[#002D26]/10">
-                  <span className="text-[9px] font-inter text-[#075C4A] font-semibold tracking-wider uppercase block mb-0.5">
-                    {img.category}
-                  </span>
-                  <p className="text-xs font-inter text-[#002D26] font-medium truncate">
-                    {img.alt}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-20 text-[#18231F]/40 font-inter text-sm">
-              No photographs in this category yet.
-            </div>
-          )}
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* ── Interactive Lightbox Modal ── */}
       <AnimatePresence>
-        {lightboxIndex !== null && (
+        {lightboxIndex !== null && filtered[lightboxIndex] && (
           <motion.div
-            className="fixed inset-0 z-[9999] bg-black/92 backdrop-blur-md flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6 bg-black/95 backdrop-blur-2xl"
             onClick={closeLightbox}
           >
             <button
-              className="absolute top-4 right-4 text-white/70 hover:text-white p-2.5 rounded-full bg-black/50"
+              type="button"
               onClick={closeLightbox}
-              aria-label="Close"
+              className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
+              aria-label="Close photo preview"
             >
-              <X size={26} />
+              <X size={20} />
             </button>
 
+            {/* Prev Image */}
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-3 rounded-full bg-black/50"
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
               }}
-              aria-label="Previous"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
+              aria-label="Previous photo"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={22} />
             </button>
 
-            <motion.div
-              key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center rounded-2xl overflow-hidden border border-[#D8B879]/40 bg-[#001D18]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={filtered[lightboxIndex]?.src}
-                alt={filtered[lightboxIndex]?.alt}
-                className="max-w-full max-h-[75vh] object-contain"
-              />
-              <div className="w-full bg-[#001D18] p-4 text-center border-t border-white/10">
-                <span className="text-[#D8B879] font-inter text-xs tracking-wider uppercase">
-                  {lightboxIndex + 1} / {filtered.length} — {filtered[lightboxIndex]?.alt}
-                </span>
-              </div>
-            </motion.div>
-
+            {/* Next Image */}
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-3 rounded-full bg-black/50"
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
               }}
-              aria-label="Next"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
+              aria-label="Next photo"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={22} />
             </button>
+
+            {/* Modal Image Display */}
+            <div
+              className="relative max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={filtered[lightboxIndex].src}
+                alt={filtered[lightboxIndex].title}
+                className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/10"
+              />
+              <div className="mt-4 text-center">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#D8B879]">
+                  {filtered[lightboxIndex].category} · {lightboxIndex + 1} of {filtered.length}
+                </span>
+                <h3 className="font-playfair text-xl font-bold text-white mt-1">
+                  {filtered[lightboxIndex].title}
+                </h3>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+
+      {/* ── Consultation CTA ── */}
+      <section className="py-16 px-4 sm:px-6 lg:px-10 text-center bg-[#00201A] border-t border-[#D8B879]/20">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
+            Experience the Land in Person
+          </h2>
+          <p className="font-inter text-white/70 text-xs sm:text-sm mb-6 font-light">
+            Photographs only capture part of the beauty. Schedule a free escorted site visit with our local Balaghat advisors.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+            >
+              <span>Schedule On-Ground Site Walk</span>
+              <ArrowRight size={14} />
+            </Link>
+            <a
+              href={`tel:${business.phone[0]}`}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-inter font-semibold text-xs uppercase tracking-wider transition-all"
+            >
+              <Phone size={14} className="text-[#D8B879]" />
+              <span>Call +91 {business.phone[0]}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

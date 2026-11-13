@@ -1,8 +1,22 @@
 // src/pages/PropertyConsulting.jsx
+// Professional Editorial Page for Property Consulting at Vanam Valley — Balaghat, M.P.
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { HelpCircle, CheckCircle2, Phone, MessageSquare, ArrowRight, ShieldCheck, MapPin, Compass } from 'lucide-react';
+import {
+  HelpCircle,
+  CheckCircle2,
+  Phone,
+  MessageCircle,
+  ArrowRight,
+  ShieldCheck,
+  MapPin,
+  Compass,
+  FileCheck,
+  Scale,
+  Users,
+} from 'lucide-react';
 import PageBanner from '../components/PageBanner';
 import { business } from '../data/siteData';
 import bannerImg from '../assets/images/property-consulting-discussion.jpg';
@@ -12,37 +26,38 @@ const consultationSteps = [
   {
     num: '01',
     title: 'Understand Your Requirements',
-    desc: 'We listen to your specific needs — whether you are planning to build a family home or acquire commercial frontage for your business.',
+    desc: 'We listen to your specific spatial and budget needs — whether planning a family residence, securing roadside frontage, or long-term asset growth.',
   },
   {
     num: '02',
-    title: 'Evaluate Plot Options',
-    desc: 'We review suitable plot dimensions, road connectivity, orientation, and sector accessibility across Balaghat.',
+    title: 'Evaluate Suitable Land Formats',
+    desc: 'We review plot dimensions, road connectivity, orientation (East/North facing), and sector accessibility across Balaghat.',
   },
   {
     num: '03',
     title: 'Transparent Paperwork Review',
-    desc: 'We walk you through title documentation, layout markings, and purchase procedures with complete clarity and no hidden surprises.',
+    desc: 'We guide you through title deeds, demarcation records, mutation procedures, and registry documentation with complete transparency.',
   },
   {
     num: '04',
-    title: 'On-Ground Site Visit',
-    desc: 'We arrange an accompanied on-site inspection in Balaghat so you can personally assess the land and surrounding area.',
+    title: 'Guided On-Ground Site Walk',
+    desc: 'We arrange an escorted on-site walk in Balaghat so you can personally inspect marked boundary corners and internal roads.',
   },
 ];
 
 const guidanceTopics = [
-  'Selecting the right plot size for your budget and future house plan',
-  'Commercial location assessment for retail, showroom or office frontage',
-  'Understanding land survey demarcations and approach roads',
-  'Orientation guidelines (East/North facing options)',
-  'Guidance for first-time land buyers in Balaghat and surrounding regions',
-  'Arranging guided physical site visits with our local team',
+  'Selecting the right plot size for your budget and architectural house plan',
+  'Commercial location assessment for retail shops, showrooms, or office spaces',
+  'Understanding land survey demarcations, corner pins, and approach road widths',
+  'Orientation guidelines (East/North facing options for peaceful living)',
+  'Guidance for first-time land buyers across Balaghat and surrounding districts',
+  'Arranging escorted physical site visits with our local engineering desk',
 ];
 
 const PropertyConsultingPage = () => {
   return (
-    <>
+    <div className="bg-[#001713] text-[#F8F6EF] min-h-screen">
+      {/* ── Page Banner ── */}
       <PageBanner
         title="Property Consulting"
         subtitle="Honest Guidance for Your Land Decisions in Balaghat"
@@ -51,76 +66,78 @@ const PropertyConsultingPage = () => {
       />
 
       {/* ── Intro Narrative ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-5 md:px-10 lg:px-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           <div className="lg:col-span-7 text-left">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
-              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#D8B879]/30 backdrop-blur-md mb-4 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D8B879]" />
+              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
                 PROPERTY CONSULTING SERVICES
               </span>
             </div>
 
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-5">
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
               Need Help Finding the <br />
-              <span className="italic font-normal text-[#075C4A]">Right Property in Balaghat?</span>
+              <span className="italic font-normal text-[#E5C378]">Right Property in Balaghat?</span>
             </h2>
 
-            <p className="font-inter text-[#18231F]/80 text-sm sm:text-base leading-relaxed mb-4 font-light">
-              Buying land is one of the most important decisions you will make. Whether you are buying your first residential plot or expanding your business footprint, you need straightforward, honest guidance without confusing jargon or high-pressure tactics.
+            <p className="font-inter text-white/80 text-sm sm:text-base leading-relaxed mb-4 font-light">
+              Buying land is one of the most critical financial and emotional milestones in life. Whether buying your first residential plot or expanding your business footprint, you need straightforward, honest guidance without confusing jargon or high-pressure sales tactics.
             </p>
 
-            <p className="font-inter text-[#18231F]/70 text-sm sm:text-base leading-relaxed mb-8 font-light">
-              At Vanam Valley, our property consulting service connects you with local land advisors in Balaghat who take time to understand your vision, explain realistic options, and ensure total transparency throughout.
+            <p className="font-inter text-white/70 text-sm sm:text-base leading-relaxed mb-8 font-light">
+              At Vanam Valley, our property consulting desk connects you directly with local land specialists in Balaghat who listen to your goals, review genuine property records, and ensure complete transparency every step of the way.
             </p>
 
             {/* Topics Covered */}
-            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#002D26]/10 shadow-sm mb-8">
-              <h3 className="font-playfair font-bold text-lg text-[#002D26] mb-4">
-                How We Assist Land Buyers:
+            <div className="bg-[#00221B]/90 rounded-3xl p-6 sm:p-7 border border-[#D8B879]/25 shadow-xl mb-8">
+              <h3 className="font-playfair font-bold text-lg text-white mb-4">
+                What Our Advisory Covers:
               </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {guidanceTopics.map((topic, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm font-inter text-[#18231F]/80">
-                    <CheckCircle2 size={16} className="text-[#075C4A] flex-shrink-0 mt-0.5" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {guidanceTopics.map((topic, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] font-inter text-white/80">
+                    <CheckCircle2 size={15} className="text-[#D8B879] flex-shrink-0 mt-0.5" />
                     <span>{topic}</span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="btn-gold inline-flex items-center gap-2 text-xs">
-                <span>Talk to Our Property Team</span>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl hover:-translate-y-0.5"
+              >
+                <span>Book Free Property Consultation</span>
                 <ArrowRight size={14} />
               </Link>
               <a
-                href={`https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(business.whatsappTemplates.consulting)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline-gold inline-flex items-center gap-2 text-xs text-[#002D26] border-[#002D26]/30 hover:border-[#002D26]"
+                href={`tel:${business.phone[0]}`}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-inter font-semibold text-xs uppercase tracking-wider transition-all"
               >
-                <MessageSquare size={14} />
-                <span>Ask on WhatsApp</span>
+                <Phone size={14} className="text-[#D8B879]" />
+                <span>Call +91 {business.phone[0]}</span>
               </a>
             </div>
           </div>
 
           <div className="lg:col-span-5">
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#002D26]/15 group">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#D8B879]/30 bg-[#00221B] group">
               <img
                 src={consultingImg}
-                alt="Property consulting and masterplan discussion at Vanam Valley"
+                alt="Property site plan discussion and land survey in Balaghat"
                 className="w-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
-              <div className="p-6 bg-white border-t border-[#002D26]/10 text-left">
-                <span className="text-[10px] font-inter text-[#075C4A] font-semibold tracking-wider uppercase block mb-1">
-                  Local Expertise in Balaghat
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/90 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-black/70 backdrop-blur-md border border-white/15 text-left">
+                <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
+                  On-Site Technical Review
                 </span>
-                <p className="text-xs sm:text-sm font-inter text-[#002D26] font-medium">
-                  Direct guidance from people who know the local terrain, access routes, and development direction.
+                <p className="text-xs font-playfair font-bold text-white mt-0.5">
+                  Balaghat Cadastral &amp; Boundary Mapping
                 </p>
               </div>
             </div>
@@ -129,39 +146,39 @@ const PropertyConsultingPage = () => {
         </div>
       </section>
 
-      {/* ── 4-Step Consultation Process ── */}
-      <section className="bg-[#002620] text-white py-20 md:py-28 px-5 md:px-10 lg:px-16 border-t border-b border-gold/15">
-        <div className="max-w-7xl mx-auto">
+      {/* ── 4-Step Consultation Framework ── */}
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-10 border-t border-b border-[#D8B879]/20 bg-[#00201A]">
+        <div className="max-w-[1440px] mx-auto">
           
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-              <span className="text-gold font-inter font-semibold text-xs tracking-[0.25em] uppercase">
-                SIMPLE &amp; TRANSPARENT
+          <div className="text-center mb-14 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-[#D8B879]/30 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D8B879]" />
+              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
+                STRUCTURED PROCESS
               </span>
             </div>
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-              Our 4-Step Property Advisory
+              Our 4-Step Advisory Approach
             </h2>
-            <p className="font-inter text-white/70 text-xs sm:text-sm mt-3 font-light">
-              A straightforward process designed to give you clarity and confidence before any purchase commitment.
+            <p className="font-inter text-white/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
+              We eliminate guesswork with a straightforward step-by-step roadmap from initial query to verified ownership.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {consultationSteps.map((step) => (
               <div
                 key={step.num}
-                className="bg-[#001D18]/90 border border-gold/25 rounded-3xl p-7 text-left flex flex-col justify-between hover:border-gold/50 transition-all shadow-xl"
+                className="p-7 rounded-3xl bg-[#001D18]/90 border border-[#D8B879]/25 shadow-xl text-left hover:border-[#D8B879]/60 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-playfair font-bold text-4xl text-gold/30 block mb-4">
+                  <span className="font-mono text-2xl font-bold text-[#D8B879] mb-4 block">
                     {step.num}
                   </span>
-                  <h3 className="font-playfair font-bold text-lg text-white mb-2.5">
+                  <h3 className="font-playfair text-lg font-bold text-white mb-2.5">
                     {step.title}
                   </h3>
-                  <p className="font-inter text-white/70 text-xs sm:text-sm font-light leading-relaxed">
+                  <p className="font-inter text-white/70 text-xs leading-relaxed font-light">
                     {step.desc}
                   </p>
                 </div>
@@ -172,37 +189,36 @@ const PropertyConsultingPage = () => {
         </div>
       </section>
 
-      {/* ── Direct Advisory Callout CTA ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 px-5 text-center">
-        <div className="max-w-3xl mx-auto">
-          <div className="w-14 h-14 rounded-full bg-[#075C4A]/10 text-[#075C4A] flex items-center justify-center mx-auto mb-5">
-            <Phone size={24} />
-          </div>
-          <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-[#002D26] mb-3">
-            Have Questions About Land in Balaghat?
+      {/* ── Bottom CTA ── */}
+      <section className="py-16 px-4 sm:px-6 lg:px-10 text-center bg-[#001713]">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
+            Speak Directly with a Balaghat Property Advisor
           </h2>
-          <p className="font-inter text-[#18231F]/70 text-sm sm:text-base mb-8 max-w-xl mx-auto font-light">
-            You don't need to commit right away. Call our Balaghat property desk or drop by our office on Kumar Furniture Road for an honest conversation.
+          <p className="font-inter text-white/70 text-xs sm:text-sm mb-6 font-light">
+            No intermediaries, no confusion. Get genuine insights on land valuation, boundaries, and growth corridors in Balaghat.
           </p>
-
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`tel:${business.phone[0]}`}
-              className="btn-gold inline-flex items-center gap-2 text-xs"
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all shadow-md"
             >
-              <Phone size={14} />
-              <span>Call +91 {business.phone[0]}</span>
-            </a>
-            <Link to="/contact" className="btn-forest inline-flex items-center gap-2 text-xs">
-              <span>Book an In-Person Meeting</span>
+              <span>Schedule Free Call</span>
               <ArrowRight size={14} />
             </Link>
+            <a
+              href={business.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-black font-inter font-bold text-xs uppercase tracking-wider hover:bg-[#20bd5a] transition-all"
+            >
+              <span>Chat on WhatsApp</span>
+            </a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
 export default PropertyConsultingPage;
-

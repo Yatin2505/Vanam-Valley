@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
       {/* ── Main Footer Grid ── */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-20 pb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-20 pb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10">
         
         {/* Brand Lockup (Cols 4) */}
         <div className="lg:col-span-4 flex flex-col justify-between text-left">
@@ -136,7 +136,7 @@ const Footer = () => {
 
       {/* ── Bottom Bar ── */}
       <div className="border-t border-white/10 bg-[#000E0B]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-inter text-white/40">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-inter text-white/40">
           <div>
             © {business.year} {business.name}. All Rights Reserved. · Balaghat, Madhya Pradesh
           </div>

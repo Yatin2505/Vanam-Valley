@@ -23,7 +23,7 @@ const PageBanner = ({ title, subtitle, breadcrumb = [], image }) => {
       {/* Decorative gold hairline rule */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-10 lg:px-16 w-full">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 w-full">
         {/* Breadcrumb */}
         {breadcrumb.length > 0 && (
           <nav className="flex items-center gap-2 mb-4 text-xs font-inter tracking-wider">
