@@ -66,7 +66,7 @@ const Navbar = () => {
             : 'bg-gradient-to-b from-[#001713]/85 via-[#001713]/40 to-transparent py-5 md:py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
+        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
           
           {/* ── Brand Official Logo ── */}
           <Link to="/" className="flex items-center gap-3.5 group focus:outline-none flex-shrink-0">
