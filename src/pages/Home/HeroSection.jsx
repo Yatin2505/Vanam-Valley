@@ -1,18 +1,41 @@
 // src/pages/Home/HeroSection.jsx
+// Final Refinement — Premium Cinematic Real Estate Hero
+// Communicates instantly: Residential & Commercial Plotting and Property Consulting in Balaghat
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Play, X, CheckCircle2, ChevronDown } from 'lucide-react';
+import {
+  ArrowRight,
+  Play,
+  X,
+  CheckCircle2,
+  MapPin,
+  Compass,
+  Building2,
+  Home,
+  PhoneCall,
+  Sparkles,
+  ChevronDown
+} from 'lucide-react';
 import EnquiryModal from '../../components/EnquiryModal';
+import { business } from '../../data/siteData';
 
 const HeroSection = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
-      <section className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between overflow-hidden bg-[#001410] pt-28 pb-10 md:pt-36 md:pb-14 px-5 md:px-10 lg:px-16">
-
+      <section className="relative min-h-[96vh] lg:min-h-screen flex flex-col justify-between overflow-hidden bg-[#001410] pt-28 pb-10 md:pt-36 md:pb-12 px-5 sm:px-8 lg:px-14">
+        
         {/* ── Background Looping Aerial Plotted Development Video ── */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <video
@@ -21,31 +44,38 @@ const HeroSection = () => {
             muted
             playsInline
             poster="/hero-poster.jpg"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center scale-[1.02] transform transition-transform duration-1000"
             aria-hidden="true"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
 
-          {/* Clean contrast gradient on left (right side remains clear for real-estate footage) */}
-          <div className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-1/2 bg-gradient-to-r from-[#001713]/92 via-[#001713]/65 to-transparent" />
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/50 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#001410] to-transparent" />
+          {/* 
+            Refined Cinematic Gradient Overlays:
+            Preserves full visual clarity of the road, land and landscape on the right/center,
+            while providing rich typographic legibility on the left.
+          */}
+          <div className="absolute inset-y-0 left-0 w-full md:w-3/5 lg:w-1/2 bg-gradient-to-r from-[#001713]/95 via-[#001713]/75 to-transparent pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#001410]/80 via-[#001410]/40 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#001410] via-[#001410]/70 to-transparent pointer-events-none" />
         </div>
 
-        {/* ── Main Hero Narrative ── */}
-        <div className="relative z-10 max-w-3xl w-full my-auto text-left">
-          <div>
-            {/* Category Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 backdrop-blur-md mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-              <span className="text-gold font-inter font-semibold text-[11px] tracking-[0.25em] uppercase">
-                Real Estate · Plotting · Property Consulting
+        {/* ── Hero Main Stage: Two-Column Architectural Composition ── */}
+        <div className="relative z-10 max-w-7xl w-full mx-auto my-auto py-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* ── Left Column: Editorial Brand Headline & CTAs (7 Cols) ── */}
+          <div className="lg:col-span-7 text-left">
+            
+            {/* Category Pill Tag */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-[#D8B879]/40 backdrop-blur-md mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#D8B879] animate-pulse" />
+              <span className="text-[#D8B879] font-inter font-semibold text-[11px] sm:text-xs tracking-[0.22em] uppercase">
+                Balaghat, M.P. · Residential &amp; Commercial Plotting
               </span>
             </div>
 
-            {/* Monumental Headline */}
-            <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight mb-5">
+            {/* Monumental Real Estate Headline */}
+            <h1 className="font-playfair font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.08] tracking-tight mb-5">
               Find the Right Plot for <br />
               <span className="italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
                 Your Future.
@@ -54,110 +84,212 @@ const HeroSection = () => {
 
             {/* Clear, Accessible Subtitle */}
             <p className="font-inter font-light text-white/90 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
-              Explore residential and commercial plots in Balaghat with planned road connectivity, verified documentation, and transparent property guidance.
+              Explore residential and commercial plots in Balaghat with planned internal road connectivity, demarcated boundaries, and honest property consulting every step of the way.
             </p>
 
-            {/* 3 Clear Conversion CTAs */}
+            {/* Three Distinct High-Conversion CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 mb-10">
+              {/* Primary: Residential Plots */}
               <Link
                 to="/projects/residential"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#D8B879] via-[#E5CA96] to-[#C4A45F] text-[#002620] font-inter font-semibold text-xs tracking-wider uppercase px-6 py-3.5 rounded-full transition-all duration-300 hover:shadow-[0_4px_24px_rgba(216,184,121,0.4)] hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D8B879] via-[#E5CA96] to-[#C4A45F] text-[#002620] font-inter font-bold text-xs sm:text-sm tracking-wider uppercase px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-[0_6px_28px_rgba(216,184,121,0.45)] hover:-translate-y-0.5 active:translate-y-0"
               >
-                <span>Residential Plots</span>
-                <ArrowRight size={14} />
+                <Home className="w-4 h-4 text-[#002620]" />
+                <span>Explore Residential</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
 
+              {/* Secondary: Commercial Plots */}
               <Link
                 to="/projects/commercial"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 hover:border-gold/50 text-white font-inter font-medium text-xs tracking-wider uppercase px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-[#D8B879]/60 text-white font-inter font-semibold text-xs sm:text-sm tracking-wider uppercase px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
               >
+                <Building2 className="w-4 h-4 text-emerald-400" />
                 <span>Commercial Plots</span>
-                <ArrowRight size={14} />
               </Link>
 
+              {/* Tertiary: Talk to Property Team */}
               <button
+                type="button"
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-[#002620]/80 hover:bg-[#002620] border border-gold/40 text-gold font-inter font-medium text-xs tracking-wider uppercase px-5 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-[#002620]/90 hover:bg-[#002620] border border-[#D8B879]/40 text-[#D8B879] font-inter font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg"
               >
-                <span>Enquire Now</span>
+                <PhoneCall className="w-4 h-4" />
+                <span>Talk to Property Team</span>
               </button>
             </div>
 
-            {/* Verified Trust Badges */}
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-inter text-white/75 pt-6 border-t border-white/15">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-gold" />
-                <span>Clear Title Verification</span>
+            {/* Quick Proof Badges */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-white/15">
+              <div className="flex items-center gap-2 text-xs font-inter text-white/80">
+                <CheckCircle2 className="w-4 h-4 text-[#D8B879] flex-shrink-0" />
+                <span>Planned Avenues</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-gold" />
-                <span>Internal Road Planning</span>
+              <div className="flex items-center gap-2 text-xs font-inter text-white/80">
+                <CheckCircle2 className="w-4 h-4 text-[#D8B879] flex-shrink-0" />
+                <span>Demarcated Parcels</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-gold" />
-                <span>Balaghat Local Office</span>
+              <div className="flex items-center gap-2 text-xs font-inter text-white/80">
+                <CheckCircle2 className="w-4 h-4 text-[#D8B879] flex-shrink-0" />
+                <span>Balaghat Office &amp; Team</span>
               </div>
             </div>
+
           </div>
+
+          {/* ── Right Column: Floating Architectural "Project At A Glance" Card (5 Cols) ── */}
+          <div className="lg:col-span-5 hidden lg:block">
+            <div className="relative rounded-3xl p-6 sm:p-7 bg-[#001713]/80 backdrop-blur-xl border border-[#D8B879]/30 shadow-2xl text-white">
+              
+              {/* Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-semibold">
+                    PROJECT STATUS: IN PLANNING
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono text-white/50 uppercase tracking-widest">
+                  BALAGHAT, M.P.
+                </span>
+              </div>
+
+              {/* Title & Micro Summary */}
+              <h2 className="font-playfair text-2xl font-bold text-white mb-2">
+                Vanam Valley Land Development
+              </h2>
+              <p className="font-inter text-xs text-white/70 leading-relaxed mb-6">
+                A planned plotted project designed to provide residential plots for home builders and high-frontage commercial plots for business ventures in Balaghat.
+              </p>
+
+              {/* Quick Metrics Grid */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D8B879] block mb-0.5">
+                    Residential Plots
+                  </span>
+                  <span className="font-playfair text-lg font-bold text-white">1,200 – 2,000</span>
+                  <span className="text-[10px] text-white/60 block">sq.ft sample formats</span>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block mb-0.5">
+                    Commercial Plots
+                  </span>
+                  <span className="font-playfair text-lg font-bold text-white">Road Frontage</span>
+                  <span className="text-[10px] text-white/60 block">High vehicular visibility</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-2.5">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('masterplan-section')}
+                  className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-inter text-xs font-semibold uppercase tracking-wider transition-colors group"
+                >
+                  <span className="flex items-center gap-2">
+                    <Compass className="w-4 h-4 text-[#D8B879]" />
+                    <span>Explore 2D Layout Map</span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setVideoOpen(true)}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/30 text-emerald-300 font-inter text-xs font-semibold uppercase tracking-wider transition-colors"
+                >
+                  <Play className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
+                  <span>Play Aerial Development Video</span>
+                </button>
+              </div>
+
+              {/* Disclaimer micro-tag */}
+              <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-white/40 text-center">
+                * Conceptual representative overview · Balaghat, MP
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
-        {/* ── Bottom Scroll Indicator ── */}
-        <div className="relative z-10 pt-4 flex items-center justify-between">
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/20 text-white/70 font-inter text-[10px] tracking-wider uppercase backdrop-blur-sm bg-black/30">
-            <ChevronDown size={12} className="text-gold animate-bounce" />
-            <span>EXPLORE PROJECT DETAILS</span>
-          </div>
+        {/* ── Bottom Section Anchors / Video Trigger ── */}
+        <div className="relative z-10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-7xl w-full mx-auto">
+          <button
+            type="button"
+            onClick={() => scrollToSection('overview-section')}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white/80 hover:text-white font-inter text-xs tracking-wider uppercase backdrop-blur-md bg-black/40 transition-colors"
+          >
+            <ChevronDown className="w-3.5 h-3.5 text-[#D8B879] animate-bounce" />
+            <span>Scroll to Project Overview</span>
+          </button>
 
           <button
+            type="button"
             onClick={() => setVideoOpen(true)}
-            className="inline-flex items-center gap-2 text-xs font-inter text-white/80 hover:text-gold transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-inter text-white/85 hover:text-[#D8B879] transition-colors"
           >
-            <Play size={13} className="text-gold" />
-            <span>Watch Aerial View</span>
+            <span className="w-6 h-6 rounded-full bg-[#D8B879]/20 flex items-center justify-center text-[#D8B879]">
+              <Play className="w-3 h-3 fill-[#D8B879]" />
+            </span>
+            <span>Watch Drone Perspective Video</span>
           </button>
         </div>
 
       </section>
 
-      {/* ── Video Lightbox ── */}
+      {/* ── High-Definition Aerial Video Modal ── */}
       <AnimatePresence>
         {videoOpen && (
-          <motion.div
-            className="fixed inset-0 z-[10000] bg-black/92 backdrop-blur-md flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 sm:p-8"
             onClick={() => setVideoOpen(false)}
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-4xl bg-[#001D18] border border-gold/40 rounded-3xl overflow-hidden aspect-video shadow-2xl"
+            <div
+              className="relative max-w-5xl w-full bg-[#001410] rounded-3xl overflow-hidden border border-[#D8B879]/40 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-4 right-4 z-20 text-white/80 hover:text-white p-2.5 rounded-full bg-black/60"
+                type="button"
                 onClick={() => setVideoOpen(false)}
-                aria-label="Close"
+                className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-colors"
+                aria-label="Close video"
               >
-                <X size={20} />
+                <X className="w-5 h-5" />
               </button>
-              <video controls autoPlay className="w-full h-full object-cover" poster="/hero-poster.jpg">
-                <source src="/hero-bg.mp4" type="video/mp4" />
-              </video>
-            </motion.div>
-          </motion.div>
+
+              <div className="relative aspect-video bg-black">
+                <video
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                >
+                  <source src="/hero-bg.mp4" type="video/mp4" />
+                  Your browser does not support video playback.
+                </video>
+              </div>
+
+              <div className="p-4 sm:p-5 bg-[#001713] border-t border-white/10 flex items-center justify-between text-xs font-inter text-white/70">
+                <span>Vanam Valley Plotted Development — Aerial Layout Perspective</span>
+                <span className="font-mono text-[#D8B879]">Representative Video</span>
+              </div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
 
-      {/* ── Enquiry Modal ── */}
+      {/* ── Lead Generation Enquiry Modal ── */}
       <EnquiryModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Enquire About Plots in Balaghat"
-        subtitle="Tell us whether you are looking for residential plots, commercial frontage, or property consulting."
-        source="hero_section"
+        defaultPropertyInterest="both"
+        title="Connect with Our Balaghat Property Desk"
+        subtitle="Speak with our property advisors regarding residential plot sizes, commercial road frontage, and accompanied site visits in Balaghat."
+        source="homepage_hero_cta"
       />
     </>
   );

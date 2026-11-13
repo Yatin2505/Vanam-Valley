@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Phone, MapPin, MessageCircle, CheckCircle2, AlertCircle, ArrowRight, ExternalLink } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
 import { business } from '../data/siteData';
-import bannerImg from '../assets/images/about-landscape.jpg';
+import bannerImg from '../assets/images/property-consulting-discussion.jpg';
 
 const ContactPage = () => {
   const [submitted, setSubmitted] = useState(false);

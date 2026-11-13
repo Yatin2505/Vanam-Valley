@@ -64,34 +64,63 @@ const LocationConnectivitySection = () => {
             {/* ── Left / Location Highlights (6 Columns) ── */}
             <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
               
-              {/* Registered Office Card */}
-              <div className="bg-white p-7 sm:p-8 rounded-3xl border border-[#002D26]/10 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#002D26]/5 text-[#075C4A] flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
+              {/* Dual Location Cards: Registered Office vs Project Site */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                {/* 1. Registered Business Office */}
+                <div className="bg-white p-6 rounded-3xl border border-[#002D26]/10 shadow-sm flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] font-mono tracking-widest uppercase text-[#075C4A] font-bold">
-                      OFFICE LOCATION
-                    </span>
-                    <h3 className="font-playfair text-xl font-bold text-[#002D26]">
-                      Balaghat Registered Office
-                    </h3>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#002D26]/5 text-[#075C4A] flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-mono tracking-widest uppercase text-[#075C4A] font-bold block">
+                          REGISTERED OFFICE
+                        </span>
+                        <h4 className="font-playfair text-base font-bold text-[#002D26]">
+                          Balaghat Office
+                        </h4>
+                      </div>
+                    </div>
+
+                    <p className="font-inter text-xs text-[#18231F]/80 leading-relaxed mb-4">
+                      {business.address.full}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#002D26]/5 text-[11px] font-inter text-[#18231F]/60">
+                    Meeting point for discussions &amp; paperwork
                   </div>
                 </div>
 
-                <p className="font-inter text-sm text-[#18231F]/80 leading-relaxed mb-5">
-                  {business.address.full}
-                </p>
+                {/* 2. Actual Project Site Corridor */}
+                <div className="bg-white p-6 rounded-3xl border border-[#D8B879]/40 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#D8B879]/15 text-[#D8B879] flex items-center justify-center flex-shrink-0">
+                        <Navigation className="w-4 h-4 text-[#002D26]" />
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-mono tracking-widest uppercase text-[#002D26] font-bold block">
+                          PROJECT SITE LOCATION
+                        </span>
+                        <h4 className="font-playfair text-base font-bold text-[#002D26]">
+                          Vanam Valley Land Parcel
+                        </h4>
+                      </div>
+                    </div>
 
-                <div className="flex flex-wrap items-center gap-3 text-xs font-inter text-[#18231F]/70 pt-4 border-t border-[#002D26]/5">
-                  <span className="inline-flex items-center gap-1.5 font-medium text-[#002D26]">
-                    <PhoneCall className="w-3.5 h-3.5 text-[#075C4A]" />
-                    <span>+91 {business.phone[0]} / {business.phone[1]}</span>
-                  </span>
-                  <span>•</span>
-                  <span>Mon – Sat: 10:00 AM – 7:00 PM</span>
+                    <p className="font-inter text-xs text-[#18231F]/80 leading-relaxed mb-4">
+                      Development Corridor, Balaghat, Madhya Pradesh. Accompanied site visits depart directly from the registered office.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#002D26]/5 text-[11px] font-inter text-[#075C4A] font-semibold">
+                    * Confirmed survey bounds released upon launch
+                  </div>
                 </div>
+
               </div>
 
               {/* 4 Connectivity Points */}

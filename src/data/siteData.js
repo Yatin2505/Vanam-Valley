@@ -7,7 +7,6 @@ import g3 from '../assets/images/gallery-image-03.jpg';
 import g4 from '../assets/images/gallery-image-04.jpg';
 import heroImg from '../assets/images/hero-plotted-development.jpg';
 import resImg from '../assets/images/residential-plots.jpg';
-import commImg from '../assets/images/commercial-plots.jpg';
 import whyImg from '../assets/images/why-vanam-valley.jpg';
 
 // Newly downloaded authentic real-estate photography
@@ -172,21 +171,21 @@ export const galleryImages = [
     src: roadImg,
     thumb: roadImg,
     alt: 'Paved Internal Road & Avenue Infrastructure Planned for Plots',
-    category: 'Project Development',
+    category: 'Site Development',
   },
   {
     id: 3,
     src: resImg,
     thumb: resImg,
     alt: 'Residential Plot Demarcations with Green Surroundings',
-    category: 'Residential',
+    category: 'Residential Plotting',
   },
   {
     id: 4,
     src: commRoadImg,
     thumb: commRoadImg,
     alt: 'Commercial Plotting Corridor along Road Frontage',
-    category: 'Commercial',
+    category: 'Commercial Plotting',
   },
   {
     id: 5,
@@ -200,28 +199,28 @@ export const galleryImages = [
     src: surveyImg,
     thumb: surveyImg,
     alt: 'Site Survey & Layout Boundary Demarcation Documentation',
-    category: 'Project Development',
+    category: 'Site Development',
   },
   {
     id: 7,
     src: g4,
     thumb: g4,
-    alt: 'Paved Approach Road Leading to Plot Sectors',
-    category: 'Project Development',
+    alt: 'Project Entrance Access Road Leading to Plot Sectors',
+    category: 'Site Development',
   },
   {
     id: 8,
     src: aerialImg,
     thumb: aerialImg,
-    alt: 'Divided Land Parcels with Open Green Surroundings',
-    category: 'Aerial Views',
+    alt: 'Divided Residential Land Parcels with Open Green Surroundings',
+    category: 'Residential Plotting',
   },
   {
     id: 9,
     src: consultImg,
     thumb: consultImg,
-    alt: 'On-Ground Property Consultation & Site Plan Discussion',
-    category: 'Plot Layouts',
+    alt: 'On-Ground Property Consultation & Site Plan Discussion in Balaghat',
+    category: 'Property Consulting',
   },
 ];
 
@@ -313,4 +312,12 @@ export const commercialPlots = [
   },
 ];
 
-export const galleryCategories = ['All', 'Aerial Views', 'Plot Layouts', 'Project Development', 'Residential', 'Commercial'];
+export const galleryCategories = [
+  'All',
+  'Aerial Views',
+  'Residential Plotting',
+  'Commercial Plotting',
+  'Plot Layouts',
+  'Site Development',
+  'Property Consulting',
+];

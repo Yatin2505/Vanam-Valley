@@ -27,7 +27,7 @@ const InteractiveMasterplanSection = () => {
 
   return (
     <>
-      <section className="bg-[#001713] text-white py-24 md:py-32 px-5 sm:px-8 lg:px-12 relative overflow-hidden border-t border-b border-[#D8B879]/15">
+      <section id="masterplan-section" className="bg-[#001713] text-white py-24 md:py-32 px-5 sm:px-8 lg:px-12 relative overflow-hidden border-t border-b border-[#D8B879]/15">
         
         {/* Subtle decorative grid background */}
         <div 
