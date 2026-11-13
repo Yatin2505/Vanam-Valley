@@ -175,50 +175,46 @@ const HeroSection = () => {
 
         </div>
 
-        {/* Right Column: Project Status Box Placed Exactly as in Reference Image ── */}
-        <div className="w-full lg:w-[460px] xl:w-[480px] flex-shrink-0">
-          <div className="w-full bg-[#001D18]/90 border border-[#E5C378]/35 rounded-3xl p-4 sm:p-5 backdrop-blur-xl shadow-2xl text-left relative overflow-hidden transition-all duration-300 hover:border-[#E5C378]/60">
+        {/* Right Column: Premium Floating Glass-Style Project Card ── */}
+        <div className="w-full sm:w-[380px] lg:w-[390px] xl:w-[410px] flex-shrink-0">
+          <div className="w-full bg-[#00221B]/85 border border-[#D8B879]/35 rounded-3xl p-4 sm:p-5 backdrop-blur-xl shadow-2xl shadow-black/70 text-left relative overflow-hidden transition-all duration-300 hover:border-[#D8B879]/60">
             
-            {/* Panoramic Plotted Layout Visual Accent on Right Side of the Card */}
-            <div className="absolute top-0 right-0 w-[45%] h-36 overflow-hidden pointer-events-none rounded-tr-3xl">
-              <img
-                src="/images/hero/hero-plan-thumb.jpg"
-                alt="Vanam Valley Plotted Layout Preview"
-                className="w-full h-full object-cover object-center filter brightness-95"
-              />
-              {/* Directional gradients to smoothly dissolve into emerald-black card background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#001D18] via-[#001D18]/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-transparent to-transparent" />
-              <div className="absolute inset-0 border-l border-emerald-500/20" />
-            </div>
-
-            {/* Top Status Header */}
-            <div className="relative z-10 flex items-center justify-between mb-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#003B30]/90 border border-emerald-500/40 backdrop-blur-md">
+            {/* Top Status Header: PROJECT STATUS – In Planning */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00382D]/90 border border-emerald-500/40">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[10px] font-inter font-bold tracking-wider uppercase text-emerald-300">
-                  Project Status
+                  PROJECT STATUS
                 </span>
               </div>
-              <span className="text-white/70 font-inter text-xs pr-2">In Planning</span>
+              <span className="text-white/70 font-inter text-xs font-medium">In Planning</span>
             </div>
 
-            {/* Title & Description */}
-            <div className="relative z-10 max-w-[270px] mb-3.5">
-              <h3 className="font-playfair font-bold text-white text-base sm:text-lg leading-snug">
-                Vanam Valley Land Development
-              </h3>
-              <p className="font-inter text-white/75 text-xs leading-relaxed mt-1">
-                A planned plotted project designed to provide residential plots for home builders and investors in Balaghat.
-              </p>
+            {/* Title, Description & Small Aerial Layout Image on Right */}
+            <div className="flex items-start gap-3.5 mb-3.5">
+              <div className="flex-1">
+                <h3 className="font-playfair font-bold text-white text-base sm:text-lg leading-snug">
+                  Vanam Valley Land Development
+                </h3>
+                <p className="font-inter text-white/70 text-xs leading-relaxed mt-1">
+                  A planned plotted project designed to provide residential plots for home builders and investors in Balaghat.
+                </p>
+              </div>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden flex-shrink-0 border border-emerald-500/35 shadow-md bg-[#001D18]">
+                <img
+                  src="/images/hero/hero-plan-thumb.jpg"
+                  alt="Vanam Valley Aerial Layout Preview"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             </div>
 
-            {/* Metrics & Dimensions Row */}
-            <div className="relative z-10 border-t border-white/10 pt-3 mb-3.5 grid grid-cols-2 gap-3">
-              {/* Residential Metric */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+            {/* Two Information Sections: Residential & Commercial Plots */}
+            <div className="border-t border-white/10 pt-3 mb-3.5 grid grid-cols-2 gap-3">
+              {/* RESIDENTIAL PLOTS */}
+              <div className="flex items-start gap-2">
+                <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#D8B879]">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
                     <rect x="3" y="3" width="7" height="7" rx="1.5" />
                     <rect x="14" y="3" width="7" height="7" rx="1.5" />
                     <rect x="3" y="14" width="7" height="7" rx="1.5" />
@@ -226,16 +222,22 @@ const HeroSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Residential Plots</div>
-                  <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">1,200 – 2,000</div>
-                  <div className="text-[10px] font-inter text-white/50">Sq.ft. (approx. formats)</div>
+                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider font-semibold">
+                    RESIDENTIAL PLOTS
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">
+                    1,200 – 2,000
+                  </div>
+                  <div className="text-[10px] font-inter text-white/50 leading-tight">
+                    Sq.ft. (approx. formats)
+                  </div>
                 </div>
               </div>
 
-              {/* Commercial Metric */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#E5C378]">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              {/* COMMERCIAL PLOTS */}
+              <div className="flex items-start gap-2">
+                <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#D8B879]">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
                     <path d="M4 19L8 5" strokeLinecap="round" />
                     <path d="M20 19L16 5" strokeLinecap="round" />
                     <path d="M12 7V9" strokeLinecap="round" />
@@ -243,21 +245,26 @@ const HeroSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider">Commercial Plots</div>
-                  <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">Road Frontage</div>
-                  <div className="text-[10px] font-inter text-white/50">High visibility &amp; accessibility</div>
+                  <div className="text-[10px] font-inter text-white/60 uppercase tracking-wider font-semibold">
+                    COMMERCIAL PLOTS
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-white font-inter mt-0.5">
+                    Road Frontage
+                  </div>
+                  <div className="text-[10px] font-inter text-white/50 leading-tight">
+                    High visibility &amp; accessibility
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* 2D Layout Map Full-Width Pill Button */}
+            {/* Full-width Outlined Gold Button: "→ Explore 2D Layout Map" */}
             <button
               type="button"
               onClick={scrollToMasterplan}
-              className="relative z-10 w-full py-2.5 px-4 rounded-full border border-[#E5C378]/40 bg-black/40 hover:bg-[#E5C378] text-[#E5C378] hover:text-[#001D18] font-inter text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm"
+              className="w-full py-2.5 px-4 rounded-full border border-[#D8B879] bg-transparent hover:bg-[#D8B879] text-[#D8B879] hover:text-[#001D18] font-inter text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>→</span>
-              <BookOpen className="w-3.5 h-3.5" />
               <span>Explore 2D Layout Map</span>
             </button>
           </div>
