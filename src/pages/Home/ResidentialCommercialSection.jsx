@@ -7,6 +7,7 @@ import { ArrowRight, CheckCircle2, Home, Building2, PhoneCall, FileText } from '
 import residentialImg from '../../assets/images/residential-plots.jpg';
 import commercialImg from '../../assets/images/commercial-roadside-plot.jpg';
 import EnquiryModal from '../../components/EnquiryModal';
+import InteractivePlotCalculator from '../../components/InteractivePlotCalculator';
 
 const ResidentialCommercialSection = () => {
   const [modalState, setModalState] = useState({ isOpen: false, interest: 'residential', title: '' });
@@ -175,6 +176,13 @@ const ResidentialCommercialSection = () => {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* ── Interactive Plot Sizing & Setback Valuation Calculator ── */}
+            <div className="pt-6">
+              <InteractivePlotCalculator 
+                onOpenEnquiry={() => openEnquiry('residential', 'Custom Plot Area & Setback Calculation')}
+              />
             </div>
 
           </div>
