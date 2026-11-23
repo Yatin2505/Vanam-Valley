@@ -1,12 +1,18 @@
-
-
 // src/pages/Home/HomeGallerySection.jsx
 // Section 08: Gallery — Explore Vanam Valley
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Maximize2, X, ArrowRight, Eye, Image as ImageIcon } from 'lucide-react';
 import { galleryImages, galleryCategories } from '../../data/siteData';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 35 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
 
 const HomeGallerySection = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -19,79 +25,84 @@ const HomeGallerySection = () => {
 
   return (
     <>
-      <section className="bg-[#001713] text-white py-24 md:py-32 px-5 sm:px-8 lg:px-12 relative overflow-hidden border-t border-b border-[#D8B879]/15">
-        
+      <section className="bg-white text-[#1a1a1a] py-24 md:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
         {/* Subtle decorative glow */}
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#075C4A]/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="pointer-events-none absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#2D5A43]/[0.03] rounded-full blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#D8B879]/[0.04] rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#D8B879]" />
-                <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.2em] uppercase">
-                  Section 08 · Visual Gallery
-                </span>
-              </div>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2 mb-4">
+              <span className="w-8 h-px bg-[#2D5A43]/30" />
+              <span className="text-xs font-outfit font-semibold tracking-[0.2em] uppercase text-[#2D5A43]">
+                Section 08 · Visual Gallery
+              </span>
+              <span className="w-8 h-px bg-[#2D5A43]/30" />
+            </motion.div>
 
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15]">
-                Explore <br />
-                <span className="italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
-                  Vanam Valley.
-                </span>
-              </h2>
-            </div>
+            <motion.h2
+              {...fadeUp(0.1)}
+              className="font-outfit text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] leading-tight mb-4"
+            >
+              Explore{' '}
+              <span className="font-playfair italic font-normal text-[#2D5A43]">
+                Vanam Valley
+              </span>
+            </motion.h2>
 
-            <p className="font-inter text-white/70 text-sm sm:text-base max-w-md font-light leading-relaxed">
+            <motion.p
+              {...fadeUp(0.2)}
+              className="font-inter text-base text-[#1a1a1a]/60 leading-relaxed"
+            >
               Curated visual perspectives illustrating plotted land divisions, road alignments, residential sectors, and natural surroundings.
-            </p>
+            </motion.p>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/10">
+          <motion.div {...fadeUp(0.25)} className="flex flex-wrap items-center justify-center gap-2 mb-12">
             {galleryCategories.map((category) => (
               <button
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-xl text-xs font-inter font-medium tracking-wide transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-outfit font-semibold tracking-wide transition-all ${
                   activeCategory === category
-                    ? 'bg-[#D8B879] text-[#001D18] shadow-md font-semibold'
-                    : 'bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/5'
+                    ? 'bg-[#1a3c2a] text-white shadow-md'
+                    : 'bg-[#f8faf9] hover:bg-[#2D5A43]/[0.08] text-[#1a1a1a]/60 hover:text-[#1a1a1a] border border-[#1a1a1a]/[0.06]'
                 }`}
               >
                 {category}
               </button>
             ))}
-          </div>
+          </motion.div>
 
           {/* Responsive Gallery Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredImages.slice(0, 6).map((item) => (
-              <div
+            {filteredImages.slice(0, 6).map((item, idx) => (
+              <motion.div
                 key={item.id}
+                {...fadeUp(0.1 + idx * 0.08)}
                 onClick={() => setLightboxImage(item)}
-                className="group relative rounded-2xl overflow-hidden bg-[#001D18] border border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative rounded-3xl overflow-hidden bg-[#001D18] border border-[#1a1a1a]/10 aspect-[4/3] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-[0.88]"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                 />
                 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
 
                 {/* Top Category Tag */}
-                <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono tracking-wider text-[#D8B879] uppercase">
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-outfit font-bold tracking-wider text-[#2D5A43] uppercase">
                   <span>{item.category}</span>
                 </div>
 
                 {/* Hover Maximize Icon */}
-                <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white">
                   <Maximize2 className="w-4 h-4" />
                 </div>
 
@@ -101,22 +112,21 @@ const HomeGallerySection = () => {
                     {item.alt}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* View Full Gallery CTA */}
-          <div className="mt-12 text-center">
+          <motion.div {...fadeUp(0.35)} className="mt-14 text-center">
             <Link
               to="/gallery"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-inter font-semibold text-xs tracking-wider uppercase transition-colors shadow-md"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#1a3c2a] hover:bg-[#15492f] text-white font-outfit font-bold text-xs tracking-wider uppercase transition-all shadow-lg hover:shadow-xl"
             >
               <ImageIcon className="w-4 h-4 text-[#D8B879]" />
               <span>View All Gallery Perspectives</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
-
+          </motion.div>
         </div>
       </section>
 
@@ -152,7 +162,7 @@ const HomeGallerySection = () => {
 
             <div className="p-5 sm:p-6 bg-[#001713] border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#D8B879] block mb-1">
+                <span className="text-[10px] font-outfit font-bold tracking-widest uppercase text-[#D8B879] block mb-1">
                   {lightboxImage.category}
                 </span>
                 <p className="font-inter text-sm text-white/90">
@@ -160,7 +170,7 @@ const HomeGallerySection = () => {
                 </p>
               </div>
 
-              <span className="text-[11px] font-mono text-white/50">
+              <span className="text-[11px] font-outfit text-white/50">
                 Representative Real Estate Visual
               </span>
             </div>
@@ -172,4 +182,3 @@ const HomeGallerySection = () => {
 };
 
 export default HomeGallerySection;
-

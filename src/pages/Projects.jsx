@@ -1,157 +1,278 @@
 // src/pages/Projects.jsx
-// Professional Overview of Vanam Valley Plotted Projects — Balaghat, M.P.
+// Complete Redesign for Vanam Valley Projects Page
+// Modern, luxury layout matching the unified Vanam Valley aesthetic
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Building2, ArrowRight, ShieldCheck, MapPin, Compass, CheckCircle2 } from 'lucide-react';
-import PageBanner from '../components/PageBanner';
+import {
+  Home,
+  Building2,
+  ArrowRight,
+  ShieldCheck,
+  MapPin,
+  Compass,
+  CheckCircle2,
+  Calendar,
+  Sparkles,
+  Phone,
+  FileText,
+} from 'lucide-react';
 import { projectCategories, business } from '../data/siteData';
-import bannerImg from '../assets/images/why-vanam-valley.jpg';
+import EnquiryModal from '../components/EnquiryModal';
+import residentialImg from '../assets/images/residential-plots.jpg';
+import commercialImg from '../assets/images/commercial-roadside-plot.jpg';
 
-const iconMap = { Home, Building2 };
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 35 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
 
 const ProjectsPage = () => {
-  return (
-    <div className="bg-[#FAF8F2] text-[#18231F]">
-      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
-      <PageBanner
-        title="Our Projects"
-        subtitle="Choose Your Land Parcel in Balaghat"
-        breadcrumb={[{ label: 'Projects' }]}
-        image={bannerImg}
-      />
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalInterest, setModalInterest] = useState('residential');
 
-      {/* ── Dual Sectors Showcase: Warm Luxury Ivory Section ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-[1440px] mx-auto">
-          
-          {/* Header */}
-          <motion.div
-            className="text-center mb-16 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
-              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
-                DUAL PLOTTING SECTORS
-              </span>
-            </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight">
-              Curated Land Formats
-            </h2>
-            <p className="font-inter text-[#18231F]/75 text-sm sm:text-base mt-4 font-light leading-relaxed">
-              Whether you are planning a private residential retreat or securing a commercial asset along prime frontage, Vanam Valley delivers planned acreage infrastructure in Balaghat.
-            </p>
+  const openEnquiry = (interest = 'residential') => {
+    setModalInterest(interest);
+    setModalOpen(true);
+  };
+
+  const sectors = [
+    {
+      id: 'residential',
+      tag: 'RESIDENTIAL ENCLAVE',
+      title: 'Residential Plots',
+      subtitle: 'Build Your Family Home in a Peaceful Setting',
+      desc: 'Thoughtfully planned residential acreage designed for custom home builders. Enjoy wide internal avenues, demarcated corners, and peaceful green surroundings away from urban congestion.',
+      specs: [
+        '1,200 – 2,000 Sq.Ft Planned Sizes',
+        '30–40 Ft Wide Paved Roads',
+        '100% Clear Freehold Title',
+        'Vastu-Compliant East/North Facing',
+      ],
+      image: residentialImg,
+      link: '/projects/residential',
+      actionText: 'Explore Residential',
+    },
+    {
+      id: 'commercial',
+      tag: 'COMMERCIAL CORRIDOR',
+      title: 'Commercial Plots',
+      subtitle: 'High-Visibility Arterial Frontage for Business',
+      desc: 'Prime business parcels positioned along key road access corridors to maximize customer visibility and heavy vehicle access for showrooms, clinics, and enterprises.',
+      specs: [
+        'Direct Main Road Frontage Access',
+        'Flexible Plot Frontage & Depth Ratios',
+        'Rapidly Appreciating Commercial Zone',
+        'Complete Legal Documentation Support',
+      ],
+      image: commercialImg,
+      link: '/projects/commercial',
+      actionText: 'Explore Commercial',
+    },
+  ];
+
+  return (
+    <div className="bg-[#FAF8F3] text-[#1a1a1a] select-none overflow-hidden">
+      
+      {/* ── HERO SECTION ── */}
+      <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="pointer-events-none absolute -top-24 right-0 w-[550px] h-[550px] bg-[#2D5A43]/[0.05] rounded-full blur-3xl" />
+        <div className="pointer-events-none absolute top-1/3 -left-20 w-[450px] h-[450px] bg-[#D8B879]/[0.08] rounded-full blur-3xl" />
+
+        <div className="text-center max-w-3xl mx-auto space-y-6">
+          <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2">
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
+            <span className="text-xs font-outfit font-semibold tracking-[0.25em] text-[#2D5A43] uppercase">
+              Vanam Valley Portfolio
+            </span>
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
           </motion.div>
 
-          {/* Category cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {projectCategories.map((project, i) => {
-              const Icon = iconMap[project.icon] || Home;
-              return (
-                <motion.div
-                  key={project.id}
-                  className="rounded-3xl overflow-hidden border border-[#002D26]/15 hover:border-[#D8B879] transition-all duration-300 shadow-xl hover:shadow-2xl bg-white group text-left flex flex-col justify-between"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
-                  whileHover={{ y: -6 }}
-                >
-                  <div className="relative h-72 sm:h-84 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.imageAlt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001D18] via-[#001D18]/30 to-transparent" />
-                    
-                    <div className="absolute top-5 right-5">
-                      <span className="px-3.5 py-1 rounded-full bg-black/60 border border-white/20 text-white font-inter text-xs backdrop-blur-md">
-                        Balaghat, M.P.
-                      </span>
-                    </div>
+          <motion.h1
+            {...fadeUp(0.1)}
+            className="text-4xl sm:text-5xl lg:text-[56px] font-outfit font-extrabold text-[#1a1a1a] leading-[1.1] tracking-tight"
+          >
+            Curated Land Formats in{' '}
+            <span className="font-playfair italic font-normal text-[#2D5A43]">
+              Balaghat
+            </span>
+          </motion.h1>
 
-                    <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-[#D8B879] text-[#002620] flex items-center justify-center shadow-lg font-bold">
-                          <Icon size={22} />
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
-                            Plotted Development
-                          </span>
-                          <span className="font-playfair font-bold text-xl sm:text-2xl text-white">
-                            {project.title}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <motion.p
+            {...fadeUp(0.2)}
+            className="font-inter text-base sm:text-lg text-[#1a1a1a]/65 leading-relaxed max-w-2xl mx-auto"
+          >
+            Whether you are planning a private residential retreat or securing a commercial asset with arterial road frontage, Vanam Valley delivers planned plotted infrastructure with 100% legal clarity.
+          </motion.p>
 
-                  <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
-                    <p className="font-inter text-[#18231F]/75 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                      {project.description}
-                    </p>
-                    
-                    <div className="border-t border-[#002D26]/10 pt-5 flex items-center justify-between">
-                      <Link
-                        to={project.path}
-                        className="btn-gold inline-flex items-center gap-2 text-xs uppercase tracking-wider py-3 px-6 shadow-md"
-                      >
-                        <span>{project.btnLabel}</span>
-                        <ArrowRight size={14} />
-                      </Link>
-
-                      <Link
-                        to="/contact"
-                        className="text-xs font-inter text-[#075C4A] hover:text-[#002D26] font-semibold transition-colors underline"
-                      >
-                        Schedule Site Visit
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Consultation Banner: Deep Forest Section ── */}
-      <section className="bg-[#002620] text-white py-16 px-4 sm:px-6 lg:px-10 text-center border-t border-[#D8B879]/20">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
-            Looking for Guidance on Plot Selection?
-          </h2>
-          <p className="font-inter text-white/70 text-xs sm:text-sm mb-6 font-light leading-relaxed">
-            Our Balaghat property desk will review your spatial needs and recommend suitable plot configurations with full title documentation.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all shadow-md"
-            >
-              <span>Schedule Property Consultation</span>
-              <ArrowRight size={14} />
-            </Link>
+          <motion.div {...fadeUp(0.3)} className="pt-2 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={business.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-black font-inter font-bold text-xs uppercase tracking-wider hover:bg-[#20bd5a] transition-all shadow-sm"
+              href="#residential"
+              className="px-6 py-2.5 rounded-full bg-white hover:bg-[#f5f2e8] border border-[#1a1a1a]/10 text-xs font-outfit font-semibold text-[#1a1a1a] shadow-sm transition-colors"
             >
-              <span>WhatsApp Inquiry</span>
+              Residential Plots
             </a>
-          </div>
+            <a
+              href="#commercial"
+              className="px-6 py-2.5 rounded-full bg-white hover:bg-[#f5f2e8] border border-[#1a1a1a]/10 text-xs font-outfit font-semibold text-[#1a1a1a] shadow-sm transition-colors"
+            >
+              Commercial Plots
+            </a>
+            <button
+              type="button"
+              onClick={() => openEnquiry('both')}
+              className="px-6 py-2.5 rounded-full bg-[#1a3c2a] hover:bg-[#122e20] text-white text-xs font-outfit font-semibold shadow-sm transition-colors"
+            >
+              Schedule Site Visit
+            </button>
+          </motion.div>
         </div>
       </section>
+
+      {/* ── DUAL SECTORS SHOWCASE ── */}
+      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto space-y-16">
+        {sectors.map((sector, idx) => (
+          <div
+            key={sector.id}
+            id={sector.id}
+            className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center ${
+              idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
+            }`}
+          >
+            {/* Image Card */}
+            <motion.div
+              {...fadeUp(0.1)}
+              className={`lg:col-span-6 relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#1a1a1a]/10 aspect-[16/11] bg-[#1a3c2a] group">
+                <img
+                  src={sector.image}
+                  alt={sector.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#2D5A43] text-[10px] font-outfit font-bold tracking-wider uppercase">
+                  <span>{sector.tag}</span>
+                </div>
+
+                <div className="absolute bottom-5 left-5 right-5 text-white">
+                  <span className="text-[10px] font-outfit font-semibold text-[#D8B879] uppercase tracking-wider block mb-1">
+                    Balaghat, M.P.
+                  </span>
+                  <h3 className="font-outfit text-2xl sm:text-3xl font-bold">
+                    {sector.title}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Description & Action */}
+            <motion.div
+              {...fadeUp(0.2)}
+              className={`lg:col-span-6 space-y-6 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2D5A43]/[0.08] text-[#2D5A43] text-xs font-outfit font-bold tracking-wider uppercase">
+                <span>Category 0{idx + 1}</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-outfit font-bold text-[#1a1a1a] tracking-tight">
+                {sector.subtitle}
+              </h2>
+
+              <p className="font-inter text-sm sm:text-base text-[#1a1a1a]/70 leading-relaxed">
+                {sector.desc}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {sector.specs.map((spec, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2.5 p-3 rounded-2xl bg-white border border-[#1a1a1a]/[0.06] text-xs font-outfit font-medium text-[#1a1a1a]/80"
+                  >
+                    <CheckCircle2 size={15} className="text-[#2D5A43] flex-shrink-0" />
+                    <span>{spec}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <Link
+                  to={sector.link}
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1a3c2a] hover:bg-[#122e20] text-white font-outfit font-semibold text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg"
+                >
+                  <span>{sector.actionText}</span>
+                  <ArrowRight size={13} />
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => openEnquiry(sector.id)}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-[#f5f2e8] border border-[#1a1a1a]/15 text-[#1a1a1a] font-outfit font-semibold text-xs tracking-wider uppercase transition-colors"
+                >
+                  <FileText size={14} className="text-[#2D5A43]" />
+                  <span>Enquire Formats</span>
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        ))}
+      </section>
+
+      {/* ── CONSULTATION CTA BANNER ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-12">
+        <motion.div
+          {...fadeUp(0)}
+          className="bg-[#122f24] text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-[#D8B879]/30 text-center"
+        >
+          <div className="pointer-events-none absolute -top-20 left-1/4 w-80 h-80 bg-[#2D5A43]/40 rounded-full blur-3xl" />
+          <div className="pointer-events-none absolute bottom-0 right-1/4 w-72 h-72 bg-[#D8B879]/10 rounded-full blur-2xl" />
+
+          <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+            <span className="text-xs font-outfit font-bold tracking-widest uppercase text-[#D8B879]">
+              Balaghat Local Advisory
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-outfit font-bold tracking-tight">
+              Looking for Guidance on Plot Selection?
+            </h2>
+            <p className="font-inter text-sm sm:text-base text-white/75 leading-relaxed">
+              Our Balaghat property desk will review your spatial needs, budget, and orientation preferences to recommend suitable plot configurations with full title documentation.
+            </p>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => openEnquiry('both')}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#D8B879] hover:bg-[#e8ca8e] text-[#1a3c2a] font-outfit font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-xl"
+              >
+                <span>Schedule Consultation</span>
+                <ArrowRight size={14} />
+              </button>
+              <a
+                href={business.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-[#1a1a1a] font-outfit font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+              >
+                <span>WhatsApp Enquiry</span>
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Global Accessible Modal */}
+      <EnquiryModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultPropertyInterest={modalInterest}
+        title="Schedule a Plot Consultation"
+        subtitle="Connect with our Balaghat team for layout maps, sector availability, and on-ground site walk arrangements."
+        source="projects_page"
+      />
     </div>
   );
 };

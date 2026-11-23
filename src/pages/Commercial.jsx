@@ -1,163 +1,277 @@
 // src/pages/Commercial.jsx
-// Professional Editorial Page for Commercial Plots at Vanam Valley — Balaghat, M.P.
+// Complete Redesign for Vanam Valley Commercial Plots Page
+// High-visibility commercial frontage & enterprise parcel showcase
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Building2, ArrowRight, CheckCircle2, TrendingUp, Compass, Phone } from 'lucide-react';
-import PageBanner from '../components/PageBanner';
+import { motion } from 'framer-motion';
+import {
+  Building2,
+  ArrowRight,
+  CheckCircle2,
+  TrendingUp,
+  Compass,
+  Phone,
+  Calendar,
+  FileText,
+  Briefcase,
+  Store,
+  Navigation,
+} from 'lucide-react';
 import PlotCard from '../components/PlotCard';
+import EnquiryModal from '../components/EnquiryModal';
 import { commercialPlots, business } from '../data/siteData';
-import bannerImg from '../assets/images/commercial-roadside-plot.jpg';
-import featureImg from '../assets/images/road-infrastructure-plots.jpg';
+import featureImg from '../assets/images/commercial-roadside-plot.jpg';
 
-const features = [
-  'High-visibility roadside frontage tailored for enterprise setups',
-  'Wide vehicular approach roads designed for seamless customer access',
-  '100% clear title legal documentation & direct registry support',
-  'Direct arterial connectivity to Balaghat commercial corridors',
-  'Rapidly appreciating commercial development zone in Balaghat',
-  'Flexible depth & frontage ratios for retail, showrooms, or offices',
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 35 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
+
+const commercialAdvantages = [
+  {
+    icon: Navigation,
+    title: 'High-Visibility Road Frontage',
+    desc: 'Direct arterial highway exposure designed to capture maximum daily vehicular and pedestrian footfall in Balaghat.',
+  },
+  {
+    icon: Building2,
+    title: 'Flexible Frontage & Depth',
+    desc: 'Adaptable parcel dimensions ideal for retail showrooms, medical clinics, offices, and multi-tenant commercial complexes.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'High Appreciation Corridor',
+    desc: 'Situated along an expanding infrastructure axis with accelerating land valuation and long-term rental demand.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Heavy Vehicle & Logistics Access',
+    desc: 'Wide arterial approach roads allowing unhindered commercial logistics transit, customer parking, and supply delivery.',
+  },
+  {
+    icon: CheckCircle2,
+    title: '100% Freehold Documentation',
+    desc: 'Crystal-clear commercial title records, mutation guidance, and seamless registry execution from day one.',
+  },
+  {
+    icon: Compass,
+    title: 'Strategic Balaghat Connectivity',
+    desc: 'Seamless transit linking to town centers, transit corridors, and regional districts in Madhya Pradesh.',
+  },
 ];
 
 const CommercialPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedFormat, setSelectedFormat] = useState('commercial');
+
+  const openEnquiry = (format = 'commercial') => {
+    setSelectedFormat(format);
+    setModalOpen(true);
+  };
+
   return (
-    <div className="bg-[#FAF8F2] text-[#18231F]">
-      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
-      <PageBanner
-        title="Commercial Plots"
-        subtitle="Prime Business Corridors & Frontage Parcels"
-        breadcrumb={[{ label: 'Projects', path: '/projects' }, { label: 'Commercial Plots' }]}
-        image={bannerImg}
-      />
+    <div className="bg-[#FAF8F3] text-[#1a1a1a] select-none overflow-hidden">
+      
+      {/* ── HERO SECTION ── */}
+      <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="pointer-events-none absolute -top-24 right-0 w-[550px] h-[550px] bg-[#2D5A43]/[0.05] rounded-full blur-3xl" />
+        <div className="pointer-events-none absolute top-1/3 -left-20 w-[450px] h-[450px] bg-[#D8B879]/[0.08] rounded-full blur-3xl" />
 
-      {/* ── Overview & Features: Warm Luxury Ivory Section ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          <div className="lg:col-span-7 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#075C4A]" />
-              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
-                COMMERCIAL CORRIDORS
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Text */}
+          <div className="lg:col-span-7 space-y-6">
+            <motion.div {...fadeUp(0)} className="flex items-center gap-3">
+              <span className="text-xs font-outfit font-semibold tracking-[0.25em] text-[#2D5A43] uppercase">
+                Commercial Corridors · Balaghat
               </span>
-            </div>
+              <span className="h-px w-16 bg-[#2D5A43]/30" />
+            </motion.div>
 
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight mb-5">
-              The Right Space for Your <br />
-              <span className="italic font-normal text-[#075C4A]">Business to Expand in Balaghat.</span>
-            </h2>
+            <motion.h1
+              {...fadeUp(0.1)}
+              className="text-4xl sm:text-5xl lg:text-[58px] font-outfit font-extrabold text-[#1a1a1a] leading-[1.08] tracking-tight"
+            >
+              Prime Business Corridors in{' '}
+              <span className="font-playfair italic font-normal text-[#2D5A43]">
+                Balaghat
+              </span>
+            </motion.h1>
 
-            <p className="font-inter text-[#18231F]/80 text-sm sm:text-base leading-relaxed mb-6 font-light">
-              Vanam Valley’s commercial parcels are strategically positioned along prime vehicular corridors to give your venture maximum visibility, seamless accessibility, and direct connectivity to surrounding districts in Madhya Pradesh.
-            </p>
+            <motion.p
+              {...fadeUp(0.2)}
+              className="font-inter text-base sm:text-lg text-[#1a1a1a]/70 leading-relaxed max-w-xl"
+            >
+              Vanam Valley’s commercial parcels are strategically positioned along prime vehicular corridors to give your business maximum visibility, seamless accessibility, and high asset appreciation.
+            </motion.p>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
-              {features.map((f) => (
-                <li key={f} className="flex items-center gap-2.5 text-[#18231F]/85 font-inter text-xs sm:text-sm">
-                  <CheckCircle2 size={16} className="text-[#075C4A] flex-shrink-0" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                to="/contact"
-                className="btn-gold inline-flex items-center gap-2 text-xs uppercase tracking-wider py-3.5 px-7 shadow-lg"
+            <motion.div {...fadeUp(0.3)} className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={() => openEnquiry('commercial')}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#1a3c2a] hover:bg-[#122e20] text-white font-outfit font-semibold text-xs tracking-wider uppercase transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
-                <span>Enquire for Commercial Parcels</span>
+                <span>Enquire for Commercial</span>
+                <ArrowRight size={13} />
+              </button>
+
+              <a
+                href="#commercial-formats"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-[#f5f2e8] border border-[#1a1a1a]/15 text-[#1a1a1a] font-outfit font-semibold text-xs tracking-wider uppercase transition-colors shadow-sm"
+              >
+                <span>View Frontage Formats</span>
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right Image */}
+          <motion.div {...fadeUp(0.2)} className="lg:col-span-5 relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#1a1a1a]/10 aspect-[4/3] bg-[#1a3c2a] group">
+              <img
+                src={featureImg}
+                alt="Commercial approach corridor at Vanam Valley"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 text-white">
+                <span className="text-[10px] font-outfit font-bold text-[#D8B879] uppercase tracking-wider block mb-0.5">
+                  Arterial Highway Frontage
+                </span>
+                <p className="text-sm font-outfit font-bold">
+                  High-Visibility Growth Corridors · Balaghat, M.P.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── 6 COMMERCIAL ADVANTAGES ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-white border-y border-[#1a1a1a]/[0.06]">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2 mb-3">
+              <span className="w-8 h-px bg-[#2D5A43]/30" />
+              <span className="text-xs font-outfit font-semibold tracking-widest uppercase text-[#2D5A43]">
+                Enterprise Advantages
+              </span>
+              <span className="w-8 h-px bg-[#2D5A43]/30" />
+            </motion.div>
+
+            <motion.h2
+              {...fadeUp(0.1)}
+              className="text-3xl sm:text-4xl font-outfit font-bold text-[#1a1a1a] tracking-tight"
+            >
+              Engineered for Enterprise Success
+            </motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {commercialAdvantages.map((item, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp(0.1 + i * 0.08)}
+                className="p-7 rounded-3xl bg-[#FAF8F3] border border-[#1a1a1a]/[0.06] hover:border-[#2D5A43]/30 hover:shadow-lg transition-all space-y-3"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#2D5A43]/[0.08] text-[#2D5A43] flex items-center justify-center">
+                  <item.icon size={20} />
+                </div>
+                <h3 className="text-lg font-outfit font-bold text-[#1a1a1a]">
+                  {item.title}
+                </h3>
+                <p className="font-inter text-xs sm:text-sm text-[#1a1a1a]/70 leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── COMMERCIAL FORMATS ── */}
+      <section id="commercial-formats" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto space-y-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2">
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
+            <span className="text-xs font-outfit font-semibold tracking-widest uppercase text-[#2D5A43]">
+              Frontage Specifications
+            </span>
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
+          </motion.div>
+
+          <motion.h2
+            {...fadeUp(0.1)}
+            className="text-3xl sm:text-4xl font-outfit font-bold text-[#1a1a1a] tracking-tight"
+          >
+            Commercial Parcel Formats
+          </motion.h2>
+
+          <motion.p
+            {...fadeUp(0.2)}
+            className="font-inter text-sm sm:text-base text-[#1a1a1a]/70 leading-relaxed"
+          >
+            Review illustrative frontage dimensions tailored for retail setups, showrooms, and enterprise ventures. Connect with our advisory desk for on-ground demarcations and frontage allocations.
+          </motion.p>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {commercialPlots.map((plot) => (
+            <PlotCard key={plot.id} plot={plot} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── COMMERCIAL CTA BANNER ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-12">
+        <motion.div
+          {...fadeUp(0)}
+          className="bg-[#122e22] text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-[#D8B879]/30 text-center"
+        >
+          <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+            <span className="text-xs font-outfit font-bold tracking-widest uppercase text-[#D8B879]">
+              Commercial Real Estate Consultation
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-outfit font-bold tracking-tight">
+              Expand Your Business Footprint in Balaghat
+            </h2>
+            <p className="font-inter text-sm sm:text-base text-white/75 leading-relaxed">
+              Our commercial advisory desk assists business owners and investors with frontage assessments, customer footfall data, and registration procedures.
+            </p>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => openEnquiry('Commercial Parcel Enquiry')}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#D8B879] hover:bg-[#e8ca8e] text-[#1a3c2a] font-outfit font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-xl"
+              >
+                <span>Request Commercial Consultation</span>
                 <ArrowRight size={14} />
-              </Link>
+              </button>
               <a
                 href={business.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-white/80 border border-[#002D26]/20 text-[#002D26] font-inter font-semibold text-xs uppercase tracking-wider transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-[#1a1a1a] font-outfit font-bold text-xs uppercase tracking-wider transition-all shadow-md"
               >
-                <span>Request Commercial Brochure</span>
+                <span>WhatsApp Business Desk</span>
               </a>
             </div>
           </div>
-
-          <div className="lg:col-span-5">
-            {/* Image container with strict relative positioning to prevent any full-width overlap */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#002D26]/15 group">
-              <img
-                src={featureImg}
-                alt="Commercial approach corridor at Vanam Valley"
-                className="w-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001D18]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 text-left">
-                <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
-                  Commercial Road Frontage
-                </span>
-                <p className="text-xs font-playfair font-bold text-white mt-0.5">
-                  High-Visibility Growth Corridors
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        </motion.div>
       </section>
 
-      {/* ── Commercial Formats Grid: Deep Forest Emerald Section ── */}
-      <section className="bg-[#002620] text-white py-20 md:py-28 px-4 sm:px-6 lg:px-10 border-t border-b border-[#D8B879]/20">
-        <div className="max-w-[1440px] mx-auto">
-          
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-[#D8B879]/30 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D8B879]" />
-              <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
-                BUSINESS PLOTTING
-              </span>
-            </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-              Commercial Plot Options
-            </h2>
-            <p className="font-inter text-white/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
-              These illustrative configurations feature dedicated road access suitable for retail shops, offices, warehousing, and commercial ventures in Balaghat.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {commercialPlots.map((plot) => (
-              <PlotCard key={plot.id} plot={plot} />
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Consultation CTA: Luxury Ivory Transition ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-16 md:py-20 px-4 sm:px-6 lg:px-10 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-[#002D26] mb-3">
-            Discuss Your Commercial Space Requirements
-          </h2>
-          <p className="font-inter text-[#18231F]/70 text-xs sm:text-sm mb-6 font-light leading-relaxed">
-            Our Balaghat commercial desk provides custom frontage allocations and site feasibility guidance.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="btn-gold inline-flex items-center gap-2 text-xs uppercase tracking-wider py-3 px-7 shadow-md"
-            >
-              <span>Schedule Commercial Advisory</span>
-              <ArrowRight size={14} />
-            </Link>
-            <a
-              href={`tel:${business.phone[0]}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#FAF8F2] border border-[#002D26]/20 text-[#002D26] font-inter font-semibold text-xs uppercase tracking-wider transition-all shadow-sm"
-            >
-              <Phone size={14} className="text-[#075C4A]" />
-              <span>Call +91 {business.phone[0]}</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Global Accessible Modal */}
+      <EnquiryModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultPropertyInterest="commercial"
+        title="Enquire for Commercial Plots"
+        subtitle="Connect with our Balaghat team for commercial frontage plans, arterial road width dimensions, and booking details."
+        source="commercial_page"
+      />
     </div>
   );
 };

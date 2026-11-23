@@ -36,6 +36,7 @@ export default {
         'dark-text': '#1D2D26',
       },
       fontFamily: {
+        'outfit': ['Outfit', 'sans-serif'],
         'playfair': ['"Playfair Display"', 'Georgia', 'serif'],
         'inter': ['Inter', 'system-ui', 'sans-serif'],
       },

@@ -2,7 +2,8 @@
 // Section 04: Interactive 3D WebGL Masterplan & Plotting Explorer
 // Powered by Three.js WebGL canvas, Aerial Photorealistic Cadastre, and 2D Vector Grid
 
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
+import { motion } from 'framer-motion';
 import { 
   Box, 
   Map, 
@@ -16,11 +17,19 @@ import {
   ZoomOut, 
   RotateCcw,
   Sparkles,
-  MapPin
+  MapPin,
+  Loader2
 } from 'lucide-react';
-import ThreeMasterplanExplorer from '../../components/ThreeMasterplanExplorer';
+const ThreeMasterplanExplorer = lazy(() => import('../../components/ThreeMasterplanExplorer'));
 import { sampleMasterplanPlots } from '../../data/siteData';
 import EnquiryModal from '../../components/EnquiryModal';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 35 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
 
 const InteractiveMasterplanSection = () => {
   const [activeViewMode, setActiveViewMode] = useState('3d'); // '3d' | 'drone' | '2d'
@@ -89,19 +98,19 @@ const InteractiveMasterplanSection = () => {
         <div className="max-w-[1440px] mx-auto relative z-10">
           
           {/* Header Row: Title on Left, View Mode Switcher on Right */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+          <motion.div {...fadeUp(0)} className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-[#D8B879]/30 mb-4 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-[#D8B879] animate-pulse" />
-                <span className="text-[#D8B879] font-inter font-semibold text-xs tracking-[0.2em] uppercase">
-                  Section 04 · Interactive 3D Masterplan
+                <span className="text-[#D8B879] font-outfit font-semibold text-xs tracking-[0.2em] uppercase">
+                  Section 04 · Interactive Masterplan
                 </span>
               </div>
 
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-3">
+              <h2 className="font-outfit text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-3">
                 Explore the Layout in{' '}
-                <span className="italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
-                  Interactive 3D.
+                <span className="font-playfair italic font-normal bg-gradient-to-r from-[#D8B879] via-[#F4E9D4] to-[#C4A45F] bg-clip-text text-transparent">
+                  Interactive 3D
                 </span>
               </h2>
 
@@ -115,7 +124,7 @@ const InteractiveMasterplanSection = () => {
               <button
                 type="button"
                 onClick={() => setActiveViewMode('3d')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-inter font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-semibold transition-all ${
                   activeViewMode === '3d'
                     ? 'bg-gradient-to-r from-[#D8B879] to-[#C4A45F] text-[#001D18] font-bold shadow-lg scale-[1.02]'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -128,20 +137,20 @@ const InteractiveMasterplanSection = () => {
               <button
                 type="button"
                 onClick={() => setActiveViewMode('drone')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-inter font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-semibold transition-all ${
                   activeViewMode === 'drone'
                     ? 'bg-gradient-to-r from-[#D8B879] to-[#C4A45F] text-[#001D18] font-bold shadow-lg scale-[1.02]'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <Sparkles className="w-4 h-4" />
-                <span>Aerial Photorealistic Drone</span>
+                <span>Aerial Drone</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveViewMode('2d')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-inter font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-semibold transition-all ${
                   activeViewMode === '2d'
                     ? 'bg-gradient-to-r from-[#D8B879] to-[#C4A45F] text-[#001D18] font-bold shadow-lg scale-[1.02]'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -151,7 +160,7 @@ const InteractiveMasterplanSection = () => {
                 <span>2D Cadastral Grid</span>
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Mandatory Real Estate Disclaimers Alert Banner */}
           <div className="mb-6 p-4 rounded-2xl bg-[#002620]/80 border border-[#D8B879]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 backdrop-blur-md">
@@ -169,7 +178,18 @@ const InteractiveMasterplanSection = () => {
           {/* VIEW MODE 1: Three.js Interactive 3D WebGL Canvas */}
           {activeViewMode === '3d' && (
             <div className="w-full transition-opacity duration-300">
-              <ThreeMasterplanExplorer />
+              <Suspense
+                fallback={
+                  <div className="w-full h-[620px] rounded-3xl bg-[#001D18] border border-[#D8B879]/30 flex flex-col items-center justify-center gap-3">
+                    <Loader2 className="w-8 h-8 text-[#D8B879] animate-spin" />
+                    <span className="text-xs font-inter uppercase tracking-widest text-[#D8B879]">
+                      Loading 3D WebGL Masterplan Engine...
+                    </span>
+                  </div>
+                }
+              >
+                <ThreeMasterplanExplorer />
+              </Suspense>
             </div>
           )}
 

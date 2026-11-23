@@ -127,12 +127,6 @@ const Footer = () => {
 
       </div>
 
-      {/* ── Colossal Watermark Typography ── */}
-      <div className="relative border-t border-white/5 pt-6 pb-2 overflow-hidden select-none pointer-events-none text-center">
-        <span className="font-playfair font-extrabold text-[12vw] leading-none text-white/[0.03] tracking-widest uppercase whitespace-nowrap block">
-          VANAM VALLEY
-        </span>
-      </div>
 
       {/* ── Bottom Bar ── */}
       <div className="border-t border-white/10 bg-[#000E0B]">

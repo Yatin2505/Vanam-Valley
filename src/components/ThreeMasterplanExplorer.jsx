@@ -193,14 +193,15 @@ const ThreeMasterplanExplorer = () => {
     camera.position.set(0, 85, 110);
     cameraRef.current = camera;
 
-    // 3. Renderer
+    // 3. Renderer with Optimized Performance
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       powerPreference: 'high-performance',
       alpha: true,
+      preserveDrawingBuffer: false,
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Capped for zero frame-drop
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     rendererRef.current = renderer;
@@ -209,7 +210,7 @@ const ThreeMasterplanExplorer = () => {
     // 4. OrbitControls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    controls.dampingFactor = 0.08;
     controls.maxPolarAngle = Math.PI / 2.15; // Don't go below ground
     controls.minDistance = 25;
     controls.maxDistance = 240;
@@ -223,8 +224,8 @@ const ThreeMasterplanExplorer = () => {
     const dirLight = new THREE.DirectionalLight(0xffd59e, 1.8);
     dirLight.position.set(60, 90, 40);
     dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 2048;
-    dirLight.shadow.mapSize.height = 2048;
+    dirLight.shadow.mapSize.width = 1024;
+    dirLight.shadow.mapSize.height = 1024;
     dirLight.shadow.bias = -0.0005;
     dirLight.shadow.camera.near = 10;
     dirLight.shadow.camera.far = 300;
@@ -504,7 +505,17 @@ const ThreeMasterplanExplorer = () => {
     container.addEventListener('pointermove', handlePointerMove);
     container.addEventListener('click', handleClick);
 
-    // 12. Responsive Resize
+    // 12. Visibility Observer (Pause render loop when offscreen to eliminate scrolling lag)
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+
+    // 13. Responsive Resize
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth;
@@ -515,10 +526,11 @@ const ThreeMasterplanExplorer = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // 13. Render Loop
+    // 14. Render Loop (Only renders when visible)
     let animId;
     const animate = () => {
       animId = requestAnimationFrame(animate);
+      if (!isVisible) return; // Zero GPU / CPU usage when user is scrolling elsewhere!
       controls.update();
       renderer.render(scene, camera);
     };
@@ -527,6 +539,7 @@ const ThreeMasterplanExplorer = () => {
     // Cleanup on unmount
     return () => {
       cancelAnimationFrame(animId);
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
       container.removeEventListener('pointermove', handlePointerMove);
       container.removeEventListener('click', handleClick);
@@ -870,3 +883,4 @@ const ThreeMasterplanExplorer = () => {
 };
 
 export default ThreeMasterplanExplorer;
+

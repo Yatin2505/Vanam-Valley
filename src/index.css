@@ -153,3 +153,21 @@
   justify-content: center;
   padding: 1.5rem;
 }
+
+/* ── Subtle Cinematic Breathing Zoom for Hero Visual ── */
+@keyframes vanamSlowPan {
+  0% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.035) translate3d(-6px, -4px, 0);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.animate-vanam-slow-pan {
+  animation: vanamSlowPan 20s ease-in-out infinite alternate;
+  will-change: transform;
+}

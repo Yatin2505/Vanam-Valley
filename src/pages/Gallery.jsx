@@ -1,17 +1,34 @@
 // src/pages/Gallery.jsx
-// Professional Photographic Chronicle of Vanam Valley — Balaghat, M.P.
+// Complete Redesign for Vanam Valley Gallery Page
+// Authentic photographic chronicle with interactive lightbox and category filtering
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn, Camera, ArrowRight, Phone } from 'lucide-react';
-import PageBanner from '../components/PageBanner';
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  Camera,
+  ArrowRight,
+  Phone,
+  Calendar,
+  Image as ImageIcon,
+} from 'lucide-react';
+import EnquiryModal from '../components/EnquiryModal';
 import { galleryImages, galleryCategories, business } from '../data/siteData';
-import bannerImg from '../assets/images/hero-plotted-development.jpg';
-import { Link } from 'react-router-dom';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 35 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
 
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const filtered =
     activeCategory === 'All'
@@ -50,197 +67,213 @@ const GalleryPage = () => {
   }, [lightboxIndex]);
 
   return (
-    <div className="bg-[#FAF8F2] text-[#18231F]">
-      {/* ── Page Banner: Dark Emerald with Gold Accent ── */}
-      <PageBanner
-        title="Visual Chronicle"
-        subtitle="A Glimpse of Vanam Valley in Balaghat"
-        breadcrumb={[{ label: 'Gallery' }]}
-        image={bannerImg}
-      />
+    <div className="bg-[#FAF8F3] text-[#1a1a1a] select-none overflow-hidden">
+      
+      {/* ── HERO SECTION ── */}
+      <section className="relative pt-28 sm:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="pointer-events-none absolute -top-24 right-0 w-[550px] h-[550px] bg-[#2D5A43]/[0.05] rounded-full blur-3xl" />
+        <div className="pointer-events-none absolute top-1/3 -left-20 w-[450px] h-[450px] bg-[#D8B879]/[0.08] rounded-full blur-3xl" />
 
-      {/* ── Gallery Grid & Filter Section: Warm Luxury Ivory Section ── */}
-      <section className="bg-[#F8F6EF] text-[#18231F] py-20 md:py-28 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-[1440px] mx-auto">
-          
-          {/* Header */}
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#002D26]/15 shadow-sm mb-4">
-              <Camera className="w-3.5 h-3.5 text-[#075C4A]" />
-              <span className="text-[#075C4A] font-inter font-semibold text-xs tracking-[0.25em] uppercase">
-                AUTHENTIC SITE PHOTOGRAPHY
-              </span>
-            </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#002D26] leading-tight">
-              Explore Vanam Valley
-            </h2>
-            <p className="font-inter text-[#18231F]/70 text-xs sm:text-sm mt-3 font-light leading-relaxed">
-              Photographic documentation of our plotted development, natural landscape, demarcated roads, and surroundings in Balaghat.
-            </p>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-12">
-            {galleryCategories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`font-inter text-xs tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 font-semibold shadow-sm ${
-                  activeCategory === cat
-                    ? 'bg-[#D8B879] text-[#001D18] shadow-md'
-                    : 'bg-white text-[#18231F]/80 hover:text-[#002D26] border border-[#002D26]/15 hover:border-[#D8B879]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Photos Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          >
-            <AnimatePresence>
-              {filtered.map((item, idx) => (
-                <motion.div
-                  layout
-                  key={item.id || idx}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35 }}
-                  onClick={() => openLightbox(idx)}
-                  className="group relative rounded-3xl overflow-hidden border border-[#002D26]/12 bg-white cursor-pointer shadow-lg hover:shadow-2xl hover:border-[#D8B879] transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={item.src}
-                      alt={item.title || item.alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-                    
-                    {/* Zoom Icon Pill */}
-                    <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ZoomIn size={16} />
-                    </div>
-
-                    {/* Bottom Caption */}
-                    <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-black/70 backdrop-blur-md border border-white/10 text-left">
-                      <span className="text-[10px] font-inter text-[#D8B879] uppercase tracking-wider font-semibold block">
-                        {item.category}
-                      </span>
-                      <h4 className="font-playfair font-bold text-sm text-white mt-0.5 line-clamp-1">
-                        {item.title}
-                      </h4>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+        <div className="text-center max-w-3xl mx-auto space-y-5">
+          <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2">
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
+            <span className="text-xs font-outfit font-semibold tracking-[0.25em] text-[#2D5A43] uppercase">
+              Authentic Site Photography
+            </span>
+            <span className="w-8 h-px bg-[#2D5A43]/30" />
           </motion.div>
 
+          <motion.h1
+            {...fadeUp(0.1)}
+            className="text-4xl sm:text-5xl lg:text-[56px] font-outfit font-extrabold text-[#1a1a1a] leading-[1.1] tracking-tight"
+          >
+            Explore Vanam Valley Through{' '}
+            <span className="font-playfair italic font-normal text-[#2D5A43]">
+              Our Lens
+            </span>
+          </motion.h1>
+
+          <motion.p
+            {...fadeUp(0.2)}
+            className="font-inter text-base sm:text-lg text-[#1a1a1a]/65 leading-relaxed max-w-2xl mx-auto"
+          >
+            Curated photographic chronicle of plotted developments, road alignments, residential enclaves, and natural surroundings in Balaghat.
+          </motion.p>
         </div>
       </section>
 
-      {/* ── Interactive Lightbox Modal ── */}
-      <AnimatePresence>
-        {lightboxIndex !== null && filtered[lightboxIndex] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6 bg-black/95 backdrop-blur-2xl"
-            onClick={closeLightbox}
+      {/* ── GALLERY SECTION & FILTERS ── */}
+      <section className="pb-20 sm:pb-28 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto space-y-10">
+        {/* Category Filter Pills */}
+        <motion.div {...fadeUp(0.25)} className="flex flex-wrap justify-center gap-2">
+          {galleryCategories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2.5 rounded-full text-xs font-outfit font-semibold tracking-wide transition-all shadow-sm ${
+                activeCategory === cat
+                  ? 'bg-[#1a3c2a] text-white shadow-md'
+                  : 'bg-white hover:bg-[#2D5A43]/[0.08] text-[#1a1a1a]/70 hover:text-[#1a1a1a] border border-[#1a1a1a]/10'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Photos Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filtered.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              {...fadeUp(0.05 + idx * 0.05)}
+              onClick={() => openLightbox(idx)}
+              className="group relative rounded-3xl overflow-hidden bg-[#1a3c2a] border border-[#1a1a1a]/10 aspect-[4/3] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
+
+              {/* Category Pill */}
+              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-outfit font-bold tracking-wider text-[#2D5A43] uppercase">
+                <span>{item.category}</span>
+              </div>
+
+              {/* Hover Zoom Icon */}
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                <Maximize2 size={16} />
+              </div>
+
+              {/* Caption */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="font-inter text-xs text-white/95 line-clamp-2 leading-relaxed">
+                  {item.alt}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SCHEDULE VISIT BANNER ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-12">
+        <motion.div
+          {...fadeUp(0)}
+          className="bg-[#122e22] text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-[#D8B879]/30 text-center"
+        >
+          <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+            <span className="text-xs font-outfit font-bold tracking-widest uppercase text-[#D8B879]">
+              Witness On-Ground
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-outfit font-bold tracking-tight">
+              See Vanam Valley with Your Own Eyes
+            </h2>
+            <p className="font-inter text-sm sm:text-base text-white/75 leading-relaxed">
+              Photographs only tell part of the story. Schedule a guided on-ground visit to walk through the internal roads, green buffer zones, and demarcated plots.
+            </p>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#D8B879] hover:bg-[#e8ca8e] text-[#1a3c2a] font-outfit font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-xl"
+              >
+                <span>Schedule Site Walk</span>
+                <Calendar size={14} />
+              </button>
+              <a
+                href={`tel:${business.phone[0]}`}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-outfit font-semibold text-xs uppercase tracking-wider transition-all"
+              >
+                <Phone size={14} className="text-[#D8B879]" />
+                <span>Call +91 {business.phone[0]}</span>
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── LIGHTBOX MODAL ── */}
+      {lightboxIndex !== null && filtered[lightboxIndex] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 sm:p-8 animate-fadeIn"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative max-w-5xl w-full bg-[#0c241c] rounded-3xl overflow-hidden border border-[#D8B879]/30 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
             <button
               type="button"
               onClick={closeLightbox}
-              className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
-              aria-label="Close photo preview"
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-colors"
+              aria-label="Close lightbox"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
-            {/* Prev Image */}
+            {/* Prev Button */}
             <button
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                prevImage();
-              }}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
-              aria-label="Previous photo"
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-colors"
+              aria-label="Previous image"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={20} />
             </button>
 
-            {/* Next Image */}
+            {/* Next Button */}
             <button
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                nextImage();
-              }}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20"
-              aria-label="Next photo"
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-colors"
+              aria-label="Next image"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={20} />
             </button>
 
-            {/* Modal Image Display */}
-            <div
-              className="relative max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="relative aspect-[16/10] bg-black">
               <img
                 src={filtered[lightboxIndex].src}
-                alt={filtered[lightboxIndex].title}
-                className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/10"
+                alt={filtered[lightboxIndex].alt}
+                className="w-full h-full object-contain"
               />
-              <div className="mt-4 text-center">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#D8B879]">
-                  {filtered[lightboxIndex].category} · {lightboxIndex + 1} of {filtered.length}
-                </span>
-                <h3 className="font-playfair text-xl font-bold text-white mt-1">
-                  {filtered[lightboxIndex].title}
-                </h3>
-              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* ── Consultation CTA: Deep Forest Emerald Section ── */}
-      <section className="bg-[#002620] text-white py-16 px-4 sm:px-6 lg:px-10 text-center border-t border-[#D8B879]/20">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
-            Experience the Land in Person
-          </h2>
-          <p className="font-inter text-white/70 text-xs sm:text-sm mb-6 font-light">
-            Photographs only capture part of the beauty. Schedule a free escorted site visit with our local Balaghat advisors.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#D8B879] hover:bg-[#F4E9D4] text-[#002620] font-inter font-bold text-xs uppercase tracking-wider transition-all shadow-md"
-            >
-              <span>Schedule On-Ground Site Walk</span>
-              <ArrowRight size={14} />
-            </Link>
-            <a
-              href={`tel:${business.phone[0]}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-inter font-semibold text-xs uppercase tracking-wider transition-all"
-            >
-              <Phone size={14} className="text-[#D8B879]" />
-              <span>Call +91 {business.phone[0]}</span>
-            </a>
+            <div className="p-5 sm:p-6 bg-[#0c241c] border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-[10px] font-outfit font-bold tracking-widest uppercase text-[#D8B879] block mb-1">
+                  {filtered[lightboxIndex].category}
+                </span>
+                <p className="font-inter text-sm text-white/90">
+                  {filtered[lightboxIndex].alt}
+                </p>
+              </div>
+
+              <span className="text-[11px] font-outfit text-white/50">
+                Photo {lightboxIndex + 1} of {filtered.length}
+              </span>
+            </div>
           </div>
         </div>
-      </section>
+      )}
+
+      {/* Global Accessible Modal */}
+      <EnquiryModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultPropertyInterest="both"
+        title="Schedule a Site Walk in Balaghat"
+        subtitle="Our team will accompany you for an in-person physical tour of the plotted land."
+        source="gallery_page"
+      />
     </div>
   );
 };
